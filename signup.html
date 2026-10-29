@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create an Account | Terra Luxury Travel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="site-navbar">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg p-0">
+        <a class="brand-logo" href="index.html">
+          <div class="brand-icon-circle"><i class="bi bi-compass"></i></div>
+          <span>TERRA</span>
+        </a>
+        <div class="ms-auto">
+          <span class="text-muted small me-2">Already have an account?</span>
+          <a href="login.html" class="btn btn-outline-custom btn-sm">Log In</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Signup Form Area -->
+  <main class="auth-wrapper">
+    <div class="auth-card">
+      <div class="text-center mb-4">
+        <h2 class="font-weight-bold">Join Terra Today</h2>
+        <p class="text-muted small">Unlock member-only discounts, curated itineraries, and seamless booking tracking.</p>
+      </div>
+
+      <form id="signupForm" novalidate>
+        <div class="mb-3">
+          <label for="signupName" class="form-label small fw-bold">Full Name</label>
+          <div class="input-group">
+            <span class="input-group-text bg-white"><i class="bi bi-person"></i></span>
+            <input type="text" class="form-control" id="signupName" placeholder="e.g. Jervin Raj" required>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="signupEmail" class="form-label small fw-bold">Email Address</label>
+          <div class="input-group">
+            <span class="input-group-text bg-white"><i class="bi bi-envelope"></i></span>
+            <input type="email" class="form-control" id="signupEmail" placeholder="e.g. jervin@example.com" required>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="signupPassword" class="form-label small fw-bold">Password</label>
+          <div class="input-group">
+            <span class="input-group-text bg-white"><i class="bi bi-lock"></i></span>
+            <input type="password" class="form-control" id="signupPassword" placeholder="Minimum 8 characters" required>
+            <button type="button" class="btn btn-outline-secondary password-toggle-btn" data-target="signupPassword">
+              <i class="bi bi-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-check mb-4">
+          <input class="form-check-input" type="checkbox" id="termsCheck" required checked>
+          <label class="form-check-label small" for="termsCheck">
+            I agree to Terra's <a href="faq.html">Terms of Service</a> & <a href="faq.html">Privacy Policy</a>.
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary-custom w-100 py-3 mb-3">Create Free Account</button>
+
+        <div class="alert alert-info py-2 px-3 small text-center mb-0">
+          <i class="bi bi-info-circle me-1"></i> Frontend demo: Simulated account creation using browser storage.
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer class="py-3 text-center text-muted small bg-white border-top">
+    &copy; 2026 Terra Travel Inc.
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/auth-demo.js"></script>
+</body>
+</html>

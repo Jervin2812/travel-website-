@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Step 2: Payment & Checkout Demo | Terra Booking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body class="bg-light">
+
+  <!-- Header -->
+  <header class="bg-white border-bottom py-3">
+    <div class="container d-flex justify-content-between align-items-center">
+      <a class="brand-logo" href="index.html">
+        <div class="brand-icon-circle"><i class="bi bi-compass"></i></div>
+        <span>TERRA</span>
+      </a>
+      <span class="text-muted small"><i class="bi bi-shield-lock-fill text-success me-1"></i> Simulated Demo Checkout</span>
+    </div>
+  </header>
+
+  <!-- Checkout Content -->
+  <main class="py-5">
+    <div class="container">
+      <!-- Step Indicator -->
+      <div class="step-indicator-bar">
+        <div class="step-item completed">
+          <div class="step-circle"><i class="bi bi-check-lg"></i></div>
+          <span>Traveler Details</span>
+        </div>
+        <div class="step-line d-none d-md-block" style="width: 40px; height: 2px; background: #10b981;"></div>
+        <div class="step-item active">
+          <div class="step-circle">2</div>
+          <span>Payment & Review</span>
+        </div>
+        <div class="step-line d-none d-md-block" style="width: 40px; height: 2px; background: #cbd5e1;"></div>
+        <div class="step-item">
+          <div class="step-circle">3</div>
+          <span>Confirmation</span>
+        </div>
+      </div>
+
+      <div class="row g-5">
+        <div class="col-12 col-lg-8">
+          <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mb-4">
+            <h3 class="font-weight-bold mb-1">Select Payment Method</h3>
+            <p class="text-muted small mb-4">Choose how you wish to pay. (Demo simulation only — no real charges)</p>
+
+            <!-- Payment Method Radio Cards -->
+            <div class="payment-method-card selected">
+              <input type="radio" name="paymentType" id="payCard" class="form-check-input mt-0 me-2" checked>
+              <i class="bi bi-credit-card-2-front fs-4 text-primary"></i>
+              <div class="flex-grow-1">
+                <label for="payCard" class="fw-bold mb-0 cursor-pointer d-block">Credit / Debit Card</label>
+                <span class="text-muted small">Visa, Mastercard, American Express</span>
+              </div>
+            </div>
+
+            <div class="payment-method-card">
+              <input type="radio" name="paymentType" id="payApple" class="form-check-input mt-0 me-2">
+              <i class="bi bi-apple fs-4"></i>
+              <div class="flex-grow-1">
+                <label for="payApple" class="fw-bold mb-0 cursor-pointer d-block">Apple Pay</label>
+                <span class="text-muted small">Instant one-tap checkout</span>
+              </div>
+            </div>
+
+            <div class="payment-method-card">
+              <input type="radio" name="paymentType" id="payPaypal" class="form-check-input mt-0 me-2">
+              <i class="bi bi-paypal fs-4 text-primary"></i>
+              <div class="flex-grow-1">
+                <label for="payPaypal" class="fw-bold mb-0 cursor-pointer d-block">PayPal</label>
+                <span class="text-muted small">Safe and protected payment</span>
+              </div>
+            </div>
+
+            <!-- Demo Card Form -->
+            <form id="checkoutPaymentForm" class="mt-4">
+              <div class="row g-3">
+                <div class="col-12">
+                  <label for="cardHolder" class="form-label small fw-bold">Name on Card</label>
+                  <input type="text" class="form-control" id="cardHolder" value="Alex Morgan" required>
+                </div>
+                <div class="col-12">
+                  <label for="cardNumber" class="form-label small fw-bold">Card Number (Demo)</label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="bi bi-credit-card"></i></span>
+                    <input type="text" class="form-control" id="cardNumber" placeholder="4242 &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 4242" value="4242 •••• •••• 4242" required>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <label for="cardExp" class="form-label small fw-bold">Expiration Date</label>
+                  <input type="text" class="form-control" id="cardExp" value="12/28" placeholder="MM/YY" required>
+                </div>
+                <div class="col-6">
+                  <label for="cardCvv" class="form-label small fw-bold">Security CVV</label>
+                  <input type="password" class="form-control" id="cardCvv" value="888" maxlength="4" placeholder="CVC" required>
+                </div>
+              </div>
+
+              <!-- Promo Code Box -->
+              <div class="mt-4 p-3 bg-light rounded-3">
+                <label class="form-label small fw-bold mb-1">Have a Promotional Code?</label>
+                <div class="input-group">
+                  <input type="text" id="promoCodeInput" class="form-control" placeholder="Enter 'TRAVEL20' for 20% off">
+                  <button type="button" id="applyPromoBtn" class="btn btn-navy-custom">Apply Code</button>
+                </div>
+                <div id="promoAlert" class="mt-1"></div>
+              </div>
+
+              <div class="alert alert-warning mt-4 mb-0 small d-flex align-items-center gap-2">
+                <i class="bi bi-shield-exclamation fs-5"></i>
+                <div>
+                  <strong>DEMO MODE:</strong> No real payment is processed. Clicking "Complete Booking" simulates a successful reservation and generates your digital travel voucher.
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center pt-4 mt-3 border-top">
+                <a href="booking-details.html" class="btn btn-link text-muted text-decoration-none">
+                  <i class="bi bi-arrow-left me-1"></i> Edit Details
+                </a>
+                <button type="submit" class="btn btn-primary-custom py-3 px-5">
+                  Confirm & Reserve Now <i class="bi bi-check-circle ms-1"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Price Breakdown -->
+        <div class="col-12 col-lg-4">
+          <div class="booking-summary-card" id="checkoutSummaryBox">
+            <!-- Rendered via booking.js -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="py-4 text-center text-muted small">
+    &copy; 2026 Terra Travel Inc. Simulated frontend demo. No real transactions.
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/booking.js"></script>
+</body>
+</html>

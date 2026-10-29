@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Destination Details | Terra Luxury Travel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="site-navbar">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg p-0">
+        <a class="brand-logo" href="index.html">
+          <div class="brand-icon-circle"><i class="bi bi-compass"></i></div>
+          <span>TERRA</span>
+        </a>
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavbarNav">
+          <i class="bi bi-list fs-2 text-dark"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="siteNavbarNav">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link active" href="destinations.html">Destinations</a></li>
+            <li class="nav-item"><a class="nav-link" href="flights.html">Flights</a></li>
+            <li class="nav-item"><a class="nav-link" href="search-results.html?type=hotel">Hotels</a></li>
+            <li class="nav-item"><a class="nav-link" href="packages.html">Tour Packages</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          </ul>
+          <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0" id="navbarAuthButtons">
+            <a href="login.html" class="btn btn-outline-custom">Log In</a>
+            <a href="signup.html" class="btn btn-primary-custom">Sign Up</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Content Container -->
+  <main class="py-4">
+    <div class="container">
+      <div class="custom-breadcrumb">
+        <a href="index.html">Home</a> <i class="bi bi-chevron-right small"></i>
+        <a href="destinations.html">Destinations</a> <i class="bi bi-chevron-right small"></i>
+        <span id="destBreadcrumbName">Bali, Indonesia</span>
+      </div>
+
+      <!-- Title & Rating Header -->
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
+        <div>
+          <h1 class="display-5 font-weight-bold mb-1" id="destTitle">Bali, Indonesia</h1>
+          <p class="text-muted fs-5 mb-0"><i class="bi bi-geo-alt-fill text-danger me-1"></i> <span id="destCountry">Indonesia &bull; Southeast Asia</span></p>
+        </div>
+        <div class="d-flex align-items-center gap-3 mt-3 mt-md-0">
+          <div class="text-end">
+            <div class="star-rating fs-5 text-warning"><i class="bi bi-star-fill"></i> <span id="destRating" class="text-dark">4.9</span></div>
+            <span class="text-muted small" id="destReviewCount">1,420 verified reviews</span>
+          </div>
+          <button class="btn btn-outline-custom btn-sm"><i class="bi bi-share me-1"></i> Share</button>
+          <button class="btn btn-outline-custom btn-sm"><i class="bi bi-heart me-1"></i> Save</button>
+        </div>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="row g-2 mb-5 rounded-4 overflow-hidden" id="destGallery">
+        <div class="col-12 col-md-8">
+          <img id="destMainImg" src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=80" alt="Main Destination View" class="w-100 rounded-3" style="height: 440px; object-fit: cover;">
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="row g-2">
+            <div class="col-6 col-md-12">
+              <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=600&q=80" alt="Culture" class="w-100 rounded-3" style="height: 215px; object-fit: cover;">
+            </div>
+            <div class="col-6 col-md-12">
+              <img src="https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?auto=format&fit=crop&w=600&q=80" alt="Scenery" class="w-100 rounded-3" style="height: 215px; object-fit: cover;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Details & Booking Sidebar Layout -->
+      <div class="row g-5">
+        <div class="col-12 col-lg-8">
+          <!-- Overview -->
+          <div class="mb-5">
+            <h3 class="font-weight-bold mb-3">About This Destination</h3>
+            <p class="text-secondary fs-6 leading-relaxed" id="destDescription">
+              Renowned as the Island of the Gods, Bali entrances visitors with dramatic volcanic mountains, emerald tiered rice terraces, sacred ocean temples, and deeply spiritual Balinese art and ceremonies. Whether surfing legendary reef breaks in Uluwatu or finding inner peace in the lush jungles of Ubud, Bali offers transformative journeys for every traveler.
+            </p>
+          </div>
+
+          <!-- Quick Facts -->
+          <div class="mb-5">
+            <h4 class="font-weight-bold mb-3">Key Highlights & Travel Facts</h4>
+            <div class="row g-3">
+              <div class="col-6 col-md-4">
+                <div class="p-3 bg-light rounded-3">
+                  <span class="text-muted small d-block">Ideal Travel Season</span>
+                  <strong id="destBestTime">April to October</strong>
+                </div>
+              </div>
+              <div class="col-6 col-md-4">
+                <div class="p-3 bg-light rounded-3">
+                  <span class="text-muted small d-block">Average Weather</span>
+                  <strong id="destWeather">28°C / 82°F Tropical</strong>
+                </div>
+              </div>
+              <div class="col-6 col-md-4">
+                <div class="p-3 bg-light rounded-3">
+                  <span class="text-muted small d-block">Primary Language</span>
+                  <strong>Indonesian & English</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Top Attractions -->
+          <div class="mb-5">
+            <h4 class="font-weight-bold mb-3">Must-Experience Attractions</h4>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item px-0 py-3 d-flex align-items-center gap-3">
+                <i class="bi bi-geo-alt text-primary fs-4"></i>
+                <div>
+                  <h6 class="mb-0 font-weight-bold">Uluwatu Sunset Temple & Kecak Dance</h6>
+                  <p class="text-muted small mb-0">Perched on a cliff 70 meters above the roaring Indian Ocean waves.</p>
+                </div>
+              </li>
+              <li class="list-group-item px-0 py-3 d-flex align-items-center gap-3">
+                <i class="bi bi-water text-primary fs-4"></i>
+                <div>
+                  <h6 class="mb-0 font-weight-bold">Tegalalang Rice Terraces & Jungle Swings</h6>
+                  <p class="text-muted small mb-0">Century-old UNESCO cooperative irrigation system surrounded by palm canopies.</p>
+                </div>
+              </li>
+              <li class="list-group-item px-0 py-3 d-flex align-items-center gap-3">
+                <i class="bi bi-sunset text-primary fs-4"></i>
+                <div>
+                  <h6 class="mb-0 font-weight-bold">Nusa Penida Manta Bay Snorkeling</h6>
+                  <p class="text-muted small mb-0">Swim alongside majestic manta rays in turquoise crystal lagoons.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Map Placeholder Card -->
+          <div class="mb-5">
+            <h4 class="font-weight-bold mb-3">Location & Geography</h4>
+            <div class="bg-light p-4 rounded-4 text-center border">
+              <i class="bi bi-map text-primary" style="font-size: 3rem;"></i>
+              <h5 class="mt-2 font-weight-bold" id="mapTitle">Interactive Geographic Preview</h5>
+              <p class="text-muted small">Geo Coordinates: 8.3405° S, 115.0920° E &bull; Direct international airport transfers available.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sticky Booking Widget -->
+        <div class="col-12 col-lg-4">
+          <div class="booking-summary-card">
+            <div class="d-flex justify-content-between align-items-baseline mb-3">
+              <div>
+                <span class="fs-3 font-weight-bold text-dark" id="destPriceDisplay">$599</span>
+                <span class="text-muted small">/ person</span>
+              </div>
+              <span class="badge bg-success-subtle text-success px-2 py-1"><i class="bi bi-shield-check"></i> Best Rate Guaranteed</span>
+            </div>
+
+            <form id="destQuickBookForm" onsubmit="event.preventDefault(); bookCurrentDestination();">
+              <div class="mb-3">
+                <label class="form-label small fw-bold">Select Travel Window</label>
+                <input type="date" class="form-control" id="destBookingDate" value="2026-11-20" required>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label small fw-bold">Travelers</label>
+                <select class="form-select" id="destGuests">
+                  <option value="1">1 Traveler</option>
+                  <option value="2" selected>2 Travelers</option>
+                  <option value="4">4 Travelers</option>
+                </select>
+              </div>
+
+              <div class="price-item-row">
+                <span>Base Package Rate</span>
+                <span id="destSubtotal">$1,198</span>
+              </div>
+              <div class="price-item-row">
+                <span>Airport VIP Pickup</span>
+                <span>Included</span>
+              </div>
+              <div class="price-item-row total-row">
+                <span>Indicative Total</span>
+                <span class="text-primary" id="destTotal">$1,198</span>
+              </div>
+
+              <button type="submit" class="btn btn-primary-custom w-100 py-3 mt-3">
+                Proceed to Reservation <i class="bi bi-arrow-right ms-1"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-12 col-lg-4">
+          <div class="footer-brand-title">
+            <div class="brand-icon-circle"><i class="bi bi-compass"></i></div>
+            <span>TERRA</span>
+          </div>
+          <p class="text-white-50 pe-lg-4 mb-4">Terra is an international luxury travel platform curating premier boutique accommodations, scenic flight routes, and immersive cultural expeditions.</p>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <h5 class="footer-heading">Navigation</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="destinations.html">Destinations</a></li>
+            <li><a href="flights.html">Flights</a></li>
+            <li><a href="search-results.html?type=hotel">Hotels</a></li>
+            <li><a href="packages.html">Tour Packages</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+          <h5 class="footer-heading">Top Destinations</h5>
+          <ul class="footer-links">
+            <li><a href="destination-details.html?id=dest-bali">Bali, Indonesia</a></li>
+            <li><a href="destination-details.html?id=dest-paris">Paris, France</a></li>
+            <li><a href="destination-details.html?id=dest-dubai">Dubai, UAE</a></li>
+            <li><a href="destination-details.html?id=dest-swiss">Swiss Alps, Switzerland</a></li>
+          </ul>
+        </div>
+        <div class="col-12 col-md-4 col-lg-3">
+          <h5 class="footer-heading">Company</h5>
+          <ul class="footer-links">
+            <li><a href="about.html">About Terra</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="faq.html">Help & FAQ</a></li>
+            <li><a href="my-bookings.html">My Bookings</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Terra Travel Inc. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    let activeDest = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const destId = urlParams.get('id') || 'dest-bali';
+      activeDest = TRAVEL_DATA.destinations.find(d => d.id === destId) || TRAVEL_DATA.destinations[0];
+
+      // Populate details
+      document.getElementById('destBreadcrumbName').textContent = activeDest.name;
+      document.getElementById('destTitle').textContent = `${activeDest.name}, ${activeDest.country}`;
+      document.getElementById('destCountry').textContent = `${activeDest.country} • ${activeDest.badge}`;
+      document.getElementById('destRating').textContent = activeDest.rating;
+      document.getElementById('destReviewCount').textContent = `${activeDest.reviewsCount} verified reviews`;
+      document.getElementById('destMainImg').src = activeDest.image;
+      document.getElementById('destDescription').textContent = activeDest.description + " Every journey with Terra is custom tailored with verified private transfers, boutique accommodations, and English-speaking local cultural historians.";
+      document.getElementById('destBestTime').textContent = activeDest.bestTime;
+      document.getElementById('destWeather').textContent = activeDest.weather;
+      document.getElementById('destPriceDisplay').textContent = `$${activeDest.startingPrice}`;
+      document.getElementById('destSubtotal').textContent = `$${activeDest.startingPrice * 2}`;
+      document.getElementById('destTotal').textContent = `$${activeDest.startingPrice * 2}`;
+
+      document.getElementById('destGuests')?.addEventListener('change', (e) => {
+        const count = Number(e.target.value);
+        const sub = activeDest.startingPrice * count;
+        document.getElementById('destSubtotal').textContent = `$${sub}`;
+        document.getElementById('destTotal').textContent = `$${sub}`;
+      });
+    });
+
+    function bookCurrentDestination() {
+      if (!activeDest) return;
+      const count = Number(document.getElementById('destGuests').value);
+      const date = document.getElementById('destBookingDate').value;
+      
+      const bookingDraft = {
+        type: 'destination',
+        id: activeDest.id,
+        title: activeDest.name + ' Experience, ' + activeDest.country,
+        location: activeDest.country,
+        image: activeDest.image,
+        basePrice: activeDest.startingPrice,
+        price: activeDest.startingPrice * count,
+        rating: activeDest.rating,
+        nights: 5,
+        guests: count,
+        date: date
+      };
+      localStorage.setItem('activeBookingDraft', JSON.stringify(bookingDraft));
+      window.location.href = 'booking-details.html';
+    }
+  </script>
+</body>
+</html>

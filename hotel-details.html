@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Details | Terra Luxury Hotels & Stays</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="site-navbar">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg p-0">
+        <a class="brand-logo" href="index.html">
+          <div class="brand-icon-circle"><i class="bi bi-compass"></i></div>
+          <span>TERRA</span>
+        </a>
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavbarNav">
+          <i class="bi bi-list fs-2 text-dark"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="siteNavbarNav">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="destinations.html">Destinations</a></li>
+            <li class="nav-item"><a class="nav-link" href="flights.html">Flights</a></li>
+            <li class="nav-item"><a class="nav-link active" href="search-results.html?type=hotel">Hotels</a></li>
+            <li class="nav-item"><a class="nav-link" href="packages.html">Tour Packages</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          </ul>
+          <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0" id="navbarAuthButtons">
+            <a href="login.html" class="btn btn-outline-custom">Log In</a>
+            <a href="signup.html" class="btn btn-primary-custom">Sign Up</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="py-4">
+    <div class="container">
+      <div class="custom-breadcrumb">
+        <a href="index.html">Home</a> <i class="bi bi-chevron-right small"></i>
+        <a href="search-results.html?type=hotel">Hotels</a> <i class="bi bi-chevron-right small"></i>
+        <span id="hotelBreadcrumb">Amanjiwo Luxury Sanctuary</span>
+      </div>
+
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
+        <div>
+          <span class="badge bg-primary-subtle text-primary mb-2 px-3 py-1 rounded-pill" id="hotelBadge">5-Star Luxury Resort</span>
+          <h1 class="display-5 font-weight-bold mb-1" id="hotelName">Amanjiwo Luxury Sanctuary</h1>
+          <p class="text-muted fs-5 mb-0"><i class="bi bi-geo-alt-fill text-danger me-1"></i> <span id="hotelLocation">Bali, Indonesia</span></p>
+        </div>
+        <div class="d-flex align-items-center gap-3 mt-3 mt-md-0">
+          <div class="text-end">
+            <div class="star-rating fs-5 text-warning"><i class="bi bi-star-fill"></i> <span id="hotelRating" class="text-dark">4.95</span></div>
+            <span class="text-muted small" id="hotelReviews">420 verified reviews</span>
+          </div>
+          <button class="btn btn-outline-custom btn-sm"><i class="bi bi-heart me-1"></i> Wishlist</button>
+        </div>
+      </div>
+
+      <!-- Gallery -->
+      <div class="row g-2 mb-5 rounded-4 overflow-hidden">
+        <div class="col-12 col-md-8">
+          <img id="hotelMainImg" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80" alt="Resort View" class="w-100 rounded-3" style="height: 420px; object-fit: cover;">
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="row g-2">
+            <div class="col-6 col-md-12">
+              <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80" alt="Room Interior" class="w-100 rounded-3" style="height: 205px; object-fit: cover;">
+            </div>
+            <div class="col-6 col-md-12">
+              <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80" alt="Resort Pool" class="w-100 rounded-3" style="height: 205px; object-fit: cover;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Layout: Details and Sticky Booking Card -->
+      <div class="row g-5">
+        <div class="col-12 col-lg-8">
+          <!-- Overview -->
+          <div class="mb-5">
+            <h3 class="font-weight-bold mb-3">About The Property</h3>
+            <p class="text-secondary fs-6 leading-relaxed" id="hotelDescription">
+              Immerse yourself in authentic luxury. Set within a natural amphitheater framed by dramatic limestone ridges and emerald paddy fields, this sanctuary offers private plunge pools, holistic spa rituals, and farm-to-table gourmet dining.
+            </p>
+          </div>
+
+          <!-- Key Amenities -->
+          <div class="mb-5">
+            <h4 class="font-weight-bold mb-3">Featured Amenities</h4>
+            <div class="row g-3">
+              <div class="col-6 col-md-4 d-flex align-items-center gap-2">
+                <i class="bi bi-water text-primary fs-4"></i>
+                <span class="fw-semibold">Infinity Pool</span>
+              </div>
+              <div class="col-6 col-md-4 d-flex align-items-center gap-2">
+                <i class="bi bi-wifi text-primary fs-4"></i>
+                <span class="fw-semibold">High-Speed Wi-Fi</span>
+              </div>
+              <div class="col-6 col-md-4 d-flex align-items-center gap-2">
+                <i class="bi bi-flower1 text-primary fs-4"></i>
+                <span class="fw-semibold">Ayurvedic Spa</span>
+              </div>
+              <div class="col-6 col-md-4 d-flex align-items-center gap-2">
+                <i class="bi bi-cup-hot text-primary fs-4"></i>
+                <span class="fw-semibold">Organic Breakfast</span>
+              </div>
+              <div class="col-6 col-md-4 d-flex align-items-center gap-2">
+                <i class="bi bi-car-front text-primary fs-4"></i>
+                <span class="fw-semibold">Airport Chauffeur</span>
+              </div>
+              <div class="col-6 col-md-4 d-flex align-items-center gap-2">
+                <i class="bi bi-tv text-primary fs-4"></i>
+                <span class="fw-semibold">Smart Entertainment</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Room Selection -->
+          <div class="mb-5">
+            <h4 class="font-weight-bold mb-3">Select Your Suite</h4>
+            <div class="card border rounded-3 p-3 mb-3">
+              <div class="row g-3 align-items-center">
+                <div class="col-12 col-md-4">
+                  <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=400&q=80" alt="Deluxe Suite" class="rounded-3 w-100" style="height: 120px; object-fit: cover;">
+                </div>
+                <div class="col-12 col-md-5">
+                  <h5 class="mb-1 font-weight-bold">Deluxe Garden Villa</h5>
+                  <p class="small text-muted mb-2">1 King Bed &bull; 65 m² &bull; Garden View &bull; Free Cancellation</p>
+                  <span class="badge bg-success-subtle text-success">Breakfast Included</span>
+                </div>
+                <div class="col-12 col-md-3 text-md-end">
+                  <div class="fs-4 font-weight-bold text-dark mb-2" id="roomPrice1">$280 <span class="small text-muted fs-6">/ night</span></div>
+                  <button class="btn btn-primary-custom btn-sm w-100" onclick="bookThisHotel(280, 'Deluxe Garden Villa')">Select Suite</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card border rounded-3 p-3 mb-3">
+              <div class="row g-3 align-items-center">
+                <div class="col-12 col-md-4">
+                  <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=400&q=80" alt="Executive Suite" class="rounded-3 w-100" style="height: 120px; object-fit: cover;">
+                </div>
+                <div class="col-12 col-md-5">
+                  <h5 class="mb-1 font-weight-bold">Panoramic Infinity Pool Suite</h5>
+                  <p class="small text-muted mb-2">1 King Bed &bull; 95 m² &bull; Private Plunge Pool &bull; Butler</p>
+                  <span class="badge bg-primary-subtle text-primary">VIP Lounge Access</span>
+                </div>
+                <div class="col-12 col-md-3 text-md-end">
+                  <div class="fs-4 font-weight-bold text-dark mb-2">$420 <span class="small text-muted fs-6">/ night</span></div>
+                  <button class="btn btn-outline-custom btn-sm w-100" onclick="bookThisHotel(420, 'Panoramic Infinity Pool Suite')">Select Suite</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sticky Sidebar -->
+        <div class="col-12 col-lg-4">
+          <div class="booking-summary-card">
+            <div class="d-flex justify-content-between align-items-baseline mb-3">
+              <div>
+                <span class="fs-3 font-weight-bold text-dark" id="hotelCardPrice">$280</span>
+                <span class="text-muted small">/ night</span>
+              </div>
+              <span class="star-rating text-warning"><i class="bi bi-star-fill"></i> 4.95</span>
+            </div>
+
+            <form onsubmit="event.preventDefault(); bookThisHotel();">
+              <div class="mb-3">
+                <label class="form-label small fw-bold">Check-in Date</label>
+                <input type="date" class="form-control" id="hotelCheckIn" value="2026-11-12" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label small fw-bold">Check-out Date</label>
+                <input type="date" class="form-control" id="hotelCheckOut" value="2026-11-15" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label small fw-bold">Guests & Rooms</label>
+                <select class="form-select" id="hotelGuestCount">
+                  <option value="2">2 Adults, 1 Room</option>
+                  <option value="1">1 Adult, 1 Room</option>
+                  <option value="4">4 Adults, 2 Rooms</option>
+                </select>
+              </div>
+
+              <div class="price-item-row">
+                <span>$280 x 3 nights</span>
+                <span id="hotelSubtotal">$840</span>
+              </div>
+              <div class="price-item-row">
+                <span>Cleaning & Hospitality Fee</span>
+                <span>$45</span>
+              </div>
+              <div class="price-item-row">
+                <span>Occupancy Taxes</span>
+                <span id="hotelTaxes">$84</span>
+              </div>
+              <div class="price-item-row total-row">
+                <span>Estimated Total</span>
+                <span class="text-primary" id="hotelTotalDisplay">$969</span>
+              </div>
+
+              <button type="submit" class="btn btn-primary-custom w-100 py-3 mt-3">
+                Book This Stay <i class="bi bi-arrow-right ms-1"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-12 col-lg-4">
+          <div class="footer-brand-title">
+            <div class="brand-icon-circle"><i class="bi bi-compass"></i></div>
+            <span>TERRA</span>
+          </div>
+          <p class="text-white-50 pe-lg-4 mb-4">Terra is an international luxury travel platform curating premier boutique accommodations, scenic flight routes, and immersive cultural expeditions.</p>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <h5 class="footer-heading">Navigation</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="destinations.html">Destinations</a></li>
+            <li><a href="flights.html">Flights</a></li>
+            <li><a href="search-results.html?type=hotel">Hotels</a></li>
+            <li><a href="packages.html">Tour Packages</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+          <h5 class="footer-heading">Top Destinations</h5>
+          <ul class="footer-links">
+            <li><a href="destination-details.html?id=dest-bali">Bali, Indonesia</a></li>
+            <li><a href="destination-details.html?id=dest-paris">Paris, France</a></li>
+            <li><a href="destination-details.html?id=dest-dubai">Dubai, UAE</a></li>
+            <li><a href="destination-details.html?id=dest-swiss">Swiss Alps, Switzerland</a></li>
+          </ul>
+        </div>
+        <div class="col-12 col-md-4 col-lg-3">
+          <h5 class="footer-heading">Company</h5>
+          <ul class="footer-links">
+            <li><a href="about.html">About Terra</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="faq.html">Help & FAQ</a></li>
+            <li><a href="my-bookings.html">My Bookings</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Terra Travel Inc. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    let activeHotel = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const hotelId = urlParams.get('id') || 'hotel-1';
+      activeHotel = TRAVEL_DATA.hotels.find(h => h.id === hotelId) || TRAVEL_DATA.hotels[0];
+
+      document.getElementById('hotelBreadcrumb').textContent = activeHotel.name;
+      document.getElementById('hotelName').textContent = activeHotel.name;
+      document.getElementById('hotelLocation').textContent = activeHotel.location;
+      document.getElementById('hotelBadge').textContent = activeHotel.category;
+      document.getElementById('hotelRating').textContent = activeHotel.rating;
+      document.getElementById('hotelReviews').textContent = `${activeHotel.reviewsCount} verified reviews`;
+      document.getElementById('hotelMainImg').src = activeHotel.image;
+      document.getElementById('hotelDescription').textContent = activeHotel.description + " Features panoramic views, award-winning culinary offerings, complimentary airport transfer, and bespoke guest concierges.";
+      document.getElementById('hotelCardPrice').textContent = `$${activeHotel.pricePerNight}`;
+      
+      const sub = activeHotel.pricePerNight * 3;
+      const tax = Math.round(sub * 0.1);
+      document.getElementById('hotelSubtotal').textContent = `$${sub}`;
+      document.getElementById('hotelTaxes').textContent = `$${tax}`;
+      document.getElementById('hotelTotalDisplay').textContent = `$${sub + 45 + tax}`;
+    });
+
+    function bookThisHotel(price, roomName) {
+      if (!activeHotel) return;
+      const finalRate = price || activeHotel.pricePerNight;
+      const title = roomName ? `${activeHotel.name} - ${roomName}` : activeHotel.name;
+      
+      const bookingDraft = {
+        type: 'hotel',
+        id: activeHotel.id,
+        title: title,
+        location: activeHotel.location,
+        image: activeHotel.image,
+        basePrice: finalRate,
+        price: finalRate * 3,
+        rating: activeHotel.rating,
+        nights: 3,
+        guests: 2,
+        checkIn: document.getElementById('hotelCheckIn').value,
+        checkOut: document.getElementById('hotelCheckOut').value
+      };
+      localStorage.setItem('activeBookingDraft', JSON.stringify(bookingDraft));
+      window.location.href = 'booking-details.html';
+    }
+  </script>
+</body>
+</html>
