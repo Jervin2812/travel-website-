@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign In | Terra Luxury Travel</title>
+  <title>Sign In & Member Portal | Terra Luxury Travel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,125 +12,232 @@
   <link rel="stylesheet" href="../../assets/css/style.css">
   <link rel="stylesheet" href="../../assets/css/responsive.css">
   <style>
-    .auth-split-wrapper {
+    /* Ultra-Luxury Auth Experience */
+    .auth-hero-viewport {
       min-height: 100vh;
       display: flex;
+      background-color: #0b1120;
     }
-    .auth-banner-col {
-      flex: 1;
-      background: linear-gradient(rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
-      color: #ffffff;
-      padding: 4rem;
+    .auth-visual-column {
+      flex: 1.1;
+      position: relative;
+      background: linear-gradient(135deg, rgba(11, 17, 32, 0.75) 0%, rgba(2, 132, 199, 0.35) 100%),
+                  url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      padding: 4.5rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      overflow: hidden;
     }
-    .auth-form-col {
+    .auth-visual-column::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.15), transparent 60%);
+      pointer-events: none;
+    }
+    .auth-interactive-column {
+      flex: 0.9;
+      max-width: 620px;
       width: 100%;
-      max-width: 580px;
+      background: #ffffff;
+      padding: 3.5rem 4rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 3.5rem;
+      position: relative;
+      z-index: 2;
+      box-shadow: -15px 0 45px rgba(0, 0, 0, 0.12);
+    }
+    .auth-tab-pill {
+      background: #f1f5f9;
+      border-radius: 999px;
+      padding: 5px;
+      display: flex;
+      gap: 4px;
+      margin-bottom: 2rem;
+    }
+    .auth-tab-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #64748b;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+    .auth-tab-btn.active {
       background: #ffffff;
+      color: #0f172a;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+    }
+    .auth-floating-input {
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 0.95rem;
+      transition: all 0.25s ease;
+      background-color: #f8fafc;
+    }
+    .auth-floating-input:focus {
+      background-color: #ffffff;
+      border-color: #0284c7;
+      box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.12);
+      outline: none;
+    }
+    .social-auth-btn {
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 11px 18px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: #1e293b;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .social-auth-btn:hover {
+      border-color: #cbd5e1;
+      background-color: #f8fafc;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+    }
+    .glass-quote-card {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 2rem;
+      color: #ffffff;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
     }
     @media (max-width: 991px) {
-      .auth-split-wrapper {
+      .auth-hero-viewport {
         flex-direction: column;
       }
-      .auth-banner-col {
-        padding: 2.5rem;
-        min-height: 240px;
+      .auth-visual-column {
+        padding: 2.5rem 1.5rem;
+        min-height: 260px;
       }
-      .auth-form-col {
+      .auth-interactive-column {
         max-width: 100%;
-        padding: 2rem 1.5rem;
+        padding: 2.5rem 1.5rem;
+        box-shadow: none;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="auth-split-wrapper">
-    <!-- Left Hero Banner -->
-    <div class="auth-banner-col">
-      <div class="d-flex align-items-center gap-2">
-        <div class="brand-icon-circle bg-primary" style="width: 44px; height: 44px; font-size: 1.3rem;">
-          <i class="bi bi-compass"></i>
-        </div>
-        <span class="fs-4 font-weight-bold tracking-wider text-white">TERRA</span>
+  <div class="auth-hero-viewport">
+    <!-- Left Cinematic Visual Column -->
+    <div class="auth-visual-column">
+      <div class="d-flex align-items-center justify-content-between">
+        <a class="brand-logo text-white text-decoration-none" href="../../index.html">
+          <div class="brand-icon-circle bg-primary" style="width: 44px; height: 44px; font-size: 1.3rem;">
+            <i class="bi bi-compass"></i>
+          </div>
+          <span class="fs-4 font-weight-bold tracking-wider text-white">TERRA</span>
+        </a>
+        <span class="badge bg-white-10 text-white border border-white-20 px-3 py-2 rounded-pill small">
+          <i class="bi bi-shield-check text-success me-1"></i> IATA Certified Platform
+        </span>
       </div>
 
-      <div class="my-auto py-5">
-        <span class="badge bg-white-10 text-white border border-white-20 px-3 py-1 rounded-pill mb-3">
-          <i class="bi bi-stars me-1"></i> Global Explorer Membership
-        </span>
-        <h1 class="display-5 font-weight-bold mb-3 text-white">Discover Extraordinary Sanctuaries & Uncharted Horizons</h1>
-        <p class="text-white-50 fs-5 leading-relaxed">
-          "Terra transformed how our family vacations. From private cliffside villas to seamless concierge airport transfers, every detail is handled with absolute elegance."
-        </p>
-        <div class="d-flex align-items-center gap-3 mt-4">
-          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Elena Rostova" class="rounded-circle border border-2 border-white" style="width: 48px; height: 48px; object-fit: cover;">
-          <div>
-            <div class="fw-bold text-white">Elena Rostova</div>
-            <div class="text-white-50 small">Terra Platinum Member &bull; 14 Journeys</div>
+      <!-- Mid Quote Card -->
+      <div class="my-auto py-4">
+        <div class="glass-quote-card reveal float-animation">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <span class="badge bg-warning text-dark px-2 py-1 rounded-pill small fw-bold"><i class="bi bi-award-fill"></i> Gold Member</span>
+            <span class="text-white-50 small">&bull; Verified International Traveler</span>
+          </div>
+          <p class="fs-5 leading-relaxed mb-4 text-white">
+            "Terra has redefined how our family discovers the world. From secluded cliff villas in Bali to private Glacier Express carriages in the Swiss Alps, every journey is pure perfection."
+          </p>
+          <div class="d-flex align-items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Elena Rostova" class="rounded-circle border border-2 border-white shadow-sm" style="width: 52px; height: 52px; object-fit: cover;">
+            <div>
+              <div class="fw-bold text-white fs-6">Elena Rostova</div>
+              <div class="text-white-50 small">Geneva & Paris &bull; 14 Curated Journeys</div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="d-flex justify-content-between text-white-50 small border-top border-white-10 pt-3">
+      <!-- Bottom Trust Row -->
+      <div class="d-flex flex-wrap justify-content-between align-items-center text-white-50 small border-top border-white-10 pt-3">
         <span>&copy; 2026 Terra Travel Inc.</span>
-        <span>256-Bit SSL Secured</span>
+        <div class="d-flex gap-3">
+          <span><i class="bi bi-lock-fill text-success"></i> 256-Bit SSL</span>
+          <span><i class="bi bi-check-circle-fill text-info"></i> Zero Booking Fees</span>
+        </div>
       </div>
     </div>
 
-    <!-- Right Form Column -->
-    <div class="auth-form-col">
-      <div class="mb-4">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <a href="../../index.html" class="text-muted small text-decoration-none">
-            <i class="bi bi-arrow-left me-1"></i> Back to Homepage
-          </a>
-          <span class="text-muted small">New to Terra? <a href="signup.html" class="fw-bold text-primary">Sign up</a></span>
-        </div>
-        <h2 class="display-6 font-weight-bold text-dark mb-1">Welcome Back</h2>
-        <p class="text-secondary small mb-0">Sign in to access your itinerary vouchers, member perks, and saved favorites.</p>
+    <!-- Right Interactive Form Column -->
+    <div class="auth-interactive-column">
+      <div class="mb-3">
+        <a href="../../index.html" class="text-muted small text-decoration-none d-inline-flex align-items-center gap-1 mb-3">
+          <i class="bi bi-arrow-left"></i> Return to Homepage
+        </a>
+        <h1 class="display-6 font-weight-bold text-dark mb-1">Welcome Back</h1>
+        <p class="text-muted small mb-0">Sign in to manage confirmed itineraries, digital vouchers, and private member perks.</p>
+      </div>
+
+      <!-- Animated Segmented Tab Switcher -->
+      <div class="auth-tab-pill">
+        <button class="auth-tab-btn active" type="button">Sign In</button>
+        <button class="auth-tab-btn" type="button" onclick="window.location.href='signup.html'">Create Account</button>
       </div>
 
       <!-- Quick Social Sign-in -->
-      <div class="d-grid gap-2 mb-4">
-        <button type="button" class="btn btn-outline-secondary py-2 d-flex align-items-center justify-content-center gap-2" onclick="demoSocialLogin('Google')">
-          <i class="bi bi-google text-danger"></i> <span>Continue with Google</span>
-        </button>
-        <button type="button" class="btn btn-outline-secondary py-2 d-flex align-items-center justify-content-center gap-2" onclick="demoSocialLogin('Apple')">
-          <i class="bi bi-apple text-dark"></i> <span>Continue with Apple ID</span>
-        </button>
+      <div class="row g-2 mb-3">
+        <div class="col-6">
+          <button type="button" class="social-auth-btn w-100" onclick="demoSocialLogin('Google')">
+            <i class="bi bi-google text-danger fs-5"></i>
+            <span>Google</span>
+          </button>
+        </div>
+        <div class="col-6">
+          <button type="button" class="social-auth-btn w-100" onclick="demoSocialLogin('Apple')">
+            <i class="bi bi-apple text-dark fs-5"></i>
+            <span>Apple ID</span>
+          </button>
+        </div>
       </div>
 
-      <div class="position-relative text-center mb-4">
-        <hr class="text-muted">
-        <span class="position-absolute top-50 start-50 translate-middle bg-white px-3 text-muted small">or continue with email</span>
+      <div class="position-relative text-center my-3">
+        <hr class="text-slate-200">
+        <span class="position-absolute top-50 start-50 translate-middle bg-white px-3 text-muted small fw-semibold">or email sign-in</span>
       </div>
 
       <!-- Sign In Form -->
       <form id="loginForm" novalidate>
         <div class="mb-3">
-          <label for="loginEmail" class="form-label small fw-bold">Email Address</label>
+          <label for="loginEmail" class="form-label small fw-bold text-dark">Email Address</label>
           <div class="input-group">
-            <span class="input-group-text bg-light border-end-0"><i class="bi bi-envelope text-muted"></i></span>
-            <input type="email" class="form-control border-start-0 bg-light" id="loginEmail" placeholder="e.g. jervin@example.com" value="jervin.raj@example.com" required>
+            <span class="input-group-text bg-light border-end-0 text-muted"><i class="bi bi-envelope"></i></span>
+            <input type="email" class="form-control auth-floating-input border-start-0" id="loginEmail" placeholder="e.g. alex.morgan@example.com" value="alex.morgan@terra-travel.com" required>
           </div>
         </div>
 
         <div class="mb-3">
-          <div class="d-flex justify-content-between align-items-center">
-            <label for="loginPassword" class="form-label small fw-bold">Password</label>
-            <a href="#" class="small text-muted text-decoration-none" onclick="alert('Password reset link sent to registered email.'); return false;">Forgot Password?</a>
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <label for="loginPassword" class="form-label small fw-bold text-dark mb-0">Password</label>
+            <a href="#" class="small text-primary text-decoration-none" onclick="triggerForgotPassword(); return false;">Forgot password?</a>
           </div>
           <div class="input-group">
-            <span class="input-group-text bg-light border-end-0"><i class="bi bi-lock text-muted"></i></span>
-            <input type="password" class="form-control border-start-0 bg-light" id="loginPassword" value="TravelSecret2026!" required>
-            <button type="button" class="btn btn-light border password-toggle-btn" data-target="loginPassword">
+            <span class="input-group-text bg-light border-end-0 text-muted"><i class="bi bi-lock"></i></span>
+            <input type="password" class="form-control auth-floating-input border-start-0 border-end-0" id="loginPassword" value="TerraLuxury2026!" required>
+            <button type="button" class="btn btn-light border border-start-0 password-toggle-btn" data-target="loginPassword" title="Show/Hide Password">
               <i class="bi bi-eye"></i>
             </button>
           </div>
@@ -139,15 +246,19 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
           <div class="form-check">
             <input class="form-check-input" type="checkbox" id="rememberMe" checked>
-            <label class="form-check-label small" for="rememberMe">Remember me for 30 days</label>
+            <label class="form-check-label small text-muted" for="rememberMe">Keep me logged in for 30 days</label>
           </div>
-          <button type="button" class="btn btn-link btn-sm p-0 text-decoration-none text-primary fw-semibold" onclick="fillDemoCredentials()">Fill Demo</button>
+          <button type="button" class="btn btn-link btn-sm p-0 text-decoration-none text-primary fw-bold" onclick="fillQuickDemo()">
+            <i class="bi bi-magic me-1"></i> Fill Demo
+          </button>
         </div>
 
-        <button type="submit" class="btn btn-primary-custom w-100 py-3 mb-3">Sign In to Terra</button>
+        <button type="submit" class="btn btn-primary-custom w-100 py-3 mb-3 fw-bold fs-6">
+          Sign In to Portal <i class="bi bi-arrow-right ms-1"></i>
+        </button>
 
-        <div class="alert alert-light border py-2 px-3 small text-center text-muted mb-0">
-          <i class="bi bi-info-circle text-primary me-1"></i> Interactive frontend demo: any input or clicking "Sign In" will authenticate you locally.
+        <div class="alert alert-light border py-2 px-3 small text-center text-muted mb-0 rounded-3">
+          <i class="bi bi-info-circle text-primary me-1"></i> <strong>Frontend Demo:</strong> Click "Sign In" with any input to log in immediately.
         </div>
       </form>
     </div>
@@ -157,21 +268,30 @@
   <script src="../../assets/js/main.js"></script>
   <script src="../../assets/js/auth-demo.js"></script>
   <script>
-    function fillDemoCredentials() {
+    function fillQuickDemo() {
       document.getElementById('loginEmail').value = 'alex.morgan@terra-travel.com';
       document.getElementById('loginPassword').value = 'TerraLuxury2026!';
       if (typeof showToast === 'function') {
-        showToast('Demo Credentials Filled', 'Ready to sign in!', 'info');
+        showToast('Demo Credentials Loaded', 'Ready to sign in with Alex Morgan profile!', 'info');
+      }
+    }
+
+    function triggerForgotPassword() {
+      const email = document.getElementById('loginEmail').value || 'your email';
+      if (typeof showToast === 'function') {
+        showToast('Reset Link Sent', `Password reset instructions dispatched to ${email}!`, 'info');
+      } else {
+        alert(`Password reset instructions dispatched to ${email}!`);
       }
     }
 
     function demoSocialLogin(provider) {
       if (typeof showToast === 'function') {
-        showToast('Signed In', `Authenticated successfully with ${provider}!`, 'success');
+        showToast('Authentication Verified', `Logged in via ${provider}! Redirecting...`, 'success');
       }
       setTimeout(() => {
         window.location.href = '../booking/my-bookings.html';
-      }, 400);
+      }, 450);
     }
   </script>
 </body>

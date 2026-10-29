@@ -534,9 +534,10 @@ img {
    ========================================================================== */
 .card-slider-media {
   position: relative;
-  height: 240px;
+  height: 260px;
   overflow: hidden;
   background-color: var(--color-slate-100);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
 
 .card-slides-wrapper {
@@ -546,16 +547,26 @@ img {
   transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.card-slide,
 .card-slide-img {
   width: 100%;
   height: 100%;
-  flex-shrink: 0;
+  flex: 0 0 100%;
   object-fit: cover;
   transition: transform 0.6s ease;
+  position: relative;
 }
 
-.travel-card:hover .card-slide-img {
-  transform: scale(1.04);
+.card-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.travel-card:hover .card-slide-img,
+.travel-card:hover .card-slide img {
+  transform: scale(1.05);
 }
 
 /* Mini arrow controls on card */
@@ -1300,17 +1311,53 @@ img {
 }
 
 /* ==========================================================================
-   Entrance Animations Engine
+   Entrance & Scroll Animations Engine
    ========================================================================== */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+#scrollProgressBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #0284c7 0%, #38bdf8 50%, #f59e0b 100%);
+  width: 0%;
+  z-index: 99999;
+  transition: width 0.1s ease-out;
 }
 
-.reveal.active {
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.active,
+.reveal-left.active,
+.reveal-right.active,
+.reveal-scale.active {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate(0) scale(1);
 }
 
 /* Delay helpers */
@@ -1318,6 +1365,75 @@ img {
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
+
+/* Floating Micro-interaction */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+.float-animation {
+  animation: floatSlow 4s ease-in-out infinite;
+}
+
+/* Button Shimmer */
+.btn-primary-custom {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary-custom::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transform: rotate(25deg);
+  transition: none;
+}
+
+.btn-primary-custom:hover::after {
+  left: 140%;
+  transition: all 0.75s ease-in-out;
+}
+
+/* Floating Back-to-Top Button */
+#backToTopBtn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-navy-950);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 1030;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px);
+  transition: all 0.35s ease;
+}
+
+#backToTopBtn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+#backToTopBtn:hover {
+  background: var(--color-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(2, 132, 199, 0.4);
+}
 
 /* Pulse Glow Animation */
 @keyframes pulseGlow {

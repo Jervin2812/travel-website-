@@ -12,176 +12,285 @@
   <link rel="stylesheet" href="../../assets/css/style.css">
   <link rel="stylesheet" href="../../assets/css/responsive.css">
   <style>
-    .auth-split-wrapper {
+    /* Ultra-Luxury Auth Experience */
+    .auth-hero-viewport {
       min-height: 100vh;
       display: flex;
+      background-color: #0b1120;
     }
-    .auth-banner-col {
-      flex: 1;
-      background: linear-gradient(rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
-      color: #ffffff;
-      padding: 4rem;
+    .auth-visual-column {
+      flex: 1.1;
+      position: relative;
+      background: linear-gradient(135deg, rgba(11, 17, 32, 0.78) 0%, rgba(2, 132, 199, 0.35) 100%),
+                  url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      padding: 4.5rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      overflow: hidden;
     }
-    .auth-form-col {
+    .auth-visual-column::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.15), transparent 60%);
+      pointer-events: none;
+    }
+    .auth-interactive-column {
+      flex: 0.9;
+      max-width: 620px;
       width: 100%;
-      max-width: 580px;
+      background: #ffffff;
+      padding: 3.5rem 4rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 3.5rem;
+      position: relative;
+      z-index: 2;
+      box-shadow: -15px 0 45px rgba(0, 0, 0, 0.12);
+    }
+    .auth-tab-pill {
+      background: #f1f5f9;
+      border-radius: 999px;
+      padding: 5px;
+      display: flex;
+      gap: 4px;
+      margin-bottom: 2rem;
+    }
+    .auth-tab-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #64748b;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+    .auth-tab-btn.active {
       background: #ffffff;
+      color: #0f172a;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+    }
+    .auth-floating-input {
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 0.95rem;
+      transition: all 0.25s ease;
+      background-color: #f8fafc;
+    }
+    .auth-floating-input:focus {
+      background-color: #ffffff;
+      border-color: #0284c7;
+      box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.12);
+      outline: none;
+    }
+    .social-auth-btn {
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 11px 18px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: #1e293b;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .social-auth-btn:hover {
+      border-color: #cbd5e1;
+      background-color: #f8fafc;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
     }
     .password-strength-bar {
-      height: 4px;
-      border-radius: 2px;
+      height: 5px;
+      border-radius: 999px;
       background: #e2e8f0;
       overflow: hidden;
-      margin-top: 6px;
+      margin-top: 8px;
     }
     .password-strength-fill {
       height: 100%;
       width: 0%;
       transition: width 0.3s ease, background-color 0.3s ease;
     }
+    .glass-perk-card {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 2rem;
+      color: #ffffff;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    }
     @media (max-width: 991px) {
-      .auth-split-wrapper {
+      .auth-hero-viewport {
         flex-direction: column;
       }
-      .auth-banner-col {
-        padding: 2.5rem;
-        min-height: 240px;
+      .auth-visual-column {
+        padding: 2.5rem 1.5rem;
+        min-height: 260px;
       }
-      .auth-form-col {
+      .auth-interactive-column {
         max-width: 100%;
-        padding: 2rem 1.5rem;
+        padding: 2.5rem 1.5rem;
+        box-shadow: none;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="auth-split-wrapper">
-    <!-- Left Hero Banner -->
-    <div class="auth-banner-col">
-      <div class="d-flex align-items-center gap-2">
-        <div class="brand-icon-circle bg-primary" style="width: 44px; height: 44px; font-size: 1.3rem;">
-          <i class="bi bi-compass"></i>
-        </div>
-        <span class="fs-4 font-weight-bold tracking-wider text-white">TERRA</span>
-      </div>
-
-      <div class="my-auto py-5">
-        <span class="badge bg-white-10 text-white border border-white-20 px-3 py-1 rounded-pill mb-3">
-          <i class="bi bi-gift me-1"></i> Complimentary $150 Welcome Credit
+  <div class="auth-hero-viewport">
+    <!-- Left Cinematic Visual Column -->
+    <div class="auth-visual-column">
+      <div class="d-flex align-items-center justify-content-between">
+        <a class="brand-logo text-white text-decoration-none" href="../../index.html">
+          <div class="brand-icon-circle bg-primary" style="width: 44px; height: 44px; font-size: 1.3rem;">
+            <i class="bi bi-compass"></i>
+          </div>
+          <span class="fs-4 font-weight-bold tracking-wider text-white">TERRA</span>
+        </a>
+        <span class="badge bg-white-10 text-white border border-white-20 px-3 py-2 rounded-pill small">
+          <i class="bi bi-stars text-warning me-1"></i> Global Explorer Circle
         </span>
-        <h1 class="display-5 font-weight-bold mb-3 text-white">Join Terra Explorer Circle</h1>
-        <p class="text-white-50 fs-5 leading-relaxed mb-4">
-          Become a distinguished member of our international community. Gain early access to private island expeditions, guaranteed suite upgrades, and 24/7 dedicated travel curators.
-        </p>
+      </div>
 
-        <div class="row g-3">
-          <div class="col-12 col-sm-6">
-            <div class="p-3 bg-white-10 rounded-3 border border-white-10">
-              <i class="bi bi-gem text-warning fs-4 mb-2 d-block"></i>
-              <div class="fw-bold text-white">Exclusive Member Rates</div>
-              <div class="small text-white-50">Up to 25% off luxury boutique villas.</div>
+      <!-- Mid Perk Showcase -->
+      <div class="my-auto py-4">
+        <div class="glass-perk-card reveal float-animation">
+          <span class="badge bg-primary text-white px-3 py-1 rounded-pill small fw-bold mb-3">
+            <i class="bi bi-gift-fill me-1"></i> $150 Welcome Travel Credit
+          </span>
+          <h2 class="display-6 font-weight-bold text-white mb-3">Unlock Rare Sanctuaries & Priority Privileges</h2>
+          <p class="text-white-50 fs-6 leading-relaxed mb-4">
+            Members gain guaranteed late checkout, complimentary room upgrades, private catamaran charters, and 24/7 dedicated travel curators worldwide.
+          </p>
+
+          <div class="row g-3">
+            <div class="col-6">
+              <div class="p-3 bg-white-10 rounded-3 border border-white-10">
+                <i class="bi bi-gem text-warning fs-4 d-block mb-1"></i>
+                <div class="fw-bold text-white small">Up to 25% Off</div>
+                <div class="text-white-50" style="font-size: 0.75rem;">Private boutique rates.</div>
+              </div>
             </div>
-          </div>
-          <div class="col-12 col-sm-6">
-            <div class="p-3 bg-white-10 rounded-3 border border-white-10">
-              <i class="bi bi-headset text-info fs-4 mb-2 d-block"></i>
-              <div class="fw-bold text-white">Dedicated Concierge</div>
-              <div class="small text-white-50">Priority VIP WhatsApp & phone line.</div>
+            <div class="col-6">
+              <div class="p-3 bg-white-10 rounded-3 border border-white-10">
+                <i class="bi bi-headset text-info fs-4 d-block mb-1"></i>
+                <div class="fw-bold text-white small">VIP Concierge</div>
+                <div class="text-white-50" style="font-size: 0.75rem;">Dedicated phone line.</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="d-flex justify-content-between text-white-50 small border-top border-white-10 pt-3">
+      <!-- Bottom Trust Row -->
+      <div class="d-flex flex-wrap justify-content-between align-items-center text-white-50 small border-top border-white-10 pt-3">
         <span>&copy; 2026 Terra Travel Inc.</span>
-        <span>Trusted by 45,000+ Explorers</span>
+        <div class="d-flex gap-3">
+          <span><i class="bi bi-shield-check text-success"></i> Strict Privacy</span>
+          <span><i class="bi bi-airplane-engines text-info"></i> IATA Accredited</span>
+        </div>
       </div>
     </div>
 
-    <!-- Right Form Column -->
-    <div class="auth-form-col">
-      <div class="mb-4">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <a href="../../index.html" class="text-muted small text-decoration-none">
-            <i class="bi bi-arrow-left me-1"></i> Back to Homepage
-          </a>
-          <span class="text-muted small">Already a member? <a href="login.html" class="fw-bold text-primary">Sign in</a></span>
-        </div>
-        <h2 class="display-6 font-weight-bold text-dark mb-1">Create an Account</h2>
-        <p class="text-secondary small mb-0">Join in 30 seconds to start planning your bespoke journey.</p>
+    <!-- Right Interactive Form Column -->
+    <div class="auth-interactive-column">
+      <div class="mb-3">
+        <a href="../../index.html" class="text-muted small text-decoration-none d-inline-flex align-items-center gap-1 mb-3">
+          <i class="bi bi-arrow-left"></i> Return to Homepage
+        </a>
+        <h1 class="display-6 font-weight-bold text-dark mb-1">Join Terra</h1>
+        <p class="text-muted small mb-0">Create your complimentary explorer account in under 30 seconds.</p>
+      </div>
+
+      <!-- Animated Segmented Tab Switcher -->
+      <div class="auth-tab-pill">
+        <button class="auth-tab-btn" type="button" onclick="window.location.href='login.html'">Sign In</button>
+        <button class="auth-tab-btn active" type="button">Create Account</button>
       </div>
 
       <!-- Quick Social Sign-in -->
-      <div class="d-grid gap-2 mb-4">
-        <button type="button" class="btn btn-outline-secondary py-2 d-flex align-items-center justify-content-center gap-2" onclick="demoSocialSignUp('Google')">
-          <i class="bi bi-google text-danger"></i> <span>Sign up with Google</span>
-        </button>
-        <button type="button" class="btn btn-outline-secondary py-2 d-flex align-items-center justify-content-center gap-2" onclick="demoSocialSignUp('Apple')">
-          <i class="bi bi-apple text-dark"></i> <span>Sign up with Apple ID</span>
-        </button>
+      <div class="row g-2 mb-3">
+        <div class="col-6">
+          <button type="button" class="social-auth-btn w-100" onclick="demoSocialSignUp('Google')">
+            <i class="bi bi-google text-danger fs-5"></i>
+            <span>Google</span>
+          </button>
+        </div>
+        <div class="col-6">
+          <button type="button" class="social-auth-btn w-100" onclick="demoSocialSignUp('Apple')">
+            <i class="bi bi-apple text-dark fs-5"></i>
+            <span>Apple ID</span>
+          </button>
+        </div>
       </div>
 
-      <div class="position-relative text-center mb-4">
-        <hr class="text-muted">
-        <span class="position-absolute top-50 start-50 translate-middle bg-white px-3 text-muted small">or register with email</span>
+      <div class="position-relative text-center my-3">
+        <hr class="text-slate-200">
+        <span class="position-absolute top-50 start-50 translate-middle bg-white px-3 text-muted small fw-semibold">or register with email</span>
       </div>
 
       <!-- Sign Up Form -->
       <form id="signupForm" novalidate>
         <div class="mb-3">
-          <label for="signupName" class="form-label small fw-bold">Full Name</label>
+          <label for="signupName" class="form-label small fw-bold text-dark">Full Legal Name</label>
           <div class="input-group">
-            <span class="input-group-text bg-light border-end-0"><i class="bi bi-person text-muted"></i></span>
-            <input type="text" class="form-control border-start-0 bg-light" id="signupName" placeholder="e.g. Jervin Raj" value="Jervin Raj" required>
+            <span class="input-group-text bg-light border-end-0 text-muted"><i class="bi bi-person"></i></span>
+            <input type="text" class="form-control auth-floating-input border-start-0" id="signupName" placeholder="e.g. Jervin Raj" value="Jervin Raj" required>
           </div>
         </div>
 
         <div class="mb-3">
-          <label for="signupEmail" class="form-label small fw-bold">Email Address</label>
+          <label for="signupEmail" class="form-label small fw-bold text-dark">Email Address</label>
           <div class="input-group">
-            <span class="input-group-text bg-light border-end-0"><i class="bi bi-envelope text-muted"></i></span>
-            <input type="email" class="form-control border-start-0 bg-light" id="signupEmail" placeholder="e.g. jervin@example.com" value="jervin.raj@example.com" required>
+            <span class="input-group-text bg-light border-end-0 text-muted"><i class="bi bi-envelope"></i></span>
+            <input type="email" class="form-control auth-floating-input border-start-0" id="signupEmail" placeholder="e.g. jervin@example.com" value="jervin.raj@example.com" required>
           </div>
         </div>
 
         <div class="mb-3">
-          <label for="signupPassword" class="form-label small fw-bold">Password</label>
+          <label for="signupPassword" class="form-label small fw-bold text-dark">Password</label>
           <div class="input-group">
-            <span class="input-group-text bg-light border-end-0"><i class="bi bi-lock text-muted"></i></span>
-            <input type="password" class="form-control border-start-0 bg-light" id="signupPassword" placeholder="Minimum 8 characters" value="TravelSecret2026!" required onkeyup="checkPasswordStrength(this.value)">
-            <button type="button" class="btn btn-light border password-toggle-btn" data-target="signupPassword">
+            <span class="input-group-text bg-light border-end-0 text-muted"><i class="bi bi-lock"></i></span>
+            <input type="password" class="form-control auth-floating-input border-start-0 border-end-0" id="signupPassword" placeholder="Minimum 8 characters" value="TravelSecret2026!" required onkeyup="updatePasswordMeter(this.value)">
+            <button type="button" class="btn btn-light border border-start-0 password-toggle-btn" data-target="signupPassword" title="Show/Hide Password">
               <i class="bi bi-eye"></i>
             </button>
           </div>
-          <!-- Strength Meter Bar -->
+          <!-- Dynamic Password Strength Bar -->
           <div class="password-strength-bar">
-            <div class="password-strength-fill" id="strengthBarFill"></div>
+            <div class="password-strength-fill" id="pwdStrengthFill" style="width: 85%; background-color: #10b981;"></div>
           </div>
           <div class="d-flex justify-content-between align-items-center mt-1">
-            <span class="text-muted" style="font-size: 0.7rem;">Security: <span id="strengthText" class="fw-bold text-success">Strong</span></span>
-            <span class="text-muted" style="font-size: 0.7rem;">Min 8 chars, 1 number</span>
+            <span class="small text-muted">Password Security: <strong id="pwdStrengthLabel" class="text-success">Strong</strong></span>
+            <span class="small text-muted" style="font-size: 0.72rem;">Min 8 chars, 1 number</span>
           </div>
         </div>
 
         <div class="form-check mb-4">
           <input class="form-check-input" type="checkbox" id="termsCheck" required checked>
-          <label class="form-check-label small" for="termsCheck">
+          <label class="form-check-label small text-muted" for="termsCheck">
             I agree to Terra's <a href="../company/faq.html" class="text-primary text-decoration-none">Terms of Service</a> & <a href="../company/faq.html" class="text-primary text-decoration-none">Privacy Policy</a>.
           </label>
         </div>
 
-        <button type="submit" class="btn btn-primary-custom w-100 py-3 mb-3">Create Free Account</button>
+        <button type="submit" class="btn btn-primary-custom w-100 py-3 mb-3 fw-bold fs-6">
+          Create Free Account <i class="bi bi-arrow-right ms-1"></i>
+        </button>
 
-        <div class="alert alert-light border py-2 px-3 small text-center text-muted mb-0">
-          <i class="bi bi-shield-check text-success me-1"></i> Simulated registration: Account details saved locally.
+        <div class="alert alert-light border py-2 px-3 small text-center text-muted mb-0 rounded-3">
+          <i class="bi bi-shield-check text-success me-1"></i> <strong>Frontend Demo:</strong> Account profile will be saved to your browser session.
         </div>
       </form>
     </div>
@@ -191,39 +300,39 @@
   <script src="../../assets/js/main.js"></script>
   <script src="../../assets/js/auth-demo.js"></script>
   <script>
-    function checkPasswordStrength(val) {
-      const fill = document.getElementById('strengthBarFill');
-      const text = document.getElementById('strengthText');
+    function updatePasswordMeter(val) {
+      const fill = document.getElementById('pwdStrengthFill');
+      const label = document.getElementById('pwdStrengthLabel');
       if (!val) {
         fill.style.width = '0%';
-        text.textContent = 'None';
+        label.textContent = 'None';
         return;
       }
       if (val.length < 6) {
         fill.style.width = '25%';
         fill.style.backgroundColor = '#ef4444';
-        text.textContent = 'Weak';
-        text.className = 'fw-bold text-danger';
+        label.textContent = 'Weak';
+        label.className = 'fw-bold text-danger';
       } else if (val.length < 10) {
         fill.style.width = '65%';
         fill.style.backgroundColor = '#f59e0b';
-        text.textContent = 'Good';
-        text.className = 'fw-bold text-warning';
+        label.textContent = 'Good';
+        label.className = 'fw-bold text-warning';
       } else {
         fill.style.width = '100%';
         fill.style.backgroundColor = '#10b981';
-        text.textContent = 'Strong';
-        text.className = 'fw-bold text-success';
+        label.textContent = 'Strong';
+        label.className = 'fw-bold text-success';
       }
     }
 
     function demoSocialSignUp(provider) {
       if (typeof showToast === 'function') {
-        showToast('Registered', `Account created with ${provider}!`, 'success');
+        showToast('Registration Confirmed', `Signed up with ${provider}! Redirecting...`, 'success');
       }
       setTimeout(() => {
         window.location.href = 'profile.html';
-      }, 400);
+      }, 450);
     }
   </script>
 </body>

@@ -206,74 +206,172 @@ const TRAVEL_DATA = {
   packages: [
     {
       id: "pkg-1",
+      aliasId: "pkg-bali",
       name: "Bali Spiritual & Island Escape",
       destination: "Bali, Indonesia",
       duration: "7 Days / 6 Nights",
       price: 1150,
-      rating: 4.9,
+      rating: 4.92,
       reviewsCount: 340,
-      image: "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=1200&q=80",
       images: [
-        "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?auto=format&fit=crop&w=800&q=80"
+        "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?auto=format&fit=crop&w=1200&q=80"
       ],
-      category: "Island & Culture",
-      highlights: ["Ubud Monkey Forest", "Uluwatu Sunset Dance", "Nusa Penida Snorkel", "Luxury Villa Stay"]
+      category: "Cultural",
+      highlights: ["Ubud Monkey Sanctuary", "Uluwatu Sunset Dance", "Nusa Penida Catamaran", "Luxury Jungle Villa Stay"],
+      description: "Immerse yourself in authentic Indonesian tradition, emerald rice terraces, and private catamaran sailing in Nusa Penida."
     },
     {
       id: "pkg-2",
-      name: "European Capitals Discovery",
+      aliasId: "pkg-europe",
+      name: "European Capitals & Alpine Discovery",
       destination: "Paris & Switzerland",
       duration: "10 Days / 9 Nights",
       price: 2450,
-      rating: 4.92,
+      rating: 4.95,
       reviewsCount: 520,
-      image: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=1200&q=80",
       images: [
-        "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&w=800&q=80"
+        "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1200&q=80"
       ],
-      category: "Heritage & Scenery",
-      highlights: ["Louvre Guided Tour", "Glacier Express First Class", "Versailles Palace", "Lake Geneva Cruise"]
+      category: "Cultural",
+      highlights: ["Louvre VIP Guided Access", "Glacier Express First Class", "Versailles Palace Garden", "Lake Geneva Sunset Cruise"],
+      description: "Iconic Parisian boulevard strolls paired with the dramatic snowy peaks and crystal lakes of the Swiss Alps."
     },
     {
       id: "pkg-3",
-      name: "Dubai Golden Sands Luxury",
+      aliasId: "pkg-dubai",
+      name: "Dubai Golden Sands & Sky Luxury",
       destination: "Dubai, UAE",
       duration: "5 Days / 4 Nights",
       price: 980,
-      rating: 4.85,
+      rating: 4.88,
       reviewsCount: 410,
-      image: "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=80",
       images: [
-        "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80"
+        "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1546412414-e1885259563a?auto=format&fit=crop&w=1200&q=80"
       ],
-      category: "Modern Adventure",
-      highlights: ["Burj Khalifa VIP Deck", "Desert Dune Quad Bashing", "Dhow Marina Dinner", "Private Yacht Cruise"]
+      category: "Adventure",
+      highlights: ["Burj Khalifa Level 148 VIP", "Sunset Desert Dune Bashing", "Arabian Gulf Mega-Yacht", "Michelin Dining"],
+      description: "Ultra-modern architectural marvels, royal desert camps under starry skies, and private Gulf yachting."
     },
     {
       id: "pkg-4",
+      aliasId: "pkg-tokyo",
       name: "Tokyo Tech & Kyoto Zen Experience",
       destination: "Tokyo & Kyoto, Japan",
       duration: "8 Days / 7 Nights",
       price: 2100,
-      rating: 4.96,
+      rating: 4.97,
       reviewsCount: 680,
-      image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1200&q=80",
       images: [
-        "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=800&q=80"
+        "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1492571350019-22de08371fd3?auto=format&fit=crop&w=1200&q=80"
       ],
-      category: "Culture & Culinary",
-      highlights: ["Shinkansen Bullet Train", "Fushimi Inari Sunrise", "Akihabara Tech Tour", "Tsukiji Food Market"]
+      category: "Cultural",
+      highlights: ["Shinkansen Bullet Train", "Fushimi Inari Torii Sunrise", "Private Tea Master Ceremony", "Tsukiji Food Market"],
+      description: "The thrilling intersection of futuristic cybernetic cityscapes and timeless bamboo forest serenity."
+    },
+    {
+      id: "pkg-5",
+      aliasId: "pkg-swiss",
+      name: "Swiss Alps Ski & Matterhorn Haven",
+      destination: "Zermatt, Switzerland",
+      duration: "7 Days / 6 Nights",
+      price: 2890,
+      rating: 4.98,
+      reviewsCount: 295,
+      image: "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&w=1200&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1502784444187-359ac186c5bb?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80"
+      ],
+      category: "Scenic Nature",
+      highlights: ["Matterhorn Heli-Skiing", "Thermal Cedar Spa Baths", "Private Chalet Chef", "Gornergrat Railway Pass"],
+      description: "World-class alpine skiing, crackling fireplace suites, fondue feasts, and pristine powdered peaks."
+    },
+    {
+      id: "pkg-6",
+      aliasId: "pkg-amalfi",
+      name: "Amalfi Coast & Capri Yacht Odyssey",
+      destination: "Positano & Capri, Italy",
+      duration: "6 Days / 5 Nights",
+      price: 3200,
+      rating: 4.96,
+      reviewsCount: 380,
+      image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1200&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80"
+      ],
+      category: "Luxury Escapes",
+      highlights: ["Capri Blue Grotto Private Boat", "Cliffside Positano Villa", "Limoncello Estate Tasting", "Sunset Riva Charter"],
+      description: "Sun-drenched pastel cliffs, sapphire Mediterranean waters, and handcrafted Italian luxury at every turn."
+    },
+    {
+      id: "pkg-7",
+      aliasId: "pkg-iceland",
+      name: "Icelandic Aurora & Glaciers Quest",
+      destination: "Reykjavik & South Coast, Iceland",
+      duration: "6 Days / 5 Nights",
+      price: 1850,
+      rating: 4.91,
+      reviewsCount: 260,
+      image: "https://images.unsplash.com/photo-1504893524553-b855bce32c67?auto=format&fit=crop&w=1200&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1504893524553-b855bce32c67?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1529963183134-61a90db47eaf?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1200&q=80"
+      ],
+      category: "Adventure",
+      highlights: ["Northern Lights Super-Jeep Hunt", "Blue Lagoon VIP Retreat", "Ice Cave Spelunking", "Black Sand Beaches"],
+      description: "Witness the dance of the aurora borealis, crystal blue ice caves, thundering waterfalls, and geysers."
+    },
+    {
+      id: "pkg-8",
+      aliasId: "pkg-peru",
+      name: "Inca Trail & Machu Picchu Heritage",
+      destination: "Cusco & Sacred Valley, Peru",
+      duration: "8 Days / 7 Nights",
+      price: 1720,
+      rating: 4.94,
+      reviewsCount: 310,
+      image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&w=1200&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1589802829985-817e51171b92?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80"
+      ],
+      category: "Scenic Nature",
+      highlights: ["Hiram Bingham Luxury Train", "Machu Picchu Sunrise Entry", "Sacred Valley Weaving Villages", "Cusco Culinary Tour"],
+      description: "Follow the majestic Andean pathways to the legendary lost city of the Incas with five-star lodge comforts."
     }
   ]
 };
+
+// Helper to look up package by id or aliasId
+function findPackageData(id) {
+  if (!id) return TRAVEL_DATA.packages[0];
+  return TRAVEL_DATA.packages.find(p => p.id === id || p.aliasId === id) || TRAVEL_DATA.packages[0];
+}
 
 // Initialize All Systems on DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
@@ -456,8 +554,12 @@ function initCardSliders() {
   const cardSliders = document.querySelectorAll('.card-slider-media');
 
   cardSliders.forEach(slider => {
+    // Avoid double-binding if already initialized
+    if (slider.dataset.sliderInitialized === 'true') return;
+    slider.dataset.sliderInitialized = 'true';
+
     const wrapper = slider.querySelector('.card-slides-wrapper');
-    const slides = slider.querySelectorAll('.card-slide-img');
+    const slides = slider.querySelectorAll('.card-slide-img, .card-slide');
     const dots = slider.querySelectorAll('.card-slider-dot');
     const prevBtn = slider.querySelector('.card-slider-prev');
     const nextBtn = slider.querySelector('.card-slider-next');
@@ -504,13 +606,14 @@ function initCardSliders() {
     });
 
     // Gentle Auto-rotation on Card Hover
-    slider.closest('.travel-card')?.addEventListener('mouseenter', () => {
+    const parentCard = slider.closest('.travel-card') || slider.parentElement;
+    parentCard?.addEventListener('mouseenter', () => {
       cardInterval = setInterval(() => {
         goToSlide(currentIndex + 1);
-      }, 2400);
+      }, 2600);
     });
 
-    slider.closest('.travel-card')?.addEventListener('mouseleave', () => {
+    parentCard?.addEventListener('mouseleave', () => {
       if (cardInterval) clearInterval(cardInterval);
       goToSlide(0); // return to hero photo smoothly
     });
@@ -615,11 +718,62 @@ function initTestimonialCarousel() {
 }
 
 // =========================================================================
-// 4. SCROLL ENTRANCE ANIMATIONS (IntersectionObserver)
+// 4. SCROLL PROGRESS & ADVANCED ENTRANCE ANIMATIONS
 // =========================================================================
 function initScrollAnimations() {
+  // 1. Inject Top Reading Scroll Progress Bar if not present
+  let progressBar = document.getElementById('scrollProgressBar');
+  if (!progressBar) {
+    progressBar = document.createElement('div');
+    progressBar.id = 'scrollProgressBar';
+    document.body.prepend(progressBar);
+  }
+
+  // 2. Inject Floating Back-to-Top Button
+  let backToTopBtn = document.getElementById('backToTopBtn');
+  if (!backToTopBtn) {
+    backToTopBtn = document.createElement('button');
+    backToTopBtn.id = 'backToTopBtn';
+    backToTopBtn.setAttribute('aria-label', 'Scroll to top');
+    backToTopBtn.innerHTML = '<i class="bi bi-chevron-up"></i>';
+    document.body.appendChild(backToTopBtn);
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // 3. Scroll Listener for Progress Bar, Navbar & Back to Top
+  const navbar = document.querySelector('.site-navbar');
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY || window.pageYOffset;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+
+    if (progressBar) {
+      progressBar.style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
+    }
+
+    if (backToTopBtn) {
+      if (scrollY > 350) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    }
+
+    if (navbar) {
+      if (scrollY > 30) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }
+  }, { passive: true });
+
+  // 4. IntersectionObserver for Reveal Elements with Stagger
   if (!('IntersectionObserver' in window)) {
-    document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .travel-card, .flight-card').forEach(el => el.classList.add('active'));
     return;
   }
 
@@ -634,11 +788,23 @@ function initScrollAnimations() {
       }
     });
   }, {
-    threshold: 0.12,
+    threshold: 0.1,
     rootMargin: '0px 0px -40px 0px'
   });
 
-  document.querySelectorAll('.reveal, .stat-number').forEach(el => observer.observe(el));
+  // Automatically find elements to animate
+  const targets = document.querySelectorAll(
+    '.reveal, .reveal-left, .reveal-right, .reveal-scale, .stat-number, .travel-card, .flight-card, .faq-item, .destination-hero-badge'
+  );
+  targets.forEach((el, index) => {
+    // Add staggered delay class if not already custom set
+    if (!el.classList.contains('reveal') && !el.classList.contains('active')) {
+      el.classList.add('reveal');
+      const delayMod = (index % 4) + 1;
+      el.classList.add(`reveal-delay-${delayMod}`);
+    }
+    observer.observe(el);
+  });
 }
 
 // Animated Counter for Stat Numbers

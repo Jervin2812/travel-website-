@@ -94,8 +94,13 @@ function initLoginForm() {
     };
 
     localStorage.setItem('currentUser', JSON.stringify(user));
+    if (typeof showToast === 'function') {
+      showToast('Welcome Back', `Logged in as ${user.name}! Redirecting...`, 'success');
+    }
     const target = window.location.pathname.includes('/pages/') ? '../../index.html' : 'index.html';
-    window.location.href = target;
+    setTimeout(() => {
+      window.location.href = target;
+    }, 450);
   });
 }
 
@@ -125,8 +130,13 @@ function initSignupForm() {
     };
 
     localStorage.setItem('currentUser', JSON.stringify(user));
+    if (typeof showToast === 'function') {
+      showToast('Welcome Back', `Logged in as ${user.name}! Redirecting...`, 'success');
+    }
     const target = window.location.pathname.includes('/pages/') ? '../../index.html' : 'index.html';
-    window.location.href = target;
+    setTimeout(() => {
+      window.location.href = target;
+    }, 450);
   });
 }
 

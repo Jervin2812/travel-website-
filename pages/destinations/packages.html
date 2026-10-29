@@ -305,12 +305,10 @@
           <div class="col-12 col-md-6 col-lg-6 mb-4">
             <div class="travel-card">
               <!-- Multi-Image Card Carousel Slider -->
-              <div class="card-slider-media" data-card-slider style="height: 300px;">
+              <div class="card-slider-media" data-card-slider style="height: 320px;">
                 <div class="card-slides-wrapper">
                   ${images.map((img, i) => `
-                    <div class="card-slide ${i === 0 ? 'active' : ''}">
-                      <img src="${img}" alt="${p.name} photo ${i+1}" loading="lazy">
-                    </div>
+                    <img src="${img}" alt="${p.name} photo ${i+1}" class="card-slide-img" loading="lazy">
                   `).join('')}
                 </div>
                 
@@ -318,7 +316,7 @@
                   <button class="card-slider-arrow card-slider-prev" aria-label="Previous image"><i class="bi bi-chevron-left"></i></button>
                   <button class="card-slider-arrow card-slider-next" aria-label="Next image"><i class="bi bi-chevron-right"></i></button>
                   <div class="card-slider-dots">
-                    ${images.map((_, i) => `<div class="card-slider-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></div>`).join('')}
+                    ${images.map((_, i) => `<span class="card-slider-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></span>`).join('')}
                   </div>
                 ` : ''}
 

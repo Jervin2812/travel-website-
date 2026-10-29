@@ -404,9 +404,11 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       const urlParams = new URLSearchParams(window.location.search);
-      const pkgId = urlParams.get('id') || 'pkg-bali';
+      const pkgId = urlParams.get('id') || 'pkg-1';
 
-      activePackage = TRAVEL_DATA.packages.find(p => p.id === pkgId) || TRAVEL_DATA.packages[0];
+      activePackage = (typeof findPackageData === 'function') 
+        ? findPackageData(pkgId) 
+        : (TRAVEL_DATA.packages.find(p => p.id === pkgId || p.aliasId === pkgId) || TRAVEL_DATA.packages[0]);
 
       if (activePackage) {
         document.getElementById('pkgBreadcrumbTitle').textContent = activePackage.name;
