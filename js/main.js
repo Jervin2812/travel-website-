@@ -1,1 +1,4 @@
-document.addEventListener("DOMContentLoaded",()=>{const year=document.getElementById("currentYear");if(year)year.textContent=new Date().getFullYear();const nav=document.getElementById("siteNav");if(nav&&window.bootstrap){nav.querySelectorAll("a.nav-link").forEach(link=>link.addEventListener("click",()=>{const collapse=window.bootstrap.Collapse.getInstance(nav);if(collapse&&nav.classList.contains("show"))collapse.hide()}))}});
+// Main JavaScript
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('Travel website loaded successfully.');
+});
