@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tour Packages & Curated Expeditions | Terra</title>
+  <title>Curated Worldwide Tour Packages & Expeditions | Terra</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -11,8 +11,21 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/css/style.css">
   <link rel="stylesheet" href="../../assets/css/responsive.css">
+  <style>
+    .package-perk-badge {
+      font-size: 0.75rem;
+      background: #f1f5f9;
+      color: #334155;
+      padding: 4px 10px;
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 500;
+    }
+  </style>
 </head>
-<body>
+<body class="bg-light">
 
   <!-- Navbar -->
   <header class="site-navbar">
@@ -22,7 +35,7 @@
           <div class="brand-icon-circle"><i class="bi bi-compass"></i></div>
           <span>TERRA</span>
         </a>
-        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavbarNav">
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavbarNav" aria-label="Toggle navigation">
           <i class="bi bi-list fs-2 text-dark"></i>
         </button>
         <div class="collapse navbar-collapse" id="siteNavbarNav">
@@ -44,22 +57,114 @@
     </div>
   </header>
 
-  <!-- Header -->
-  <section class="py-5 bg-light border-bottom">
+  <!-- Hero Banner -->
+  <section class="py-5 bg-white border-bottom">
     <div class="container">
       <div class="custom-breadcrumb">
         <a href="../../index.html">Home</a> <i class="bi bi-chevron-right small"></i> <span>Tour Packages</span>
       </div>
-      <h1 class="display-5 font-weight-bold mb-2">Curated Worldwide Expeditions</h1>
-      <p class="text-muted fs-5 mb-0">Complete guided experiences with luxury boutique stays, private transit, and local cultural experts.</p>
+
+      <div class="row align-items-center g-4">
+        <div class="col-12 col-lg-8">
+          <span class="badge bg-primary text-white px-3 py-1 rounded-pill mb-2">
+            <i class="bi bi-stars me-1"></i> Small Groups &bull; Max 12 Travelers
+          </span>
+          <h1 class="display-5 font-weight-bold mb-2">Curated Worldwide Expeditions</h1>
+          <p class="text-muted fs-5 mb-0">Immersive journeys featuring luxury boutique stays, private transit, Michelin-rated dining, and dedicated local cultural custodians.</p>
+        </div>
+        <div class="col-12 col-lg-4 text-lg-end">
+          <div class="p-3 bg-light rounded-4 border d-inline-block text-start">
+            <div class="d-flex align-items-center gap-2 text-primary font-weight-bold mb-1">
+              <i class="bi bi-award fs-4"></i>
+              <span>All-Inclusive Transparency</span>
+            </div>
+            <div class="small text-muted">Accommodations, private internal flights, daily breakfast, and museum admissions are fully included.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search & Category Filter Controls -->
+      <div class="mt-4 pt-3 border-top">
+        <div class="row g-3 align-items-center">
+          <div class="col-12 col-md-5">
+            <div class="input-group">
+              <span class="input-group-text bg-light border-end-0"><i class="bi bi-search text-muted"></i></span>
+              <input type="text" id="packageSearchInput" class="form-control border-start-0 bg-light" placeholder="Search by destination or package name..." onkeyup="filterPackages()">
+            </div>
+          </div>
+          <div class="col-12 col-md-7">
+            <div class="d-flex flex-wrap gap-2 justify-content-md-end" id="packageCategoryPills">
+              <button class="btn btn-sm btn-dark rounded-pill px-3 active-cat-pill" data-category="all" onclick="selectPackageCategory('all', this)">All Expeditions</button>
+              <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" data-category="Cultural" onclick="selectPackageCategory('Cultural', this)">Cultural</button>
+              <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" data-category="Adventure" onclick="selectPackageCategory('Adventure', this)">Adventure</button>
+              <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" data-category="Scenic Nature" onclick="selectPackageCategory('Scenic Nature', this)">Scenic Nature</button>
+              <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" data-category="Luxury Escapes" onclick="selectPackageCategory('Luxury Escapes', this)">Luxury Escapes</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Packages Grid -->
-  <section class="py-5">
+  <!-- Packages Grid Section -->
+  <main class="py-5">
     <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h2 class="h4 font-weight-bold mb-0">Featured Expeditions</h2>
+          <span class="text-muted small" id="packagesCount">Showing curated travel itineraries</span>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <label class="small text-muted text-nowrap">Sort:</label>
+          <select class="form-select form-select-sm" id="packageSortSelect" onchange="sortPackages(this.value)">
+            <option value="popular">Most Popular</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Highest Rated</option>
+          </select>
+        </div>
+      </div>
+
       <div class="row g-4" id="packagesList">
-        <!-- Rendered from TRAVEL_DATA.packages -->
+        <!-- Rendered with Multi-Image Card Carousels by JS -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Expedition Guarantees -->
+  <section class="py-5 bg-white border-top">
+    <div class="container">
+      <div class="row g-4 text-center">
+        <div class="col-12 col-md-3">
+          <div class="p-3">
+            <div class="brand-icon-circle mx-auto mb-3" style="width: 52px; height: 52px; font-size: 1.4rem;">
+              <i class="bi bi-people"></i>
+            </div>
+            <h5 class="font-weight-bold mb-2">Boutique Group Size</h5>
+            <p class="text-muted small mb-0">Never get lost in a crowd. Our journeys maintain an average size of 8 to 12 explorers.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="brand-icon-circle mx-auto mb-3" style="width: 52px; height: 52px; font-size: 1.4rem;">
+            <i class="bi bi-stars"></i>
+          </div>
+          <h5 class="font-weight-bold mb-2">VIP Behind-the-Scenes</h5>
+          <p class="text-muted small mb-0">Private after-hours access to historical monuments, palaces, and private wine cellars.</p>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="brand-icon-circle mx-auto mb-3" style="width: 52px; height: 52px; font-size: 1.4rem;">
+            <i class="bi bi-car-front-fill"></i>
+          </div>
+          <h5 class="font-weight-bold mb-2">Private Chauffeurs</h5>
+          <p class="text-muted small mb-0">Luxury Mercedes vans and high-speed rail express tickets arranged seamlessly.</p>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="brand-icon-circle mx-auto mb-3" style="width: 52px; height: 52px; font-size: 1.4rem;">
+            <i class="bi bi-calendar-check"></i>
+          </div>
+          <h5 class="font-weight-bold mb-2">Flexible Rebooking</h5>
+          <p class="text-muted small mb-0">Transfer your booking deposit to any other expedition up to 30 days before departure.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -74,6 +179,12 @@
             <span>TERRA</span>
           </div>
           <p class="text-white-50 pe-lg-4 mb-4">Terra is an international luxury travel platform curating premier boutique accommodations, scenic flight routes, and immersive cultural expeditions.</p>
+          <div class="d-flex gap-3 text-white-50 fs-5">
+            <a href="#" class="text-white-50 text-decoration-none"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="text-white-50 text-decoration-none"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="text-white-50 text-decoration-none"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-white-50 text-decoration-none"><i class="bi bi-linkedin"></i></a>
+          </div>
         </div>
         <div class="col-6 col-md-4 col-lg-2">
           <h5 class="footer-heading">Navigation</h5>
@@ -106,6 +217,11 @@
       </div>
       <div class="footer-bottom">
         <div>&copy; 2026 Terra Travel Inc. All rights reserved.</div>
+        <div class="d-flex gap-4">
+          <a href="../company/faq.html">Privacy Policy</a>
+          <a href="../company/faq.html">Terms of Service</a>
+          <a href="../company/faq.html">Travel Guarantee</a>
+        </div>
       </div>
     </div>
   </footer>
@@ -113,46 +229,145 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../../assets/js/main.js"></script>
   <script>
+    let activeCategory = 'all';
+    let currentPackages = [];
+
     document.addEventListener('DOMContentLoaded', () => {
+      if (typeof TRAVEL_DATA !== 'undefined' && TRAVEL_DATA.packages) {
+        currentPackages = [...TRAVEL_DATA.packages];
+        renderPackageCards();
+      }
+    });
+
+    function selectPackageCategory(cat, btn) {
+      activeCategory = cat;
+      document.querySelectorAll('#packageCategoryPills button').forEach(b => {
+        b.classList.remove('btn-dark', 'active-cat-pill');
+        b.classList.add('btn-outline-secondary');
+      });
+      btn.classList.remove('btn-outline-secondary');
+      btn.classList.add('btn-dark', 'active-cat-pill');
+      filterPackages();
+    }
+
+    function filterPackages() {
+      const query = (document.getElementById('packageSearchInput').value || '').toLowerCase().trim();
+      const sortMode = document.getElementById('packageSortSelect').value;
+
+      let filtered = TRAVEL_DATA.packages.filter(p => {
+        const matchesCategory = (activeCategory === 'all') || (p.category.toLowerCase() === activeCategory.toLowerCase());
+        const matchesQuery = !query || p.name.toLowerCase().includes(query) || p.destination.toLowerCase().includes(query) || p.description.toLowerCase().includes(query);
+        return matchesCategory && matchesQuery;
+      });
+
+      // Sort
+      if (sortMode === 'price-low') {
+        filtered.sort((a, b) => a.price - b.price);
+      } else if (sortMode === 'price-high') {
+        filtered.sort((a, b) => b.price - a.price);
+      } else if (sortMode === 'rating') {
+        filtered.sort((a, b) => b.rating - a.rating);
+      }
+
+      currentPackages = filtered;
+      renderPackageCards();
+    }
+
+    function sortPackages(mode) {
+      filterPackages();
+    }
+
+    function renderPackageCards() {
       const container = document.getElementById('packagesList');
+      const countEl = document.getElementById('packagesCount');
       if (!container) return;
 
-      container.innerHTML = TRAVEL_DATA.packages.map(p => `
-        <div class="col-12 col-md-6 col-lg-6 mb-4">
-          <div class="travel-card">
-            <div class="travel-card-media" style="height: 280px;">
-              <img src="${p.image}" alt="${p.name}" loading="lazy">
-              <span class="card-tag">${p.duration}</span>
-              <button class="card-wishlist-btn" title="Save to favorites"><i class="bi bi-heart"></i></button>
-            </div>
-            <div class="travel-card-body">
-              <div class="card-rating-row">
-                <span class="star-rating"><i class="bi bi-star-fill"></i> ${p.rating}</span>
-                <span class="rating-count">(${p.reviewsCount} reviews) &bull; ${p.category}</span>
-              </div>
-              <h4 class="card-item-title">${p.name}</h4>
-              <p class="card-location"><i class="bi bi-geo-alt-fill text-danger"></i> ${p.destination}</p>
-              
-              <div class="mb-3">
-                <span class="small fw-bold text-muted d-block mb-1">Trip Highlights:</span>
-                <ul class="small text-secondary ps-3 mb-0">
-                  ${p.highlights.map(h => `<li>${h}</li>`).join('')}
-                </ul>
+      if (countEl) {
+        countEl.textContent = `Showing ${currentPackages.length} curated expedition${currentPackages.length === 1 ? '' : 's'}`;
+      }
+
+      if (currentPackages.length === 0) {
+        container.innerHTML = `
+          <div class="col-12 py-5 text-center">
+            <div class="brand-icon-circle mx-auto mb-3" style="width: 60px; height: 60px; font-size: 1.5rem;"><i class="bi bi-compass"></i></div>
+            <h4 class="font-weight-bold">No Expeditions Found</h4>
+            <p class="text-muted">No tour packages match your current filter criteria.</p>
+            <button class="btn btn-outline-custom" onclick="resetPackageFilters()">Clear Filters</button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = currentPackages.map(p => {
+        const images = (p.images && p.images.length > 0) ? p.images : [p.image];
+        
+        return `
+          <div class="col-12 col-md-6 col-lg-6 mb-4">
+            <div class="travel-card">
+              <!-- Multi-Image Card Carousel Slider -->
+              <div class="card-slider-media" data-card-slider style="height: 300px;">
+                <div class="card-slides-wrapper">
+                  ${images.map((img, i) => `
+                    <div class="card-slide ${i === 0 ? 'active' : ''}">
+                      <img src="${img}" alt="${p.name} photo ${i+1}" loading="lazy">
+                    </div>
+                  `).join('')}
+                </div>
+                
+                ${images.length > 1 ? `
+                  <button class="card-slider-arrow card-slider-prev" aria-label="Previous image"><i class="bi bi-chevron-left"></i></button>
+                  <button class="card-slider-arrow card-slider-next" aria-label="Next image"><i class="bi bi-chevron-right"></i></button>
+                  <div class="card-slider-dots">
+                    ${images.map((_, i) => `<div class="card-slider-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></div>`).join('')}
+                  </div>
+                ` : ''}
+
+                <span class="card-tag">${p.duration}</span>
+                <button class="card-wishlist-btn" title="Save to favorites" aria-label="Add to wishlist"><i class="bi bi-heart"></i></button>
               </div>
 
-              <div class="card-price-row pt-3 border-top">
-                <div class="card-price">$${p.price} <span>/ person</span></div>
-                <div class="d-flex gap-2">
-                  <a href="package-details.html?id=${p.id}" class="btn btn-outline-custom btn-sm">Itinerary</a>
-                  <button class="btn btn-primary-custom btn-sm" onclick="selectAndBook('package', '${p.id}')">Book Tour</button>
+              <div class="travel-card-body">
+                <div class="card-rating-row">
+                  <span class="star-rating"><i class="bi bi-star-fill"></i> ${p.rating}</span>
+                  <span class="rating-count">(${p.reviewsCount} reviews) &bull; ${p.category}</span>
+                </div>
+                <h3 class="card-item-title mb-1">${p.name}</h3>
+                <p class="card-location mb-3"><i class="bi bi-geo-alt-fill text-danger"></i> ${p.destination}</p>
+                <p class="text-secondary small mb-3">${p.description}</p>
+                
+                <div class="mb-3">
+                  <span class="small fw-bold text-dark d-block mb-1"><i class="bi bi-check-circle-fill text-success me-1"></i> Trip Highlights:</span>
+                  <div class="d-flex flex-wrap gap-1">
+                    ${p.highlights.map(h => `<span class="package-perk-badge">${h}</span>`).join('')}
+                  </div>
+                </div>
+
+                <div class="card-price-row pt-3 border-top">
+                  <div class="card-price">$${p.price.toLocaleString()} <span>/ person</span></div>
+                  <div class="d-flex gap-2">
+                    <a href="package-details.html?id=${p.id}" class="btn btn-outline-custom btn-sm">Full Itinerary</a>
+                    <button class="btn btn-primary-custom btn-sm" onclick="selectAndBook('package', '${p.id}')">Book Tour</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      `).join('');
-    });
+        `;
+      }).join('');
+
+      // Initialize the interactive card sliders
+      if (typeof initCardSliders === 'function') {
+        initCardSliders();
+      }
+      if (typeof initWishlistButtons === 'function') {
+        initWishlistButtons();
+      }
+    }
+
+    function resetPackageFilters() {
+      document.getElementById('packageSearchInput').value = '';
+      selectPackageCategory('all', document.querySelector('#packageCategoryPills button'));
+    }
   </script>
 </body>
 </html>
-

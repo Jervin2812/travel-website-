@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Search Travel Results | Terra</title>
+  <title>Search Travel Results | TERRA Stays & Tours</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/css/style.css">
@@ -30,7 +30,7 @@
             <li class="nav-item"><a class="nav-link" href="../../index.html">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="destinations.html">Destinations</a></li>
             <li class="nav-item"><a class="nav-link" href="flights.html">Flights</a></li>
-            <li class="nav-item"><a class="nav-link active" href="search-results.html">Hotels & Stays</a></li>
+            <li class="nav-item"><a class="nav-link active" href="search-results.html?type=hotel">Hotels & Stays</a></li>
             <li class="nav-item"><a class="nav-link" href="packages.html">Tour Packages</a></li>
             <li class="nav-item"><a class="nav-link" href="../company/about.html">About</a></li>
             <li class="nav-item"><a class="nav-link" href="../company/contact.html">Contact</a></li>
@@ -50,14 +50,14 @@
       <div class="custom-breadcrumb">
         <a href="../../index.html">Home</a> <i class="bi bi-chevron-right small"></i> <span>Search Experiences</span>
       </div>
-      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
         <div>
           <h1 class="h3 font-weight-bold mb-1">Search Results</h1>
-          <p class="text-muted small mb-0" id="resultsCount">Loading available experiences...</p>
+          <p class="text-muted small mb-0" id="resultsCount">Loading available stays & expeditions...</p>
         </div>
         <div class="d-flex align-items-center gap-2">
-          <label for="filterSort" class="text-nowrap small fw-semibold text-muted">Sort By:</label>
-          <select id="filterSort" class="form-select form-select-sm" style="width: 180px;">
+          <label for="filterSort" class="text-nowrap small fw-bold text-muted">Sort By:</label>
+          <select id="filterSort" class="form-select form-select-sm shadow-xs" style="width: 190px;">
             <option value="popular">Most Popular</option>
             <option value="price-low">Price: Low to High</option>
             <option value="price-high">Price: High to Low</option>
@@ -76,8 +76,8 @@
         <div class="col-12 col-lg-3">
           <div class="filter-card">
             <div class="d-flex justify-content-between align-items-center mb-3">
-              <h5 class="font-weight-bold mb-0">Filters</h5>
-              <button id="clearFiltersBtn" class="btn btn-link btn-sm text-primary p-0 text-decoration-none">Clear All</button>
+              <h5 class="font-weight-bold mb-0"><i class="bi bi-sliders me-1"></i> Filter By</h5>
+              <button id="clearFiltersBtn" class="btn btn-link btn-sm text-primary p-0 text-decoration-none fw-semibold">Clear All</button>
             </div>
 
             <!-- Active Chips -->
@@ -85,20 +85,20 @@
 
             <!-- Keyword -->
             <div class="filter-group">
-              <label class="filter-title">Search Destination or Hotel</label>
+              <label class="filter-title">Destination or Property</label>
               <div class="input-group">
                 <span class="input-group-text bg-light border-end-0"><i class="bi bi-search text-muted"></i></span>
-                <input type="text" id="filterKeyword" class="form-control border-start-0" placeholder="e.g. Bali, Paris">
+                <input type="text" id="filterKeyword" class="form-control border-start-0" placeholder="e.g. Bali, Paris, Swiss">
               </div>
             </div>
 
             <!-- Type Category -->
             <div class="filter-group">
-              <label class="filter-title">Experience Type</label>
+              <label class="filter-title">Experience Category</label>
               <select id="filterCategory" class="form-select">
                 <option value="all">All Experiences</option>
-                <option value="hotel">Hotels & Resorts</option>
-                <option value="package">Tour Packages</option>
+                <option value="hotel">Hotels & Luxury Resorts</option>
+                <option value="package">Curated Tour Packages</option>
               </select>
             </div>
 
@@ -106,33 +106,33 @@
             <div class="filter-group">
               <div class="d-flex justify-content-between align-items-center mb-2">
                 <label class="filter-title mb-0">Max Budget</label>
-                <span id="filterPriceValue" class="fw-bold text-primary">$2500</span>
+                <span id="filterPriceValue" class="fw-bold text-primary fs-6">$2500</span>
               </div>
               <input type="range" class="form-range" id="filterPriceRange" min="200" max="2500" step="50" value="2500">
               <div class="d-flex justify-content-between text-muted small">
                 <span>$200</span>
-                <span>$2,500</span>
+                <span>$2,500+</span>
               </div>
             </div>
 
             <!-- Amenities -->
             <div class="filter-group">
-              <label class="filter-title">Popular Amenities</label>
+              <label class="filter-title">Essential Amenities</label>
               <div class="form-check mb-2">
                 <input class="form-check-input" type="checkbox" id="amenityPool" checked>
-                <label class="form-check-label small" for="amenityPool">Swimming Pool</label>
+                <label class="form-check-label small" for="amenityPool">Swimming Pool / Spa</label>
               </div>
               <div class="form-check mb-2">
                 <input class="form-check-input" type="checkbox" id="amenityBreakfast" checked>
-                <label class="form-check-label small" for="amenityBreakfast">Free Breakfast</label>
+                <label class="form-check-label small" for="amenityBreakfast">Complimentary Gourmet Breakfast</label>
               </div>
               <div class="form-check mb-2">
                 <input class="form-check-input" type="checkbox" id="amenityWifi" checked>
                 <label class="form-check-label small" for="amenityWifi">High-Speed Wi-Fi</label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="amenityBeach">
-                <label class="form-check-label small" for="amenityBeach">Beachfront Access</label>
+                <input class="form-check-input" type="checkbox" id="amenityAirport" checked>
+                <label class="form-check-label small" for="amenityAirport">Airport Chauffeur Transfer</label>
               </div>
             </div>
           </div>
@@ -141,7 +141,7 @@
         <!-- Cards List -->
         <div class="col-12 col-lg-9">
           <div class="row" id="searchResultsList">
-            <!-- Dynamic cards rendered via search.js -->
+            <!-- Dynamic multi-image cards rendered via search.js -->
           </div>
         </div>
       </div>
@@ -199,4 +199,3 @@
   <script src="../../assets/js/search.js"></script>
 </body>
 </html>
-

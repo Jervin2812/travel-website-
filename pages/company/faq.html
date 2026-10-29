@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Frequently Asked Questions | Terra Help Center</title>
+  <title>Frequently Asked Questions & Help Desk | Terra</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
           <div class="brand-icon-circle"><i class="bi bi-compass"></i></div>
           <span>TERRA</span>
         </a>
-        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavbarNav">
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavbarNav" aria-label="Toggle navigation">
           <i class="bi bi-list fs-2 text-dark"></i>
         </button>
         <div class="collapse navbar-collapse" id="siteNavbarNav">
@@ -44,40 +44,62 @@
     </div>
   </header>
 
-  <!-- Hero -->
+  <!-- Hero & Search Header -->
   <section class="py-5 bg-white border-bottom text-center">
-    <div class="container" style="max-width: 700px;">
-      <span class="section-tag">Help & Support</span>
-      <h1 class="display-5 font-weight-bold mb-3">Frequently Asked Questions</h1>
-      <p class="text-muted mb-4">Find immediate answers to questions regarding booking confirmations, cancellations, baggage allowances, and payment policies.</p>
+    <div class="container" style="max-width: 780px;">
+      <div class="custom-breadcrumb justify-content-center mb-2">
+        <a href="../../index.html">Home</a> <i class="bi bi-chevron-right small"></i> <span>Frequently Asked Questions</span>
+      </div>
+      <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-1 rounded-pill mb-2">Help Center & Knowledge Base</span>
+      <h1 class="display-5 font-weight-bold mb-3 text-dark">How Can Our Concierge Assist You?</h1>
+      <p class="text-muted fs-5 mb-4">Instant answers regarding digital vouchers, cancellation windows, flight baggage allowances, and flexible rebooking policies.</p>
       
+      <!-- Instant Live Search Bar -->
       <div class="input-group input-group-lg shadow-sm rounded-pill overflow-hidden border">
         <span class="input-group-text bg-white border-0 ps-4"><i class="bi bi-search text-muted"></i></span>
-        <input type="text" id="faqSearchInput" class="form-control border-0" placeholder="Type a keyword (e.g. refund, voucher, pets)...">
+        <input type="text" id="faqSearchInput" class="form-control border-0" placeholder="Type a question or keyword (e.g. refund, baggage, voucher, pets)..." onkeyup="filterFaqQuestions()">
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="d-flex flex-wrap justify-content-center gap-2 mt-4" id="faqFilterPills">
+        <button class="btn btn-sm btn-dark rounded-pill px-3" data-category="all" onclick="filterFaqCategory('all', this)">All Questions</button>
+        <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" data-category="booking" onclick="filterFaqCategory('booking', this)">Bookings & Vouchers</button>
+        <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" data-category="refunds" onclick="filterFaqCategory('refunds', this)">Cancellations & Refunds</button>
+        <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" data-category="flights" onclick="filterFaqCategory('flights', this)">Flights & Baggage</button>
+        <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" data-category="packages" onclick="filterFaqCategory('packages', this)">Tour Expeditions</button>
       </div>
     </div>
   </section>
 
   <!-- FAQ Accordion -->
   <main class="py-5">
-    <div class="container" style="max-width: 860px;">
+    <div class="container" style="max-width: 880px;">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-muted small" id="faqCountDisplay">Showing all 8 common questions</span>
+      </div>
+
       <div class="accordion" id="faqAccordion">
         <!-- Q1 -->
-        <div class="accordion-item border-0 shadow-sm rounded-4 mb-3 overflow-hidden faq-item">
+        <div class="accordion-item border-0 shadow-sm rounded-4 mb-3 overflow-hidden faq-item" data-category="booking" data-keywords="confirmation voucher electronic ticket reference email code">
           <h2 class="accordion-header">
             <button class="accordion-button fw-bold py-3 px-4" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-              How do I receive my booking confirmation and electronic voucher?
+              How do I receive my electronic travel voucher and confirmation?
             </button>
           </h2>
           <div id="faq1" class="accordion-collapse collapse show">
             <div class="accordion-body px-4 pb-4 text-secondary">
-              Immediately after completing checkout, your confirmed reservation is generated with a unique reference number (e.g., <code>TRV-894210</code>). A digital confirmation receipt is sent to your registered email address, and you can also download or print it anytime under your <a href="../booking/my-bookings.html">My Bookings</a> dashboard.
+              Immediately following checkout, your booking reference (e.g., <code>TRV-894210</code>) is registered. A PDF voucher with printable itinerary and simulated check-in QR code is delivered to your email and accessible under <a href="../booking/my-bookings.html" class="fw-semibold text-primary">My Bookings</a>.
+              <div class="mt-3 pt-3 border-top d-flex align-items-center gap-3">
+                <span class="small text-muted">Was this answer helpful?</span>
+                <button class="btn btn-sm btn-outline-light text-dark border px-2 py-1" onclick="faqFeedback('Yes')"><i class="bi bi-hand-thumbs-up text-success"></i> Yes</button>
+                <button class="btn btn-sm btn-outline-light text-dark border px-2 py-1" onclick="faqFeedback('No')"><i class="bi bi-hand-thumbs-down text-danger"></i> No</button>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Q2 -->
-        <div class="accordion-item border-0 shadow-sm rounded-4 mb-3 overflow-hidden faq-item">
+        <div class="accordion-item border-0 shadow-sm rounded-4 mb-3 overflow-hidden faq-item" data-category="refunds" data-keywords="cancellation refund policy money back free cancel deposit">
           <h2 class="accordion-header">
             <button class="accordion-button collapsed fw-bold py-3 px-4" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
               What is Terra's cancellation and refund policy?
@@ -85,59 +107,102 @@
           </h2>
           <div id="faq2" class="accordion-collapse collapse">
             <div class="accordion-body px-4 pb-4 text-secondary">
-              Most of our partnered luxury hotels and tour packages offer 100% full refund cancellation up to 48 hours prior to check-in. Non-refundable promotional rates will always be clearly flagged before you complete payment.
+              Most of our partnered luxury hotels and tour expeditions offer a 100% full refund if cancelled up to 48 hours prior to check-in. Any non-refundable promotional rates will always be flagged explicitly before you finalize payment.
+              <div class="mt-3 pt-3 border-top d-flex align-items-center gap-3">
+                <span class="small text-muted">Was this answer helpful?</span>
+                <button class="btn btn-sm btn-outline-light text-dark border px-2 py-1" onclick="faqFeedback('Yes')"><i class="bi bi-hand-thumbs-up text-success"></i> Yes</button>
+                <button class="btn btn-sm btn-outline-light text-dark border px-2 py-1" onclick="faqFeedback('No')"><i class="bi bi-hand-thumbs-down text-danger"></i> No</button>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Q3 -->
-        <div class="accordion-item border-0 shadow-sm rounded-4 mb-3 overflow-hidden faq-item">
+        <div class="accordion-item border-0 shadow-sm rounded-4 mb-3 overflow-hidden faq-item" data-category="packages" data-keywords="transfers chauffeur airport private transit tour package inclusions meals">
           <h2 class="accordion-header">
             <button class="accordion-button collapsed fw-bold py-3 px-4" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-              Are flights and airport transfers included in tour packages?
+              Are private airport chauffeur transfers included in tour packages?
             </button>
           </h2>
           <div id="faq3" class="accordion-collapse collapse">
             <div class="accordion-body px-4 pb-4 text-secondary">
-              All Terra tour packages include dedicated private VIP airport transfers and inter-city luxury land transit. International long-haul flights from your home country can be added via our <a href="../destinations/flights.html">Flight Search</a> portal.
+              Yes. All curated Terra tour packages include complimentary private VIP airport chauffeur pick-up upon arrival and drop-off on departure. Our airport concierge greets you directly outside the baggage terminal.
+              <div class="mt-3 pt-3 border-top d-flex align-items-center gap-3">
+                <span class="small text-muted">Was this answer helpful?</span>
+                <button class="btn btn-sm btn-outline-light text-dark border px-2 py-1" onclick="faqFeedback('Yes')"><i class="bi bi-hand-thumbs-up text-success"></i> Yes</button>
+                <button class="btn btn-sm btn-outline-light text-dark border px-2 py-1" onclick="faqFeedback('No')"><i class="bi bi-hand-thumbs-down text-danger"></i> No</button>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Q4 -->
-        <div class="accordion-item border-0 shadow-sm rounded-4 mb-3 overflow-hidden faq-item">
+        <div class="accordion-item border-0 shadow-sm rounded-4 mb-3 overflow-hidden faq-item" data-category="flights" data-keywords="baggage allowance carry on checked luggage weight airlines limits">
           <h2 class="accordion-header">
             <button class="accordion-button collapsed fw-bold py-3 px-4" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
-              Can I customize an existing package or request special dietary needs?
+              What are the standard baggage allowances on Terra flights?
             </button>
           </h2>
           <div id="faq4" class="accordion-collapse collapse">
             <div class="accordion-body px-4 pb-4 text-secondary">
-              Yes! When completing Step 1 (Traveler Details), you can specify dietary restrictions (Halal, Kosher, Vegan, Gluten-Free) or special mobility accommodations in the Special Requests box, and our concierge will coordinate directly with our hotel partners.
+              All international long-haul flights booked through Terra include at least 1 cabin carry-on bag (up to 10kg) and 2 complimentary checked bags (23kg each for Economy and 32kg each for Business Class).
+              <div class="mt-3 pt-3 border-top d-flex align-items-center gap-3">
+                <span class="small text-muted">Was this answer helpful?</span>
+                <button class="btn btn-sm btn-outline-light text-dark border px-2 py-1" onclick="faqFeedback('Yes')"><i class="bi bi-hand-thumbs-up text-success"></i> Yes</button>
+                <button class="btn btn-sm btn-outline-light text-dark border px-2 py-1" onclick="faqFeedback('No')"><i class="bi bi-hand-thumbs-down text-danger"></i> No</button>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Q5 -->
-        <div class="accordion-item border-0 shadow-sm rounded-4 mb-3 overflow-hidden faq-item">
+        <div class="accordion-item border-0 shadow-sm rounded-4 mb-3 overflow-hidden faq-item" data-category="booking" data-keywords="payment methods cards apple pay paypal installment split">
           <h2 class="accordion-header">
             <button class="accordion-button collapsed fw-bold py-3 px-4" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
-              Is my payment information secure on Terra?
+              Which payment methods and currencies are supported?
             </button>
           </h2>
           <div id="faq5" class="accordion-collapse collapse">
             <div class="accordion-body px-4 pb-4 text-secondary">
-              Our website uses bank-grade 256-bit SSL encryption. Furthermore, this platform functions as a verified frontend demonstration where no sensitive banking credentials or actual charges are stored or transmitted.
+              We support all major credit cards (Visa, Mastercard, American Express), Apple Pay, and PayPal. In this interactive frontend demonstration, all payments are simulated without processing actual charges.
+              <div class="mt-3 pt-3 border-top d-flex align-items-center gap-3">
+                <span class="small text-muted">Was this answer helpful?</span>
+                <button class="btn btn-sm btn-outline-light text-dark border px-2 py-1" onclick="faqFeedback('Yes')"><i class="bi bi-hand-thumbs-up text-success"></i> Yes</button>
+                <button class="btn btn-sm btn-outline-light text-dark border px-2 py-1" onclick="faqFeedback('No')"><i class="bi bi-hand-thumbs-down text-danger"></i> No</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="accordion-item border-0 shadow-sm rounded-4 mb-3 overflow-hidden faq-item" data-category="packages" data-keywords="solo traveler single room supplement private guide group size">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed fw-bold py-3 px-4" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+              Can I join an expedition as a solo traveler?
+            </button>
+          </h2>
+          <div id="faq6" class="accordion-collapse collapse">
+            <div class="accordion-body px-4 pb-4 text-secondary">
+              Absolutely. Over 30% of our travelers embark solo. We provide private boutique room accommodations with no penalty fees on select departures, and our intimate group sizes (8–12 guests) ensure a welcoming, convivial atmosphere.
+              <div class="mt-3 pt-3 border-top d-flex align-items-center gap-3">
+                <span class="small text-muted">Was this answer helpful?</span>
+                <button class="btn btn-sm btn-outline-light text-dark border px-2 py-1" onclick="faqFeedback('Yes')"><i class="bi bi-hand-thumbs-up text-success"></i> Yes</button>
+                <button class="btn btn-sm btn-outline-light text-dark border px-2 py-1" onclick="faqFeedback('No')"><i class="bi bi-hand-thumbs-down text-danger"></i> No</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Still need help -->
-      <div class="text-center mt-5 p-4 bg-white rounded-4 shadow-sm border">
-        <h5 class="font-weight-bold mb-2">Still have questions?</h5>
-        <p class="text-muted small mb-3">Our international support specialists are available 24 hours a day, 7 days a week.</p>
-        <a href="contact.html" class="btn btn-primary-custom px-4 py-2">Contact Support Desk</a>
+      <!-- Still Need Help Box -->
+      <div class="card border-0 shadow-sm rounded-4 p-5 text-center mt-5 bg-white">
+        <div class="brand-icon-circle mx-auto mb-3" style="width: 56px; height: 56px; font-size: 1.5rem;"><i class="bi bi-headset"></i></div>
+        <h4 class="font-weight-bold mb-2">Still Have Questions?</h4>
+        <p class="text-muted small mb-4" style="max-width: 480px; margin: 0 auto;">Our dedicated curators and hospitality custodians are on call 24 hours a day, 7 days a week.</p>
+        <div class="d-flex justify-content-center gap-3">
+          <a href="contact.html" class="btn btn-primary-custom px-4 py-2">Contact Our Desk</a>
+          <a href="../destinations/destinations.html" class="btn btn-outline-custom px-4 py-2">Explore Destinations</a>
+        </div>
       </div>
     </div>
   </main>
@@ -191,14 +256,49 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../../assets/js/main.js"></script>
   <script>
-    document.getElementById('faqSearchInput')?.addEventListener('input', function(e) {
-      const q = e.target.value.toLowerCase().trim();
-      document.querySelectorAll('.faq-item').forEach(item => {
-        const text = item.textContent.toLowerCase();
-        item.style.display = text.includes(q) ? 'block' : 'none';
+    let activeFaqCategory = 'all';
+
+    function filterFaqCategory(cat, btn) {
+      activeFaqCategory = cat;
+      document.querySelectorAll('#faqFilterPills button').forEach(b => {
+        b.classList.remove('btn-dark');
+        b.classList.add('btn-outline-secondary');
       });
-    });
+      btn.classList.remove('btn-outline-secondary');
+      btn.classList.add('btn-dark');
+      filterFaqQuestions();
+    }
+
+    function filterFaqQuestions() {
+      const query = (document.getElementById('faqSearchInput').value || '').toLowerCase().trim();
+      const items = document.querySelectorAll('.faq-item');
+      let visible = 0;
+
+      items.forEach(item => {
+        const cat = item.getAttribute('data-category');
+        const keywords = (item.getAttribute('data-keywords') || '') + ' ' + item.textContent.toLowerCase();
+
+        const matchCat = (activeFaqCategory === 'all') || (cat === activeFaqCategory);
+        const matchQuery = !query || keywords.includes(query);
+
+        if (matchCat && matchQuery) {
+          item.style.display = 'block';
+          visible++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      document.getElementById('faqCountDisplay').textContent = `Showing ${visible} question${visible === 1 ? '' : 's'}`;
+    }
+
+    function faqFeedback(type) {
+      if (typeof showToast === 'function') {
+        showToast('Feedback Received', `Thank you for your feedback (${type})!`, 'info');
+      } else {
+        alert('Thank you for your feedback!');
+      }
+    }
   </script>
 </body>
 </html>
-

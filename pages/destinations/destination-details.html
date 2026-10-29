@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Destination Details | Terra Luxury Travel</title>
+  <title>Destination Details | TERRA Luxury Expeditions</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/css/style.css">
@@ -44,7 +44,7 @@
     </div>
   </header>
 
-  <!-- Content Container -->
+  <!-- Main Content -->
   <main class="py-4">
     <div class="container">
       <div class="custom-breadcrumb">
@@ -53,40 +53,46 @@
         <span id="destBreadcrumbName">Bali, Indonesia</span>
       </div>
 
-      <!-- Title & Rating Header -->
+      <!-- Title & Header Details -->
       <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
         <div>
-          <h1 class="display-5 font-weight-bold mb-1" id="destTitle">Bali, Indonesia</h1>
+          <span class="badge bg-primary-subtle text-primary mb-2 px-3 py-1 rounded-pill" id="destCategoryBadge">Tropical Sanctuary</span>
+          <h1 class="display-4 font-weight-bold mb-1" id="destTitle">Bali, Indonesia</h1>
           <p class="text-muted fs-5 mb-0"><i class="bi bi-geo-alt-fill text-danger me-1"></i> <span id="destCountry">Indonesia &bull; Southeast Asia</span></p>
         </div>
         <div class="d-flex align-items-center gap-3 mt-3 mt-md-0">
           <div class="text-end">
-            <div class="star-rating fs-5 text-warning"><i class="bi bi-star-fill"></i> <span id="destRating" class="text-dark">4.9</span></div>
+            <div class="star-rating fs-5 text-warning"><i class="bi bi-star-fill"></i> <span id="destRating" class="text-dark fw-bold">4.9</span></div>
             <span class="text-muted small" id="destReviewCount">1,420 verified reviews</span>
           </div>
-          <button class="btn btn-outline-custom btn-sm"><i class="bi bi-share me-1"></i> Share</button>
-          <button class="btn btn-outline-custom btn-sm"><i class="bi bi-heart me-1"></i> Save</button>
+          <button class="btn btn-outline-custom btn-sm card-wishlist-btn position-static" style="width: 44px; height: 44px;" title="Wishlist"><i class="bi bi-heart"></i></button>
         </div>
       </div>
 
-      <!-- Gallery Grid -->
-      <div class="row g-2 mb-5 rounded-4 overflow-hidden" id="destGallery">
+      <!-- Interactive Gallery Grid -->
+      <div class="row g-3 mb-5">
         <div class="col-12 col-md-8">
-          <img id="destMainImg" src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=80" alt="Main Destination View" class="w-100 rounded-3" style="height: 440px; object-fit: cover;">
+          <div class="rounded-4 overflow-hidden shadow-sm position-relative" style="height: 460px;">
+            <img id="destMainImg" src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=80" alt="Main View" class="w-100 h-100 object-fit-cover transition-all">
+          </div>
         </div>
         <div class="col-12 col-md-4">
-          <div class="row g-2">
+          <div class="row g-3">
             <div class="col-6 col-md-12">
-              <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=600&q=80" alt="Culture" class="w-100 rounded-3" style="height: 215px; object-fit: cover;">
+              <div class="rounded-3 overflow-hidden shadow-xs cursor-pointer dest-thumb-wrap" style="height: 220px;" onclick="swapMainPhoto(this)">
+                <img id="destThumb1" src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=600&q=80" alt="Thumbnail 1" class="w-100 h-100 object-fit-cover hover-zoom">
+              </div>
             </div>
             <div class="col-6 col-md-12">
-              <img src="https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?auto=format&fit=crop&w=600&q=80" alt="Scenery" class="w-100 rounded-3" style="height: 215px; object-fit: cover;">
+              <div class="rounded-3 overflow-hidden shadow-xs cursor-pointer dest-thumb-wrap" style="height: 220px;" onclick="swapMainPhoto(this)">
+                <img id="destThumb2" src="https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?auto=format&fit=crop&w=600&q=80" alt="Thumbnail 2" class="w-100 h-100 object-fit-cover hover-zoom">
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Details & Booking Sidebar Layout -->
+      <!-- Details & Sticky Reservation Widget -->
       <div class="row g-5">
         <div class="col-12 col-lg-8">
           <!-- Overview -->
@@ -97,26 +103,26 @@
             </p>
           </div>
 
-          <!-- Quick Facts -->
+          <!-- Quick Travel Facts -->
           <div class="mb-5">
             <h4 class="font-weight-bold mb-3">Key Highlights & Travel Facts</h4>
             <div class="row g-3">
               <div class="col-6 col-md-4">
-                <div class="p-3 bg-light rounded-3">
+                <div class="p-3 bg-light rounded-3 h-100 border">
                   <span class="text-muted small d-block">Ideal Travel Season</span>
-                  <strong id="destBestTime">April to October</strong>
+                  <strong id="destBestTime" class="text-navy-950">April to October</strong>
                 </div>
               </div>
               <div class="col-6 col-md-4">
-                <div class="p-3 bg-light rounded-3">
+                <div class="p-3 bg-light rounded-3 h-100 border">
                   <span class="text-muted small d-block">Average Weather</span>
-                  <strong id="destWeather">28°C / 82°F Tropical</strong>
+                  <strong id="destWeather" class="text-navy-950">28°C / 82°F Tropical</strong>
                 </div>
               </div>
               <div class="col-6 col-md-4">
-                <div class="p-3 bg-light rounded-3">
-                  <span class="text-muted small d-block">Primary Language</span>
-                  <strong>Indonesian & English</strong>
+                <div class="p-3 bg-light rounded-3 h-100 border">
+                  <span class="text-muted small d-block">Local Concierge</span>
+                  <strong class="text-success"><i class="bi bi-shield-check"></i> On-Call 24/7</strong>
                 </div>
               </div>
             </div>
@@ -125,48 +131,48 @@
           <!-- Top Attractions -->
           <div class="mb-5">
             <h4 class="font-weight-bold mb-3">Must-Experience Attractions</h4>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item px-0 py-3 d-flex align-items-center gap-3">
-                <i class="bi bi-geo-alt text-primary fs-4"></i>
+            <ul class="list-group list-group-flush border rounded-4 overflow-hidden shadow-xs">
+              <li class="list-group-item p-3 d-flex align-items-center gap-3">
+                <div class="brand-icon-circle bg-primary-light text-primary"><i class="bi bi-geo-alt"></i></div>
                 <div>
-                  <h6 class="mb-0 font-weight-bold">Uluwatu Sunset Temple & Kecak Dance</h6>
-                  <p class="text-muted small mb-0">Perched on a cliff 70 meters above the roaring Indian Ocean waves.</p>
+                  <h6 class="mb-0 font-weight-bold">Uluwatu Sunset Temple & Cliff Dance</h6>
+                  <p class="text-muted small mb-0">Perched on a cliff 70 meters above roaring Indian Ocean waves.</p>
                 </div>
               </li>
-              <li class="list-group-item px-0 py-3 d-flex align-items-center gap-3">
-                <i class="bi bi-water text-primary fs-4"></i>
+              <li class="list-group-item p-3 d-flex align-items-center gap-3">
+                <div class="brand-icon-circle bg-primary-light text-primary"><i class="bi bi-water"></i></div>
                 <div>
                   <h6 class="mb-0 font-weight-bold">Tegalalang Rice Terraces & Jungle Swings</h6>
-                  <p class="text-muted small mb-0">Century-old UNESCO cooperative irrigation system surrounded by palm canopies.</p>
+                  <p class="text-muted small mb-0">UNESCO cooperative irrigation system surrounded by emerald palm canopies.</p>
                 </div>
               </li>
-              <li class="list-group-item px-0 py-3 d-flex align-items-center gap-3">
-                <i class="bi bi-sunset text-primary fs-4"></i>
+              <li class="list-group-item p-3 d-flex align-items-center gap-3">
+                <div class="brand-icon-circle bg-primary-light text-primary"><i class="bi bi-compass"></i></div>
                 <div>
                   <h6 class="mb-0 font-weight-bold">Nusa Penida Manta Bay Snorkeling</h6>
-                  <p class="text-muted small mb-0">Swim alongside majestic manta rays in turquoise crystal lagoons.</p>
+                  <p class="text-muted small mb-0">Swim alongside wild manta rays in turquoise crystal lagoons.</p>
                 </div>
               </li>
             </ul>
           </div>
 
-          <!-- Map Placeholder Card -->
+          <!-- Geographic Coordinates & Map Placeholder -->
           <div class="mb-5">
-            <h4 class="font-weight-bold mb-3">Location & Geography</h4>
+            <h4 class="font-weight-bold mb-3">Location & Airport Connections</h4>
             <div class="bg-light p-4 rounded-4 text-center border">
               <i class="bi bi-map text-primary" style="font-size: 3rem;"></i>
-              <h5 class="mt-2 font-weight-bold" id="mapTitle">Interactive Geographic Preview</h5>
-              <p class="text-muted small">Geo Coordinates: 8.3405° S, 115.0920° E &bull; Direct international airport transfers available.</p>
+              <h5 class="mt-2 font-weight-bold">Direct International Connectivity</h5>
+              <p class="text-muted small mb-0">VIP private chauffeur pick-up included with every Terra reservation.</p>
             </div>
           </div>
         </div>
 
-        <!-- Sticky Booking Widget -->
+        <!-- Sticky Reservation Widget -->
         <div class="col-12 col-lg-4">
           <div class="booking-summary-card">
             <div class="d-flex justify-content-between align-items-baseline mb-3">
               <div>
-                <span class="fs-3 font-weight-bold text-dark" id="destPriceDisplay">$599</span>
+                <span class="fs-2 font-weight-bold text-dark" id="destPriceDisplay">$599</span>
                 <span class="text-muted small">/ person</span>
               </div>
               <span class="badge bg-success-subtle text-success px-2 py-1"><i class="bi bi-shield-check"></i> Best Rate Guaranteed</span>
@@ -179,24 +185,24 @@
               </div>
 
               <div class="mb-3">
-                <label class="form-label small fw-bold">Travelers</label>
+                <label class="form-label small fw-bold">Number of Travelers</label>
                 <select class="form-select" id="destGuests">
                   <option value="1">1 Traveler</option>
                   <option value="2" selected>2 Travelers</option>
-                  <option value="4">4 Travelers</option>
+                  <option value="4">4 Travelers (Small Group)</option>
                 </select>
               </div>
 
               <div class="price-item-row">
-                <span>Base Package Rate</span>
+                <span>Base Land Package</span>
                 <span id="destSubtotal">$1,198</span>
               </div>
               <div class="price-item-row">
-                <span>Airport VIP Pickup</span>
-                <span>Included</span>
+                <span>Airport VIP Chauffeur</span>
+                <span class="text-success font-weight-bold">Included Free</span>
               </div>
               <div class="price-item-row total-row">
-                <span>Indicative Total</span>
+                <span>Total Amount</span>
                 <span class="text-primary" id="destTotal">$1,198</span>
               </div>
 
@@ -270,10 +276,16 @@
       document.getElementById('destBreadcrumbName').textContent = activeDest.name;
       document.getElementById('destTitle').textContent = `${activeDest.name}, ${activeDest.country}`;
       document.getElementById('destCountry').textContent = `${activeDest.country} • ${activeDest.badge}`;
+      document.getElementById('destCategoryBadge').textContent = activeDest.badge + ' Escape';
       document.getElementById('destRating').textContent = activeDest.rating;
       document.getElementById('destReviewCount').textContent = `${activeDest.reviewsCount} verified reviews`;
-      document.getElementById('destMainImg').src = activeDest.image;
-      document.getElementById('destDescription').textContent = activeDest.description + " Every journey with Terra is custom tailored with verified private transfers, boutique accommodations, and English-speaking local cultural historians.";
+      document.getElementById('destMainImg').src = activeDest.images ? activeDest.images[0] : activeDest.image;
+      if (activeDest.images && activeDest.images.length > 1) {
+        document.getElementById('destThumb1').src = activeDest.images[1];
+        document.getElementById('destThumb2').src = activeDest.images[2] || activeDest.images[0];
+      }
+
+      document.getElementById('destDescription').textContent = activeDest.description + " Every journey with TERRA includes verified private transfers, boutique accommodations, and English-speaking local cultural historians.";
       document.getElementById('destBestTime').textContent = activeDest.bestTime;
       document.getElementById('destWeather').textContent = activeDest.weather;
       document.getElementById('destPriceDisplay').textContent = `$${activeDest.startingPrice}`;
@@ -287,6 +299,16 @@
         document.getElementById('destTotal').textContent = `$${sub}`;
       });
     });
+
+    function swapMainPhoto(thumbEl) {
+      const img = thumbEl.querySelector('img');
+      const mainImg = document.getElementById('destMainImg');
+      if (img && mainImg) {
+        const temp = mainImg.src;
+        mainImg.src = img.src;
+        img.src = temp;
+      }
+    }
 
     function bookCurrentDestination() {
       if (!activeDest) return;
@@ -312,4 +334,3 @@
   </script>
 </body>
 </html>
-

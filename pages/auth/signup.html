@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create an Account | Terra Luxury Travel</title>
+  <title>Create Member Account | Terra Luxury Travel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -11,84 +11,220 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/css/style.css">
   <link rel="stylesheet" href="../../assets/css/responsive.css">
+  <style>
+    .auth-split-wrapper {
+      min-height: 100vh;
+      display: flex;
+    }
+    .auth-banner-col {
+      flex: 1;
+      background: linear-gradient(rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      color: #ffffff;
+      padding: 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .auth-form-col {
+      width: 100%;
+      max-width: 580px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 3.5rem;
+      background: #ffffff;
+    }
+    .password-strength-bar {
+      height: 4px;
+      border-radius: 2px;
+      background: #e2e8f0;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+    .password-strength-fill {
+      height: 100%;
+      width: 0%;
+      transition: width 0.3s ease, background-color 0.3s ease;
+    }
+    @media (max-width: 991px) {
+      .auth-split-wrapper {
+        flex-direction: column;
+      }
+      .auth-banner-col {
+        padding: 2.5rem;
+        min-height: 240px;
+      }
+      .auth-form-col {
+        max-width: 100%;
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <header class="site-navbar">
-    <div class="container">
-      <nav class="navbar navbar-expand-lg p-0">
-        <a class="brand-logo" href="../../index.html">
-          <div class="brand-icon-circle"><i class="bi bi-compass"></i></div>
-          <span>TERRA</span>
-        </a>
-        <div class="ms-auto">
-          <span class="text-muted small me-2">Already have an account?</span>
-          <a href="login.html" class="btn btn-outline-custom btn-sm">Log In</a>
+  <div class="auth-split-wrapper">
+    <!-- Left Hero Banner -->
+    <div class="auth-banner-col">
+      <div class="d-flex align-items-center gap-2">
+        <div class="brand-icon-circle bg-primary" style="width: 44px; height: 44px; font-size: 1.3rem;">
+          <i class="bi bi-compass"></i>
         </div>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Signup Form Area -->
-  <main class="auth-wrapper">
-    <div class="auth-card">
-      <div class="text-center mb-4">
-        <h2 class="font-weight-bold">Join Terra Today</h2>
-        <p class="text-muted small">Unlock member-only discounts, curated itineraries, and seamless booking tracking.</p>
+        <span class="fs-4 font-weight-bold tracking-wider text-white">TERRA</span>
       </div>
 
+      <div class="my-auto py-5">
+        <span class="badge bg-white-10 text-white border border-white-20 px-3 py-1 rounded-pill mb-3">
+          <i class="bi bi-gift me-1"></i> Complimentary $150 Welcome Credit
+        </span>
+        <h1 class="display-5 font-weight-bold mb-3 text-white">Join Terra Explorer Circle</h1>
+        <p class="text-white-50 fs-5 leading-relaxed mb-4">
+          Become a distinguished member of our international community. Gain early access to private island expeditions, guaranteed suite upgrades, and 24/7 dedicated travel curators.
+        </p>
+
+        <div class="row g-3">
+          <div class="col-12 col-sm-6">
+            <div class="p-3 bg-white-10 rounded-3 border border-white-10">
+              <i class="bi bi-gem text-warning fs-4 mb-2 d-block"></i>
+              <div class="fw-bold text-white">Exclusive Member Rates</div>
+              <div class="small text-white-50">Up to 25% off luxury boutique villas.</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="p-3 bg-white-10 rounded-3 border border-white-10">
+              <i class="bi bi-headset text-info fs-4 mb-2 d-block"></i>
+              <div class="fw-bold text-white">Dedicated Concierge</div>
+              <div class="small text-white-50">Priority VIP WhatsApp & phone line.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between text-white-50 small border-top border-white-10 pt-3">
+        <span>&copy; 2026 Terra Travel Inc.</span>
+        <span>Trusted by 45,000+ Explorers</span>
+      </div>
+    </div>
+
+    <!-- Right Form Column -->
+    <div class="auth-form-col">
+      <div class="mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <a href="../../index.html" class="text-muted small text-decoration-none">
+            <i class="bi bi-arrow-left me-1"></i> Back to Homepage
+          </a>
+          <span class="text-muted small">Already a member? <a href="login.html" class="fw-bold text-primary">Sign in</a></span>
+        </div>
+        <h2 class="display-6 font-weight-bold text-dark mb-1">Create an Account</h2>
+        <p class="text-secondary small mb-0">Join in 30 seconds to start planning your bespoke journey.</p>
+      </div>
+
+      <!-- Quick Social Sign-in -->
+      <div class="d-grid gap-2 mb-4">
+        <button type="button" class="btn btn-outline-secondary py-2 d-flex align-items-center justify-content-center gap-2" onclick="demoSocialSignUp('Google')">
+          <i class="bi bi-google text-danger"></i> <span>Sign up with Google</span>
+        </button>
+        <button type="button" class="btn btn-outline-secondary py-2 d-flex align-items-center justify-content-center gap-2" onclick="demoSocialSignUp('Apple')">
+          <i class="bi bi-apple text-dark"></i> <span>Sign up with Apple ID</span>
+        </button>
+      </div>
+
+      <div class="position-relative text-center mb-4">
+        <hr class="text-muted">
+        <span class="position-absolute top-50 start-50 translate-middle bg-white px-3 text-muted small">or register with email</span>
+      </div>
+
+      <!-- Sign Up Form -->
       <form id="signupForm" novalidate>
         <div class="mb-3">
           <label for="signupName" class="form-label small fw-bold">Full Name</label>
           <div class="input-group">
-            <span class="input-group-text bg-white"><i class="bi bi-person"></i></span>
-            <input type="text" class="form-control" id="signupName" placeholder="e.g. Jervin Raj" required>
+            <span class="input-group-text bg-light border-end-0"><i class="bi bi-person text-muted"></i></span>
+            <input type="text" class="form-control border-start-0 bg-light" id="signupName" placeholder="e.g. Jervin Raj" value="Jervin Raj" required>
           </div>
         </div>
 
         <div class="mb-3">
           <label for="signupEmail" class="form-label small fw-bold">Email Address</label>
           <div class="input-group">
-            <span class="input-group-text bg-white"><i class="bi bi-envelope"></i></span>
-            <input type="email" class="form-control" id="signupEmail" placeholder="e.g. jervin@example.com" required>
+            <span class="input-group-text bg-light border-end-0"><i class="bi bi-envelope text-muted"></i></span>
+            <input type="email" class="form-control border-start-0 bg-light" id="signupEmail" placeholder="e.g. jervin@example.com" value="jervin.raj@example.com" required>
           </div>
         </div>
 
         <div class="mb-3">
           <label for="signupPassword" class="form-label small fw-bold">Password</label>
           <div class="input-group">
-            <span class="input-group-text bg-white"><i class="bi bi-lock"></i></span>
-            <input type="password" class="form-control" id="signupPassword" placeholder="Minimum 8 characters" required>
-            <button type="button" class="btn btn-outline-secondary password-toggle-btn" data-target="signupPassword">
+            <span class="input-group-text bg-light border-end-0"><i class="bi bi-lock text-muted"></i></span>
+            <input type="password" class="form-control border-start-0 bg-light" id="signupPassword" placeholder="Minimum 8 characters" value="TravelSecret2026!" required onkeyup="checkPasswordStrength(this.value)">
+            <button type="button" class="btn btn-light border password-toggle-btn" data-target="signupPassword">
               <i class="bi bi-eye"></i>
             </button>
+          </div>
+          <!-- Strength Meter Bar -->
+          <div class="password-strength-bar">
+            <div class="password-strength-fill" id="strengthBarFill"></div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mt-1">
+            <span class="text-muted" style="font-size: 0.7rem;">Security: <span id="strengthText" class="fw-bold text-success">Strong</span></span>
+            <span class="text-muted" style="font-size: 0.7rem;">Min 8 chars, 1 number</span>
           </div>
         </div>
 
         <div class="form-check mb-4">
           <input class="form-check-input" type="checkbox" id="termsCheck" required checked>
           <label class="form-check-label small" for="termsCheck">
-            I agree to Terra's <a href="../company/faq.html">Terms of Service</a> & <a href="../company/faq.html">Privacy Policy</a>.
+            I agree to Terra's <a href="../company/faq.html" class="text-primary text-decoration-none">Terms of Service</a> & <a href="../company/faq.html" class="text-primary text-decoration-none">Privacy Policy</a>.
           </label>
         </div>
 
         <button type="submit" class="btn btn-primary-custom w-100 py-3 mb-3">Create Free Account</button>
 
-        <div class="alert alert-info py-2 px-3 small text-center mb-0">
-          <i class="bi bi-info-circle me-1"></i> Frontend demo: Simulated account creation using browser storage.
+        <div class="alert alert-light border py-2 px-3 small text-center text-muted mb-0">
+          <i class="bi bi-shield-check text-success me-1"></i> Simulated registration: Account details saved locally.
         </div>
       </form>
     </div>
-  </main>
-
-  <footer class="py-3 text-center text-muted small bg-white border-top">
-    &copy; 2026 Terra Travel Inc.
-  </footer>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../../assets/js/main.js"></script>
   <script src="../../assets/js/auth-demo.js"></script>
+  <script>
+    function checkPasswordStrength(val) {
+      const fill = document.getElementById('strengthBarFill');
+      const text = document.getElementById('strengthText');
+      if (!val) {
+        fill.style.width = '0%';
+        text.textContent = 'None';
+        return;
+      }
+      if (val.length < 6) {
+        fill.style.width = '25%';
+        fill.style.backgroundColor = '#ef4444';
+        text.textContent = 'Weak';
+        text.className = 'fw-bold text-danger';
+      } else if (val.length < 10) {
+        fill.style.width = '65%';
+        fill.style.backgroundColor = '#f59e0b';
+        text.textContent = 'Good';
+        text.className = 'fw-bold text-warning';
+      } else {
+        fill.style.width = '100%';
+        fill.style.backgroundColor = '#10b981';
+        text.textContent = 'Strong';
+        text.className = 'fw-bold text-success';
+      }
+    }
+
+    function demoSocialSignUp(provider) {
+      if (typeof showToast === 'function') {
+        showToast('Registered', `Account created with ${provider}!`, 'success');
+      }
+      setTimeout(() => {
+        window.location.href = 'profile.html';
+      }, 400);
+    }
+  </script>
 </body>
 </html>
-

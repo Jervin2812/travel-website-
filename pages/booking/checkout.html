@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Step 2: Payment & Checkout Demo | Terra Booking</title>
+  <title>Step 2: Payment & Review | Terra Booking</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -11,11 +11,70 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/css/style.css">
   <link rel="stylesheet" href="../../assets/css/responsive.css">
+  <style>
+    /* Premium Interactive Credit Card Simulation */
+    .card-preview-container {
+      perspective: 1000px;
+      margin-bottom: 2rem;
+    }
+    .virtual-credit-card {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0284c7 100%);
+      color: #ffffff;
+      border-radius: 20px;
+      padding: 1.75rem 2rem;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.25);
+      position: relative;
+      overflow: hidden;
+      max-width: 440px;
+      margin: 0 auto;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: transform 0.3s ease;
+    }
+    .virtual-credit-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .card-chip {
+      width: 44px;
+      height: 32px;
+      background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+      border-radius: 6px;
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+    .card-number-display {
+      font-size: 1.35rem;
+      letter-spacing: 3px;
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    }
+    .card-meta-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 2px;
+    }
+    .card-meta-value {
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  </style>
 </head>
 <body class="bg-light">
 
   <!-- Header -->
-  <header class="bg-white border-bottom py-3">
+  <header class="bg-white border-bottom py-3 sticky-top">
     <div class="container d-flex justify-content-between align-items-center">
       <a class="brand-logo" href="../../index.html">
         <div class="brand-icon-circle"><i class="bi bi-compass"></i></div>
@@ -25,131 +84,237 @@
     </div>
   </header>
 
-  <!-- Checkout Content -->
-  <main class="py-5">
+  <!-- Step Progress Indicator -->
+  <section class="py-4 bg-white border-bottom">
     <div class="container">
-      <!-- Step Indicator -->
-      <div class="step-indicator-bar">
+      <div class="step-indicator-bar mb-0">
         <div class="step-item completed">
           <div class="step-circle"><i class="bi bi-check-lg"></i></div>
           <span>Traveler Details</span>
         </div>
-        <div class="step-line d-none d-md-block" style="width: 40px; height: 2px; background: #10b981;"></div>
+        <div class="step-line d-none d-md-block" style="width: 50px; height: 2px; background: #10b981;"></div>
         <div class="step-item active">
           <div class="step-circle">2</div>
           <span>Payment & Review</span>
         </div>
-        <div class="step-line d-none d-md-block" style="width: 40px; height: 2px; background: #cbd5e1;"></div>
+        <div class="step-line d-none d-md-block" style="width: 50px; height: 2px; background: #cbd5e1;"></div>
         <div class="step-item">
           <div class="step-circle">3</div>
           <span>Confirmation</span>
         </div>
       </div>
+    </div>
+  </section>
 
+  <!-- Checkout Main Content -->
+  <main class="py-5">
+    <div class="container">
       <div class="row g-5">
         <div class="col-12 col-lg-8">
-          <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mb-4">
+          <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mb-4 bg-white">
             <h3 class="font-weight-bold mb-1">Select Payment Method</h3>
-            <p class="text-muted small mb-4">Choose how you wish to pay. (Demo simulation only — no real charges)</p>
+            <p class="text-muted small mb-4">Choose how you wish to pay. (Frontend prototype only &bull; No actual credit card charge occurs)</p>
 
-            <!-- Payment Method Radio Cards -->
-            <div class="payment-method-card selected">
-              <input type="radio" name="paymentType" id="payCard" class="form-check-input mt-0 me-2" checked>
-              <i class="bi bi-credit-card-2-front fs-4 text-primary"></i>
+            <!-- Payment Method Options -->
+            <div class="payment-method-card selected mb-3" onclick="selectPaymentMethod('card', this)">
+              <input type="radio" name="paymentType" id="payCard" class="form-check-input mt-0 me-3" checked>
+              <i class="bi bi-credit-card-2-front fs-3 text-primary me-2"></i>
               <div class="flex-grow-1">
                 <label for="payCard" class="fw-bold mb-0 cursor-pointer d-block">Credit / Debit Card</label>
-                <span class="text-muted small">Visa, Mastercard, American Express</span>
+                <span class="text-muted small">Visa, Mastercard, American Express, Discover</span>
+              </div>
+              <div class="d-none d-sm-flex gap-2 text-muted fs-4">
+                <i class="bi bi-credit-card"></i>
               </div>
             </div>
 
-            <div class="payment-method-card">
-              <input type="radio" name="paymentType" id="payApple" class="form-check-input mt-0 me-2">
-              <i class="bi bi-apple fs-4"></i>
+            <div class="payment-method-card mb-3" onclick="selectPaymentMethod('apple', this)">
+              <input type="radio" name="paymentType" id="payApple" class="form-check-input mt-0 me-3">
+              <i class="bi bi-apple fs-3 text-dark me-2"></i>
               <div class="flex-grow-1">
                 <label for="payApple" class="fw-bold mb-0 cursor-pointer d-block">Apple Pay</label>
-                <span class="text-muted small">Instant one-tap checkout</span>
+                <span class="text-muted small">One-touch biometric simulated authorization</span>
               </div>
             </div>
 
-            <div class="payment-method-card">
-              <input type="radio" name="paymentType" id="payPaypal" class="form-check-input mt-0 me-2">
-              <i class="bi bi-paypal fs-4 text-primary"></i>
+            <div class="payment-method-card mb-4" onclick="selectPaymentMethod('paypal', this)">
+              <input type="radio" name="paymentType" id="payPaypal" class="form-check-input mt-0 me-3">
+              <i class="bi bi-paypal fs-3 text-primary me-2"></i>
               <div class="flex-grow-1">
-                <label for="payPaypal" class="fw-bold mb-0 cursor-pointer d-block">PayPal</label>
-                <span class="text-muted small">Safe and protected payment</span>
+                <label for="payPaypal" class="fw-bold mb-0 cursor-pointer d-block">PayPal Checkout</label>
+                <span class="text-muted small">Pay with your saved PayPal wallet balance</span>
               </div>
             </div>
 
-            <!-- Demo Card Form -->
-            <form id="checkoutPaymentForm" class="mt-4">
-              <div class="row g-3">
-                <div class="col-12">
-                  <label for="cardHolder" class="form-label small fw-bold">Name on Card</label>
-                  <input type="text" class="form-control" id="cardHolder" value="Alex Morgan" required>
+            <!-- Interactive Virtual Card Preview -->
+            <div class="card-preview-container">
+              <div class="virtual-credit-card">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="fw-bold text-white-50 small tracking-wider">TERRA PLATINUM CARD</span>
+                  <i class="bi bi-reception-4 fs-5 text-white-50"></i>
                 </div>
-                <div class="col-12">
-                  <label for="cardNumber" class="form-label small fw-bold">Card Number (Demo)</label>
-                  <div class="input-group">
-                    <span class="input-group-text bg-white"><i class="bi bi-credit-card"></i></span>
-                    <input type="text" class="form-control" id="cardNumber" placeholder="4242 &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 4242" value="4242 •••• •••• 4242" required>
+                <div class="card-chip"></div>
+                <div class="card-number-display" id="cardPreviewNumber">4242 &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 4242</div>
+                <div class="d-flex justify-content-between align-items-end">
+                  <div>
+                    <div class="card-meta-label">Cardholder</div>
+                    <div class="card-meta-value" id="cardPreviewName">Alex Morgan</div>
+                  </div>
+                  <div class="text-end">
+                    <div class="card-meta-label">Expires</div>
+                    <div class="card-meta-value" id="cardPreviewExp">12/28</div>
                   </div>
                 </div>
-                <div class="col-6">
+              </div>
+            </div>
+
+            <!-- Demo Payment Card Form -->
+            <form id="checkoutPaymentForm" novalidate>
+              <div class="row g-3">
+                <div class="col-12">
+                  <label for="cardHolder" class="form-label small fw-bold">Cardholder Full Name</label>
+                  <input type="text" class="form-control" id="cardHolder" value="Alex Morgan" required placeholder="Name on credit card">
+                </div>
+                <div class="col-12">
+                  <label for="cardNumber" class="form-label small fw-bold">Card Number</label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="bi bi-credit-card"></i></span>
+                    <input type="text" class="form-control" id="cardNumber" placeholder="4242 4242 4242 4242" value="4242 4242 4242 4242" maxlength="19" required>
+                  </div>
+                </div>
+                <div class="col-6 col-md-6">
                   <label for="cardExp" class="form-label small fw-bold">Expiration Date</label>
-                  <input type="text" class="form-control" id="cardExp" value="12/28" placeholder="MM/YY" required>
+                  <input type="text" class="form-control" id="cardExp" value="12/28" placeholder="MM/YY" maxlength="5" required>
                 </div>
-                <div class="col-6">
-                  <label for="cardCvv" class="form-label small fw-bold">Security CVV</label>
-                  <input type="password" class="form-control" id="cardCvv" value="888" maxlength="4" placeholder="CVC" required>
-                </div>
-              </div>
-
-              <!-- Promo Code Box -->
-              <div class="mt-4 p-3 bg-light rounded-3">
-                <label class="form-label small fw-bold mb-1">Have a Promotional Code?</label>
-                <div class="input-group">
-                  <input type="text" id="promoCodeInput" class="form-control" placeholder="Enter 'TRAVEL20' for 20% off">
-                  <button type="button" id="applyPromoBtn" class="btn btn-navy-custom">Apply Code</button>
-                </div>
-                <div id="promoAlert" class="mt-1"></div>
-              </div>
-
-              <div class="alert alert-warning mt-4 mb-0 small d-flex align-items-center gap-2">
-                <i class="bi bi-shield-exclamation fs-5"></i>
-                <div>
-                  <strong>DEMO MODE:</strong> No real payment is processed. Clicking "Complete Booking" simulates a successful reservation and generates your digital travel voucher.
+                <div class="col-6 col-md-6">
+                  <label for="cardCvv" class="form-label small fw-bold">Security Code (CVV)</label>
+                  <div class="input-group">
+                    <input type="password" class="form-control" id="cardCvv" value="894" maxlength="4" placeholder="123" required>
+                    <span class="input-group-text bg-white"><i class="bi bi-question-circle" title="3-digit code on back of card"></i></span>
+                  </div>
                 </div>
               </div>
 
-              <div class="d-flex justify-content-between align-items-center pt-4 mt-3 border-top">
-                <a href="booking-details.html" class="btn btn-link text-muted text-decoration-none">
-                  <i class="bi bi-arrow-left me-1"></i> Edit Details
+              <!-- Billing Address Match Checkbox -->
+              <div class="form-check mt-3 mb-4">
+                <input class="form-check-input" type="checkbox" id="billingSameAsTraveler" checked>
+                <label class="form-check-label small" for="billingSameAsTraveler">
+                  Billing address is identical to lead traveler primary residence.
+                </label>
+              </div>
+
+              <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center pt-3 border-top gap-3">
+                <a href="booking-details.html" class="btn btn-outline-custom">
+                  <i class="bi bi-chevron-left me-1"></i> Back to Step 1
                 </a>
-                <button type="submit" class="btn btn-primary-custom py-3 px-5">
-                  Confirm & Reserve Now <i class="bi bi-check-circle ms-1"></i>
+                <button type="submit" class="btn btn-primary-custom py-3 px-5" id="completePaymentBtn">
+                  Confirm & Complete Booking <i class="bi bi-lock-fill ms-1"></i>
                 </button>
               </div>
             </form>
           </div>
         </div>
 
-        <!-- Price Breakdown -->
+        <!-- Sticky Sidebar: Itemized Breakdown & Coupon -->
         <div class="col-12 col-lg-4">
-          <div class="booking-summary-card" id="checkoutSummaryBox">
-            <!-- Rendered via booking.js -->
+          <div class="card border-0 shadow-sm rounded-4 p-4 bg-white sticky-top" style="top: 100px;">
+            <h4 class="font-weight-bold mb-3">Order Summary</h4>
+
+            <!-- Promo Code Accordion/Input -->
+            <div class="mb-4">
+              <label class="form-label small fw-bold text-dark mb-1"><i class="bi bi-tag-fill me-1 text-primary"></i> Have a Promotional Code?</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="couponCodeInput" placeholder="Try code: TRAVEL20">
+                <button class="btn btn-navy-custom" type="button" id="applyCouponBtn" onclick="applyPromoCode()">Apply</button>
+              </div>
+              <div id="couponFeedback" class="small mt-1 text-muted">Use code <span class="badge bg-light text-primary border">TRAVEL20</span> for 20% off.</div>
+            </div>
+
+            <!-- Itemized Calculation Table -->
+            <div class="p-3 bg-light rounded-3 mb-3">
+              <div class="d-flex justify-content-between small text-muted mb-2">
+                <span>Subtotal</span>
+                <span class="fw-semibold text-dark" id="checkoutSubtotal">$2,580</span>
+              </div>
+              <div class="d-flex justify-content-between small text-success mb-2 d-none" id="discountRow">
+                <span>Promotional Discount (20%)</span>
+                <span class="fw-bold" id="discountAmount">-$516</span>
+              </div>
+              <div class="d-flex justify-content-between small text-muted mb-2">
+                <span>Taxes & Tourism Levies</span>
+                <span class="fw-semibold text-dark" id="checkoutTaxes">$150</span>
+              </div>
+              <div class="d-flex justify-content-between font-weight-bold text-dark pt-2 border-top">
+                <span>Total Amount Due</span>
+                <span class="fs-4 text-primary" id="checkoutFinalTotal">$2,730</span>
+              </div>
+            </div>
+
+            <div class="p-3 border rounded-3 bg-white text-center">
+              <i class="bi bi-shield-check text-success fs-3 d-block mb-1"></i>
+              <div class="small fw-bold text-dark">Simulated Booking Guarantee</div>
+              <p class="small text-muted mb-0">No actual card charges are processed in this frontend demo.</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </main>
 
-  <footer class="py-4 text-center text-muted small">
-    &copy; 2026 Terra Travel Inc. Simulated frontend demo. No real transactions.
+  <footer class="py-4 text-center text-muted small bg-white border-top">
+    <div class="container">
+      &copy; 2026 Terra Travel Inc. Simulated frontend booking demo. No real payments or credit card processing.
+    </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../../assets/js/main.js"></script>
   <script src="../../assets/js/booking.js"></script>
+  <script>
+    function selectPaymentMethod(type, el) {
+      document.querySelectorAll('.payment-method-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      const radio = el.querySelector('input[type="radio"]');
+      if (radio) radio.checked = true;
+
+      if (type === 'apple') {
+        if (typeof showToast === 'function') {
+          showToast('Apple Pay', 'Apple Pay selected. Ready to authenticate.', 'info');
+        }
+      } else if (type === 'paypal') {
+        if (typeof showToast === 'function') {
+          showToast('PayPal', 'PayPal selected. Ready to authorize.', 'info');
+        }
+      }
+    }
+
+    function applyPromoCode() {
+      const codeInput = document.getElementById('couponCodeInput');
+      const code = (codeInput.value || '').trim().toUpperCase();
+      const feedback = document.getElementById('couponFeedback');
+      const discountRow = document.getElementById('discountRow');
+
+      if (code === 'TRAVEL20') {
+        feedback.innerHTML = '<span class="text-success fw-bold"><i class="bi bi-check-circle-fill me-1"></i> 20% discount applied successfully!</span>';
+        discountRow.classList.remove('d-none');
+
+        // Apply discount in DOM
+        const subtotalText = document.getElementById('checkoutSubtotal').textContent.replace(/[$,]/g, '');
+        const subtotal = parseFloat(subtotalText) || 2580;
+        const discount = Math.round(subtotal * 0.20);
+        const taxes = 150;
+        const finalTotal = subtotal - discount + taxes;
+
+        document.getElementById('discountAmount').textContent = `-$${discount.toLocaleString()}`;
+        document.getElementById('checkoutFinalTotal').textContent = `$${finalTotal.toLocaleString()}`;
+
+        if (typeof showToast === 'function') {
+          showToast('Coupon Applied', '20% discount saved!', 'success');
+        }
+      } else {
+        feedback.innerHTML = '<span class="text-danger"><i class="bi bi-x-circle-fill me-1"></i> Invalid code. Try TRAVEL20</span>';
+      }
+    }
+  </script>
 </body>
 </html>
-

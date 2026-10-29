@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="../../assets/css/style.css">
   <link rel="stylesheet" href="../../assets/css/responsive.css">
 </head>
-<body>
+<body class="bg-light">
 
   <!-- Navbar -->
   <header class="site-navbar">
@@ -22,7 +22,7 @@
           <div class="brand-icon-circle"><i class="bi bi-compass"></i></div>
           <span>TERRA</span>
         </a>
-        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavbarNav">
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavbarNav" aria-label="Toggle navigation">
           <i class="bi bi-list fs-2 text-dark"></i>
         </button>
         <div class="collapse navbar-collapse" id="siteNavbarNav">
@@ -45,83 +45,187 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="py-5 bg-light border-bottom">
+  <section class="py-5 bg-white border-bottom">
     <div class="container py-4">
-      <div class="custom-breadcrumb">
+      <div class="custom-breadcrumb mb-3">
         <a href="../../index.html">Home</a> <i class="bi bi-chevron-right small"></i> <span>About Us</span>
       </div>
       <div class="row align-items-center g-5">
         <div class="col-12 col-lg-6">
-          <span class="section-tag">Our Philosophy</span>
-          <h1 class="display-4 font-weight-bold mb-3">Redefining the Art of International Travel</h1>
-          <p class="text-secondary fs-5 mb-4">
-            Founded with an ambition to bridge cultural wonder with effortless luxury, Terra connects discerning explorers with hand-vetted sanctuaries, private scenic routes, and bespoke local expeditions.
+          <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-1 rounded-pill mb-3">
+            <i class="bi bi-compass-fill me-1"></i> Our Purpose & Story
+          </span>
+          <h1 class="display-4 font-weight-bold mb-3 text-dark">Redefining the Art of International Travel</h1>
+          <p class="text-secondary fs-5 leading-relaxed mb-4">
+            Founded with a passion to bridge cultural wonder with effortless luxury, Terra connects discerning explorers with hand-vetted sanctuaries, private scenic routes, and bespoke local expeditions.
           </p>
-          <a href="../destinations/destinations.html" class="btn btn-primary-custom py-3 px-4">Discover Destinations</a>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="../destinations/destinations.html" class="btn btn-primary-custom py-3 px-4">
+              Explore Destinations <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+            <a href="contact.html" class="btn btn-outline-custom py-3 px-4">
+              Meet Our Concierge
+            </a>
+          </div>
         </div>
         <div class="col-12 col-lg-6">
-          <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80" alt="Travelers in Nature" class="rounded-4 shadow-lg w-100" style="height: 380px; object-fit: cover;">
+          <div class="position-relative">
+            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1000&q=80" alt="Travelers in Nature" class="rounded-4 shadow-lg w-100 object-fit-cover" style="height: 420px;">
+            <div class="position-absolute bottom-0 start-0 m-4 p-3 bg-white rounded-3 shadow-sm border d-flex align-items-center gap-3">
+              <div class="brand-icon-circle bg-success text-white" style="width: 44px; height: 44px; font-size: 1.2rem;">
+                <i class="bi bi-tree-fill"></i>
+              </div>
+              <div>
+                <div class="fw-bold text-dark small">100% Carbon Balanced Expeditions</div>
+                <div class="text-muted" style="font-size: 0.75rem;">Verified conservation offsets for all booked journeys.</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Metrics Counter -->
-  <section class="py-5 bg-white">
+  <!-- Metrics Counter Banner -->
+  <section class="py-5 bg-dark text-white">
     <div class="container">
       <div class="row g-4 text-center">
         <div class="col-6 col-md-3">
           <div class="p-3">
-            <div class="display-5 font-weight-bold text-primary mb-1">45K+</div>
-            <div class="text-muted fw-semibold">Global Travelers</div>
+            <div class="display-4 font-weight-bold text-white mb-1 counter-number" data-target="45000">45,000+</div>
+            <div class="text-white-50 fw-semibold">Global Explorers Hosted</div>
           </div>
         </div>
         <div class="col-6 col-md-3">
-          <div class="display-5 font-weight-bold text-primary mb-1">120+</div>
-          <div class="text-muted fw-semibold">Countries Explored</div>
+          <div class="p-3">
+            <div class="display-4 font-weight-bold text-white mb-1 counter-number" data-target="120">120+</div>
+            <div class="text-white-50 fw-semibold">Bespoke Sanctuaries</div>
+          </div>
         </div>
         <div class="col-6 col-md-3">
-          <div class="display-5 font-weight-bold text-primary mb-1">99.4%</div>
-          <div class="text-muted fw-semibold">Satisfaction Rate</div>
+          <div class="p-3">
+            <div class="display-4 font-weight-bold text-white mb-1">99.4%</div>
+            <div class="text-white-50 fw-semibold">Client Satisfaction</div>
+          </div>
         </div>
         <div class="col-6 col-md-3">
-          <div class="display-5 font-weight-bold text-primary mb-1">24/7</div>
-          <div class="text-muted fw-semibold">Bespoke Concierge</div>
+          <div class="p-3">
+            <div class="display-4 font-weight-bold text-white mb-1">24/7</div>
+            <div class="text-white-50 fw-semibold">Dedicated Concierge Desk</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Core Values -->
+  <!-- The Terra Principles -->
   <section class="py-5 bg-light">
-    <div class="container">
-      <div class="text-center section-header">
-        <span class="section-tag">Our Guiding Pillars</span>
-        <h2 class="section-title">The Terra Difference</h2>
-        <p class="section-desc">What sets our travel platform apart from ordinary booking engines.</p>
+    <div class="container py-4">
+      <div class="text-center mb-5" style="max-width: 650px; margin: 0 auto;">
+        <span class="badge bg-light text-primary border px-3 py-1 rounded-pill mb-2">Our Guiding Pillars</span>
+        <h2 class="display-6 font-weight-bold mb-2">The Terra Distinction</h2>
+        <p class="text-muted">Every accommodation, flight partnership, and expedition guide adheres to our strict charter of hospitality excellence.</p>
       </div>
 
       <div class="row g-4">
-        <div class="col-12 col-md-4">
-          <div class="card border-0 rounded-4 shadow-sm p-4 h-100">
-            <div class="feature-icon-wrapper mb-3"><i class="bi bi-shield-check"></i></div>
-            <h4 class="font-weight-bold mb-2">Rigorous Verification</h4>
-            <p class="text-secondary small mb-0">Every boutique resort and private tour operator is personally inspected by our regional travel curators before being listed.</p>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card border-0 shadow-sm rounded-4 p-4 h-100 bg-white">
+            <div class="brand-icon-circle mb-3" style="width: 52px; height: 52px; font-size: 1.4rem;">
+              <i class="bi bi-gem"></i>
+            </div>
+            <h5 class="font-weight-bold mb-2">Curated Rarity</h5>
+            <p class="text-muted small mb-0">We reject mass listings. Every destination is personally inspected to guarantee privacy, authenticity, and extraordinary architecture.</p>
           </div>
         </div>
-        <div class="col-12 col-md-4">
-          <div class="card border-0 rounded-4 shadow-sm p-4 h-100">
-            <div class="feature-icon-wrapper mb-3"><i class="bi bi-globe2"></i></div>
-            <h4 class="font-weight-bold mb-2">Sustainable & Ethical</h4>
-            <p class="text-secondary small mb-0">We collaborate directly with indigenous communities, fair-wage local guides, and carbon-neutral lodging initiatives.</p>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card border-0 shadow-sm rounded-4 p-4 h-100 bg-white">
+            <div class="brand-icon-circle mb-3" style="width: 52px; height: 52px; font-size: 1.4rem;">
+              <i class="bi bi-shield-check"></i>
+            </div>
+            <h5 class="font-weight-bold mb-2">Transparent Integrity</h5>
+            <p class="text-muted small mb-0">No surprise resort fees, bait-and-switch pricing, or undisclosed checkout taxes. What you see is what you pay.</p>
           </div>
         </div>
-        <div class="col-12 col-md-4">
-          <div class="card border-0 rounded-4 shadow-sm p-4 h-100">
-            <div class="feature-icon-wrapper mb-3"><i class="bi bi-person-check"></i></div>
-            <h4 class="font-weight-bold mb-2">Tailored Concierge</h4>
-            <p class="text-secondary small mb-0">Your journey is supported by human travel advisors ready to assist with custom dining reservations and emergency logistics.</p>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card border-0 shadow-sm rounded-4 p-4 h-100 bg-white">
+            <div class="brand-icon-circle mb-3" style="width: 52px; height: 52px; font-size: 1.4rem;">
+              <i class="bi bi-headset"></i>
+            </div>
+            <h5 class="font-weight-bold mb-2">Personal Mastery</h5>
+            <p class="text-muted small mb-0">Direct phone and messaging contact with certified regional travel custodians who coordinate transfers, dining, and custom needs.</p>
           </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card border-0 shadow-sm rounded-4 p-4 h-100 bg-white">
+            <div class="brand-icon-circle mb-3" style="width: 52px; height: 52px; font-size: 1.4rem;">
+              <i class="bi bi-globe-americas"></i>
+            </div>
+            <h5 class="font-weight-bold mb-2">Cultural Respect</h5>
+            <p class="text-muted small mb-0">We work directly with indigenous guides, organic farming cooperatives, and local craftsmen to keep tourism beneficial to resident communities.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Curators Team Section -->
+  <section class="py-5 bg-white border-top">
+    <div class="container py-4">
+      <div class="text-center mb-5" style="max-width: 650px; margin: 0 auto;">
+        <span class="badge bg-light text-primary border px-3 py-1 rounded-pill mb-2">Global Leadership</span>
+        <h2 class="display-6 font-weight-bold mb-2">The Curators Behind Terra</h2>
+        <p class="text-muted">Architects, aviation veterans, and local cultural anthropologists crafting extraordinary journeys.</p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Curator 1 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Sophia Chen" class="w-100 object-fit-cover" style="height: 280px;">
+            <div class="p-4 bg-white">
+              <h5 class="font-weight-bold mb-1">Sophia Chen</h5>
+              <div class="text-primary small fw-semibold mb-2">Founder & Chief Experience Curator</div>
+              <p class="text-muted small mb-0">Former boutique architect who spent a decade discovering remote coastal retreats and historic estates across Southeast Asia and the Mediterranean.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Curator 2 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Marcus Lindqvist" class="w-100 object-fit-cover" style="height: 280px;">
+            <div class="p-4 bg-white">
+              <h5 class="font-weight-bold mb-1">Marcus Lindqvist</h5>
+              <div class="text-primary small fw-semibold mb-2">Head of Alpine & Nordic Expeditions</div>
+              <p class="text-muted small mb-0">Swiss mountain guide and logistics director coordinating private ski chalets, glacier heli-transfers, and Scandinavian wellness lodges.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Curator 3 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="Amira Al-Mansoor" class="w-100 object-fit-cover" style="height: 280px;">
+            <div class="p-4 bg-white">
+              <h5 class="font-weight-bold mb-1">Amira Al-Mansoor</h5>
+              <div class="text-primary small fw-semibold mb-2">Director of VIP Concierge Services</div>
+              <p class="text-muted small mb-0">Luxury hospitality veteran overseeing our 24/7 global operations hubs in Paris, Tokyo, and Dubai with a 99.4% client satisfaction rate.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="py-5 bg-light">
+    <div class="container text-center py-4">
+      <div class="card border-0 rounded-4 p-5 text-white" style="background: linear-gradient(135deg, #0f172a 0%, #0284c7 100%);">
+        <h2 class="display-6 font-weight-bold mb-3">Begin Planning Your Next Chapter</h2>
+        <p class="fs-5 text-white-50 mb-4" style="max-width: 600px; margin: 0 auto;">Connect with our curators to tailor your custom itinerary or reserve from our worldwide destinations.</p>
+        <div class="d-flex justify-content-center gap-3">
+          <a href="../destinations/destinations.html" class="btn btn-light py-3 px-4 fw-bold">Explore Destinations</a>
+          <a href="contact.html" class="btn btn-outline-light py-3 px-4">Contact Our Desk</a>
         </div>
       </div>
     </div>
@@ -177,4 +281,3 @@
   <script src="../../assets/js/main.js"></script>
 </body>
 </html>
-

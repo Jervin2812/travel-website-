@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Explore Destinations | Terra Luxury Travel</title>
+  <title>Explore Destinations | TERRA Luxury Travel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/css/style.css">
@@ -44,37 +44,46 @@
     </div>
   </header>
 
-  <!-- Page Header -->
+  <!-- Page Header Banner -->
   <section class="py-5 bg-light border-bottom">
-    <div class="container">
+    <div class="container py-2">
       <div class="custom-breadcrumb">
         <a href="../../index.html">Home</a> <i class="bi bi-chevron-right small"></i> <span>Explore Destinations</span>
       </div>
-      <h1 class="display-5 font-weight-bold mb-2">Explore the World's Wonders</h1>
-      <p class="text-muted fs-5 mb-0">From secluded tropical coves to vibrant historic capitals, discover where to travel next.</p>
+      <div class="row align-items-end justify-content-between g-4">
+        <div class="col-12 col-lg-8">
+          <span class="section-tag">Global Sanctuary Portfolio</span>
+          <h1 class="display-4 font-weight-bold mb-2">Explore the World's Wonders</h1>
+          <p class="text-secondary fs-5 mb-0">From secluded tropical coves to vibrant historic capitals, discover extraordinary destinations inspected for pure excellence.</p>
+        </div>
+        <div class="col-12 col-lg-4 text-lg-end">
+          <span class="badge bg-primary text-white px-3 py-2 rounded-pill fs-6 fw-semibold">
+            <i class="bi bi-geo-alt-fill me-1"></i> 6 Continents &bull; 120+ Escapes
+          </span>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Destinations Grid -->
+  <!-- Destinations Grid & Quick Filters -->
   <section class="py-5">
     <div class="container">
-      <!-- Search & Category Filter Pills -->
-      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-5">
         <div class="d-flex flex-wrap gap-2" id="destFilterTabs">
-          <button class="btn btn-navy-custom btn-sm rounded-pill px-3 active" onclick="filterDestinations('all')">All Regions</button>
-          <button class="btn btn-outline-custom btn-sm rounded-pill px-3" onclick="filterDestinations('tropical')">Tropical & Island</button>
-          <button class="btn btn-outline-custom btn-sm rounded-pill px-3" onclick="filterDestinations('city')">Cultural Cities</button>
-          <button class="btn btn-outline-custom btn-sm rounded-pill px-3" onclick="filterDestinations('adventure')">Alpine & Nature</button>
-          <button class="btn btn-outline-custom btn-sm rounded-pill px-3" onclick="filterDestinations('luxury')">Desert Luxury</button>
+          <button class="btn btn-navy-custom btn-sm rounded-pill px-3 active" onclick="filterDestinations('all', event)">All Regions</button>
+          <button class="btn btn-outline-custom btn-sm rounded-pill px-3" onclick="filterDestinations('tropical', event)">Tropical & Island</button>
+          <button class="btn btn-outline-custom btn-sm rounded-pill px-3" onclick="filterDestinations('city', event)">Cultural Cities</button>
+          <button class="btn btn-outline-custom btn-sm rounded-pill px-3" onclick="filterDestinations('adventure', event)">Alpine & Nature</button>
+          <button class="btn btn-outline-custom btn-sm rounded-pill px-3" onclick="filterDestinations('luxury', event)">Desert Luxury</button>
         </div>
-        <div class="input-group" style="max-width: 300px;">
+        <div class="input-group shadow-sm" style="max-width: 320px;">
           <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
-          <input type="text" id="destQuickSearch" class="form-control border-start-0" placeholder="Search destination...">
+          <input type="text" id="destQuickSearch" class="form-control border-start-0" placeholder="Search destination or country...">
         </div>
       </div>
 
       <div class="row g-4" id="destinationsContainer">
-        <!-- Rendered via JS -->
+        <!-- Rendered via JS with interactive card gallery -->
       </div>
     </div>
   </section>
@@ -145,8 +154,9 @@
       if (list.length === 0) {
         container.innerHTML = `
           <div class="col-12 text-center py-5">
-            <h4 class="text-muted">No destinations found</h4>
-            <p>Try searching for a different keyword or view all regions.</p>
+            <i class="bi bi-search text-muted fs-1 mb-3"></i>
+            <h4 class="text-muted">No destinations match your search</h4>
+            <p>Try searching for a different keyword or reset filters.</p>
           </div>
         `;
         return;
@@ -154,32 +164,37 @@
 
       container.innerHTML = list.map(d => `
         <div class="col-12 col-md-6 col-lg-4">
-          <a href="destination-details.html?id=${d.id}" class="destination-card">
+          <div class="destination-card reveal active">
             <img src="${d.image}" alt="${d.name}, ${d.country}" loading="lazy">
             <span class="dest-badge"><i class="bi bi-star-fill text-warning me-1"></i> ${d.rating}</span>
             <div class="destination-card-gradient">
               <span class="badge bg-primary-subtle text-primary mb-2 align-self-start">${d.badge}</span>
               <h3 class="dest-name">${d.name}</h3>
-              <p class="dest-country"><i class="bi bi-geo-alt-fill me-1"></i> ${d.country} &bull; Best: ${d.bestTime}</p>
+              <p class="dest-country"><i class="bi bi-geo-alt-fill me-1 text-danger"></i> ${d.country} &bull; Best: ${d.bestTime}</p>
               <div class="dest-price-tag">
                 <span class="label">Trips starting from</span>
                 <span class="price">$${d.startingPrice} / person</span>
               </div>
+              <a href="destination-details.html?id=${d.id}" class="btn btn-glass btn-sm mt-3 w-100 text-center">
+                Explore Destination <i class="bi bi-arrow-right ms-1"></i>
+              </a>
             </div>
-          </a>
+          </div>
         </div>
       `).join('');
     }
 
-    function filterDestinations(category) {
+    function filterDestinations(category, ev) {
       activeCategory = category;
       const buttons = document.querySelectorAll('#destFilterTabs button');
       buttons.forEach(b => {
         b.classList.remove('btn-navy-custom', 'active');
         b.classList.add('btn-outline-custom');
       });
-      event.target.classList.remove('btn-outline-custom');
-      event.target.classList.add('btn-navy-custom', 'active');
+      if (ev && ev.target) {
+        ev.target.classList.remove('btn-outline-custom');
+        ev.target.classList.add('btn-navy-custom', 'active');
+      }
       renderDestinationsGrid();
     }
 
@@ -188,4 +203,3 @@
   </script>
 </body>
 </html>
-

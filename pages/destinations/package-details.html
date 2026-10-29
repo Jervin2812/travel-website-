@@ -11,8 +11,53 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/css/style.css">
   <link rel="stylesheet" href="../../assets/css/responsive.css">
+  <style>
+    .gallery-main-frame {
+      height: 480px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+    .gallery-thumb-item {
+      height: 90px;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 0.65;
+      transition: all 0.25s ease;
+      border: 2px solid transparent;
+    }
+    .gallery-thumb-item.active,
+    .gallery-thumb-item:hover {
+      opacity: 1;
+      border-color: #0284c7;
+      transform: translateY(-2px);
+    }
+    .itinerary-day-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: #0f172a;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .inclusion-icon-check {
+      color: #10b981;
+      font-size: 1.15rem;
+      margin-right: 8px;
+    }
+    .inclusion-icon-cross {
+      color: #ef4444;
+      font-size: 1.15rem;
+      margin-right: 8px;
+    }
+  </style>
 </head>
-<body>
+<body class="bg-light">
 
   <!-- Navbar -->
   <header class="site-navbar">
@@ -22,7 +67,7 @@
           <div class="brand-icon-circle"><i class="bi bi-compass"></i></div>
           <span>TERRA</span>
         </a>
-        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavbarNav">
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavbarNav" aria-label="Toggle navigation">
           <i class="bi bi-list fs-2 text-dark"></i>
         </button>
         <div class="collapse navbar-collapse" id="siteNavbarNav">
@@ -47,91 +92,154 @@
   <!-- Main Content -->
   <main class="py-4">
     <div class="container">
-      <div class="custom-breadcrumb">
+      <!-- Breadcrumb -->
+      <div class="custom-breadcrumb mb-3">
         <a href="../../index.html">Home</a> <i class="bi bi-chevron-right small"></i>
-        <a href="packages.html">Packages</a> <i class="bi bi-chevron-right small"></i>
-        <span id="pkgBreadcrumb">Bali Spiritual & Island Escape</span>
+        <a href="packages.html">Tour Packages</a> <i class="bi bi-chevron-right small"></i>
+        <span id="pkgBreadcrumbTitle">Bali Spiritual & Island Escape</span>
       </div>
 
+      <!-- Header Title Row -->
       <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
         <div>
-          <span class="badge bg-primary text-white mb-2 px-3 py-1 rounded-pill" id="pkgDurationBadge">7 Days / 6 Nights</span>
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="badge bg-primary text-white px-3 py-1 rounded-pill" id="pkgDuration">7 Days / 6 Nights</span>
+            <span class="badge bg-light text-dark border px-3 py-1 rounded-pill" id="pkgCategory">Cultural Expedition</span>
+            <span class="badge bg-success-subtle text-success px-3 py-1 rounded-pill"><i class="bi bi-shield-check me-1"></i> Guaranteed Departure</span>
+          </div>
           <h1 class="display-5 font-weight-bold mb-1" id="pkgTitle">Bali Spiritual & Island Escape</h1>
           <p class="text-muted fs-5 mb-0"><i class="bi bi-geo-alt-fill text-danger me-1"></i> <span id="pkgDestination">Bali, Indonesia</span></p>
         </div>
         <div class="text-md-end mt-3 mt-md-0">
-          <div class="star-rating fs-5 text-warning"><i class="bi bi-star-fill"></i> <span id="pkgRating" class="text-dark">4.90</span></div>
+          <div class="star-rating fs-5 text-warning"><i class="bi bi-star-fill"></i> <span id="pkgRating" class="text-dark fw-bold">4.90</span></div>
           <span class="text-muted small" id="pkgReviews">340 verified traveler reviews</span>
         </div>
       </div>
 
-      <!-- Hero Package Image Banner -->
-      <div class="mb-5 rounded-4 overflow-hidden shadow-sm" style="height: 440px;">
-        <img id="pkgImage" src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=1200&q=80" alt="Tour Package" class="w-100 h-100 object-fit-cover">
+      <!-- Interactive Photo Gallery -->
+      <div class="row g-3 mb-5">
+        <div class="col-12">
+          <div class="gallery-main-frame shadow-sm">
+            <img id="pkgMainImage" src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=1400&q=80" alt="Expedition Main View" class="w-100 h-100 object-fit-cover">
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="row g-2" id="pkgThumbnailRow">
+            <!-- Thumbnails rendered dynamically -->
+          </div>
+        </div>
       </div>
 
+      <!-- Main Columns -->
       <div class="row g-5">
         <div class="col-12 col-lg-8">
           <!-- Overview -->
-          <div class="mb-5">
+          <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mb-4 bg-white">
             <h3 class="font-weight-bold mb-3">Expedition Overview</h3>
-            <p class="text-secondary fs-6 leading-relaxed" id="pkgDesc">
-              Immerse yourself in authentic Indonesian tradition and tropical splendor. This curated journey combines private luxury villa accommodations with exclusive access to UNESCO cultural heritage sites, private boat excursions to Nusa Penida, and personalized holistic wellness treatments.
+            <p class="text-secondary fs-6 leading-relaxed mb-4" id="pkgDescription">
+              Immerse yourself in authentic Indonesian tradition, breathtaking landscapes, and tropical serenity. This curated journey combines private luxury villa accommodations with exclusive access to UNESCO cultural heritage sites, private boat excursions to Nusa Penida, and personalized holistic wellness treatments.
             </p>
+
+            <h5 class="font-weight-bold mb-3">Curated Highlights</h5>
+            <div class="row g-3 mb-2" id="pkgHighlightsGrid">
+              <!-- Rendered dynamically -->
+            </div>
           </div>
 
-          <!-- Day-by-Day Itinerary Accordion -->
-          <div class="mb-5">
-            <h4 class="font-weight-bold mb-3">Detailed Day-by-Day Itinerary</h4>
+          <!-- Day-by-Day Itinerary -->
+          <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mb-4 bg-white">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h3 class="font-weight-bold mb-0">Detailed Day-by-Day Itinerary</h3>
+              <span class="badge bg-light text-muted border">Fully Guided &bull; Private Transit</span>
+            </div>
+
             <div class="accordion" id="itineraryAccordion">
+              <!-- Day 1 -->
               <div class="accordion-item border rounded-3 mb-3">
                 <h2 class="accordion-header">
-                  <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#day1">
-                    Day 1: Arrival, VIP Chauffeur Transfer & Welcome Balinese Feast
+                  <button class="accordion-button fw-bold py-3" type="button" data-bs-toggle="collapse" data-bs-target="#day1">
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="itinerary-day-badge">01</div>
+                      <span>Arrival, VIP Chauffeur Transfer & Welcome Balinese Feast</span>
+                    </div>
                   </button>
                 </h2>
                 <div id="day1" class="accordion-collapse collapse show">
-                  <div class="accordion-body text-secondary">
-                    Arrive at Denpasar International Airport where our private concierge greets you. Check in to your private jungle villa in Ubud followed by a chef-curated traditional welcome dinner.
+                  <div class="accordion-body text-secondary pt-0">
+                    <p>Arrive at the international airport where our dedicated airport concierge and private chauffeur greet you. Settle into your private villa in Ubud followed by a chef-prepared welcome dinner featuring organic regional ingredients and live traditional gamelan music.</p>
+                    <div class="small fw-semibold text-primary"><i class="bi bi-clock me-1"></i> Included Meals: Dinner &bull; Stay: Royal Pita Maha Sanctuary</div>
                   </div>
                 </div>
               </div>
 
+              <!-- Day 2 -->
               <div class="accordion-item border rounded-3 mb-3">
                 <h2 class="accordion-header">
-                  <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#day2">
-                    Day 2: Sacred Monkey Forest & Tegalalang Sunrise Walk
+                  <button class="accordion-button collapsed fw-bold py-3" type="button" data-bs-toggle="collapse" data-bs-target="#day2">
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="itinerary-day-badge">02</div>
+                      <span>Sunrise Yoga, Sacred Monkey Forest & Private Cooking Masterclass</span>
+                    </div>
                   </button>
                 </h2>
                 <div id="day2" class="accordion-collapse collapse">
-                  <div class="accordion-body text-secondary">
-                    Experience early morning mist over emerald terraces before visiting centuries-old artisan workshops and receiving a private blessing at Tirta Empul holy water temple.
+                  <div class="accordion-body text-secondary pt-0">
+                    <p>Awaken to guided jungle yoga followed by an exclusive morning walk through the sacred Monkey Forest. In the afternoon, visit an organic spice farm and learn authentic cooking secrets from a master Balinese chef.</p>
+                    <div class="small fw-semibold text-primary"><i class="bi bi-clock me-1"></i> Included Meals: Breakfast, Lunch, Dinner</div>
                   </div>
                 </div>
               </div>
 
+              <!-- Day 3 -->
               <div class="accordion-item border rounded-3 mb-3">
                 <h2 class="accordion-header">
-                  <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#day3">
-                    Day 3: Speedboat to Nusa Penida & Manta Ray Snorkel
+                  <button class="accordion-button collapsed fw-bold py-3" type="button" data-bs-toggle="collapse" data-bs-target="#day3">
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="itinerary-day-badge">03</div>
+                      <span>Tegallalang Terraces & Tirta Empul Sacred Water Purification</span>
+                    </div>
                   </button>
                 </h2>
                 <div id="day3" class="accordion-collapse collapse">
-                  <div class="accordion-body text-secondary">
-                    Charter a private speedboat to the rugged cliffs of Kelingking T-Rex Beach, followed by guided snorkeling in crystal turquoise waters with wild manta rays.
+                  <div class="accordion-body text-secondary pt-0">
+                    <p>Experience an early morning visit to the UNESCO emerald rice terraces before crowds arrive. Participate in a traditional water blessing ritual led by a Hindu priest at Tirta Empul holy spring.</p>
+                    <div class="small fw-semibold text-primary"><i class="bi bi-clock me-1"></i> Included Meals: Breakfast, Refreshments</div>
                   </div>
                 </div>
               </div>
 
-              <div class="accordion-item border rounded-3">
+              <!-- Day 4 -->
+              <div class="accordion-item border rounded-3 mb-3">
                 <h2 class="accordion-header">
-                  <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#day4">
-                    Day 4-7: Uluwatu Clifftops, Sunset Kecak & Departure
+                  <button class="accordion-button collapsed fw-bold py-3" type="button" data-bs-toggle="collapse" data-bs-target="#day4">
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="itinerary-day-badge">04</div>
+                      <span>Private Catamaran Charter to Nusa Penida Crystal Bay</span>
+                    </div>
                   </button>
                 </h2>
                 <div id="day4" class="accordion-collapse collapse">
-                  <div class="accordion-body text-secondary">
-                    Transfer to an oceanfront resort in southern Bali. Enjoy leisure spa treatments, seafood barbecues in Jimbaran Bay, and seamless chauffeur return to the airport.
+                  <div class="accordion-body text-secondary pt-0">
+                    <p>Board a private 45ft sailing catamaran to explore the dramatic limestone cliffs of Nusa Penida, snorkel with manta rays at Manta Point, and relax on pristine private white sand beaches.</p>
+                    <div class="small fw-semibold text-primary"><i class="bi bi-clock me-1"></i> Included Meals: Breakfast, Gourmet Seafood Lunch</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Day 5 & Beyond -->
+              <div class="accordion-item border rounded-3 mb-3">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed fw-bold py-3" type="button" data-bs-toggle="collapse" data-bs-target="#day5">
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="itinerary-day-badge">05+</div>
+                      <span>Leisure Spa Day, Sunset Cliffside Temple & Farewell Gala</span>
+                    </div>
+                  </button>
+                </h2>
+                <div id="day5" class="accordion-collapse collapse">
+                  <div class="accordion-body text-secondary pt-0">
+                    <p>Enjoy a day of bespoke relaxation with a 2-hour volcanic hot stone massage, followed by sunset cocktails overlooking the Indian Ocean at Uluwatu Temple and an unforgettable private farewell gala on Jimbaran Beach.</p>
+                    <div class="small fw-semibold text-primary"><i class="bi bi-clock me-1"></i> Included Meals: Breakfast, Farewell Gala Dinner</div>
                   </div>
                 </div>
               </div>
@@ -139,76 +247,91 @@
           </div>
 
           <!-- Inclusions & Exclusions -->
-          <div class="mb-5">
-            <h4 class="font-weight-bold mb-3">What's Included</h4>
-            <div class="row g-3">
+          <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mb-4 bg-white">
+            <h3 class="font-weight-bold mb-4">What's Included & Excluded</h3>
+            <div class="row g-4">
               <div class="col-12 col-md-6">
-                <div class="card bg-light border-0 p-3 rounded-3 h-100">
-                  <h6 class="text-success font-weight-bold"><i class="bi bi-check-circle-fill me-2"></i> Included</h6>
-                  <ul class="list-unstyled small text-secondary mt-2 mb-0">
-                    <li class="mb-2">&bull; 6 Nights Luxury Boutique Villa Accommodation</li>
-                    <li class="mb-2">&bull; Daily Gourmet Breakfasts & 3 Dinners</li>
-                    <li class="mb-2">&bull; Private Air-Conditioned Vehicle & Dedicated Driver</li>
-                    <li class="mb-2">&bull; All UNESCO Monument & Speedboat Tickets</li>
-                    <li>&bull; 24/7 Dedicated On-Call Trip Host</li>
-                  </ul>
-                </div>
+                <h5 class="fw-bold text-success mb-3"><i class="bi bi-check-circle-fill me-2"></i> Included with Terra</h5>
+                <ul class="list-unstyled d-flex flex-column gap-2 small text-secondary">
+                  <li><i class="bi bi-check-circle-fill inclusion-icon-check"></i> 6 Nights in 5-Star Boutique Villa Accommodation</li>
+                  <li><i class="bi bi-check-circle-fill inclusion-icon-check"></i> Private Mercedes Van Chauffeur & Airport Concierge</li>
+                  <li><i class="bi bi-check-circle-fill inclusion-icon-check"></i> Certified English-speaking Cultural Historian Guide</li>
+                  <li><i class="bi bi-check-circle-fill inclusion-icon-check"></i> All Breakfasts, 3 Curated Lunches & 3 Dinners</li>
+                  <li><i class="bi bi-check-circle-fill inclusion-icon-check"></i> Nusa Penida Private Catamaran Yacht Charter</li>
+                  <li><i class="bi bi-check-circle-fill inclusion-icon-check"></i> All Monument, Temple & Museum Entrance Tickets</li>
+                </ul>
               </div>
-              <div class="col-12 col-md-6">
-                <div class="card bg-light border-0 p-3 rounded-3 h-100">
-                  <h6 class="text-muted font-weight-bold"><i class="bi bi-x-circle-fill me-2"></i> Not Included</h6>
-                  <ul class="list-unstyled small text-secondary mt-2 mb-0">
-                    <li class="mb-2">&bull; International Flights to/from Origin</li>
-                    <li class="mb-2">&bull; Personal Travel Medical Insurance</li>
-                    <li>&bull; Discretionary Gratuities to Local Guides</li>
-                  </ul>
-                </div>
+              <div class="col-12 col-md-6 border-start-md ps-md-4">
+                <h5 class="fw-bold text-muted mb-3"><i class="bi bi-x-circle-fill me-2 text-danger"></i> Not Included</h5>
+                <ul class="list-unstyled d-flex flex-column gap-2 small text-secondary">
+                  <li><i class="bi bi-x-circle-fill inclusion-icon-cross"></i> International Long-haul Airfare (Available in Flights)</li>
+                  <li><i class="bi bi-x-circle-fill inclusion-icon-cross"></i> Personal Travel Insurance & Medical Protection</li>
+                  <li><i class="bi bi-x-circle-fill inclusion-icon-cross"></i> Discretionary Gratuities for Local Guides & Drivers</li>
+                  <li><i class="bi bi-x-circle-fill inclusion-icon-cross"></i> Alcoholic Beverages outside included tastings</li>
+                </ul>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Sticky Booking Widget -->
+        <!-- Sticky Booking Widget Sidebar -->
         <div class="col-12 col-lg-4">
-          <div class="booking-summary-card">
+          <div class="card border-0 shadow-sm rounded-4 p-4 bg-white sticky-top" style="top: 100px;">
             <div class="d-flex justify-content-between align-items-baseline mb-3">
               <div>
-                <span class="fs-3 font-weight-bold text-dark" id="pkgPriceDisplay">$1,150</span>
-                <span class="text-muted small">/ traveler</span>
+                <span class="fs-2 font-weight-bold text-dark" id="pkgPriceDisplay">$1,290</span>
+                <span class="text-muted small"> / person</span>
               </div>
-              <span class="badge bg-primary-subtle text-primary">All-Inclusive Land</span>
+              <span class="badge bg-success-subtle text-success fw-semibold">Best Price Rate</span>
             </div>
 
-            <form onsubmit="event.preventDefault(); bookThisPackage();">
+            <form id="bookingCalculatorForm" onsubmit="event.preventDefault(); bookCurrentPackage();">
+              <!-- Select Departure Date -->
               <div class="mb-3">
-                <label class="form-label small fw-bold">Select Departure Date</label>
-                <input type="date" class="form-control" id="pkgStartDate" value="2026-11-20" required>
-              </div>
-              <div class="mb-3">
-                <label class="form-label small fw-bold">Number of Travelers</label>
-                <select class="form-select" id="pkgTravelersCount">
-                  <option value="1">1 Solo Traveler</option>
-                  <option value="2" selected>2 Travelers</option>
-                  <option value="4">4 Travelers (Small Group)</option>
+                <label class="form-label small fw-bold text-dark mb-1"><i class="bi bi-calendar3 me-1 text-primary"></i> Departure Date</label>
+                <select class="form-select" id="departureDateSelect">
+                  <option value="2026-11-15">Nov 15, 2026 &bull; Available (4 spots left)</option>
+                  <option value="2026-12-05">Dec 05, 2026 &bull; Available (8 spots left)</option>
+                  <option value="2027-01-12">Jan 12, 2027 &bull; Available (10 spots left)</option>
+                  <option value="2027-02-20">Feb 20, 2027 &bull; Available (6 spots left)</option>
                 </select>
               </div>
 
-              <div class="price-item-row">
-                <span>Base Tour Rate</span>
-                <span id="pkgSubtotal">$2,300</span>
-              </div>
-              <div class="price-item-row">
-                <span>Local Eco Tax & Permits</span>
-                <span>$50</span>
-              </div>
-              <div class="price-item-row total-row">
-                <span>Total Amount</span>
-                <span class="text-primary" id="pkgTotalDisplay">$2,350</span>
+              <!-- Travelers Counter -->
+              <div class="mb-3">
+                <label class="form-label small fw-bold text-dark mb-1"><i class="bi bi-people me-1 text-primary"></i> Number of Travelers</label>
+                <div class="d-flex align-items-center justify-content-between p-2 border rounded-3 bg-light">
+                  <span class="fw-semibold text-dark ps-2"><span id="guestCountDisplay">2</span> Adults</span>
+                  <div class="d-flex align-items-center gap-2">
+                    <button type="button" class="btn btn-outline-secondary btn-sm rounded-circle" style="width: 32px; height: 32px; padding: 0;" onclick="adjustGuests(-1)">-</button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm rounded-circle" style="width: 32px; height: 32px; padding: 0;" onclick="adjustGuests(1)">+</button>
+                  </div>
+                </div>
               </div>
 
-              <button type="submit" class="btn btn-primary-custom w-100 py-3 mt-3">
-                Book This Tour <i class="bi bi-arrow-right ms-1"></i>
+              <!-- Price Breakdown -->
+              <div class="bg-light rounded-3 p-3 mb-4">
+                <div class="d-flex justify-content-between small text-muted mb-2">
+                  <span>Package Base Price (<span id="calcGuests">2</span> &times; $<span id="calcBasePrice">1,290</span>)</span>
+                  <span class="fw-semibold text-dark">$<span id="calcSubtotal">2,580</span></span>
+                </div>
+                <div class="d-flex justify-content-between small text-muted mb-2">
+                  <span>Taxes & Marine Conservation Fee</span>
+                  <span class="fw-semibold text-dark">$<span id="calcTaxes">150</span></span>
+                </div>
+                <div class="d-flex justify-content-between font-weight-bold pt-2 border-top text-dark">
+                  <span>Estimated Total</span>
+                  <span class="fs-5 text-primary">$<span id="calcTotal">2,730</span></span>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary-custom w-100 py-3 mb-3">
+                Book This Expedition <i class="bi bi-arrow-right ms-1"></i>
               </button>
+
+              <div class="text-center text-muted small">
+                <i class="bi bi-shield-check text-success me-1"></i> No immediate payment required to place a hold.
+              </div>
             </form>
           </div>
         </div>
@@ -226,6 +349,12 @@
             <span>TERRA</span>
           </div>
           <p class="text-white-50 pe-lg-4 mb-4">Terra is an international luxury travel platform curating premier boutique accommodations, scenic flight routes, and immersive cultural expeditions.</p>
+          <div class="d-flex gap-3 text-white-50 fs-5">
+            <a href="#" class="text-white-50 text-decoration-none"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="text-white-50 text-decoration-none"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="text-white-50 text-decoration-none"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-white-50 text-decoration-none"><i class="bi bi-linkedin"></i></a>
+          </div>
         </div>
         <div class="col-6 col-md-4 col-lg-2">
           <h5 class="footer-heading">Navigation</h5>
@@ -258,6 +387,11 @@
       </div>
       <div class="footer-bottom">
         <div>&copy; 2026 Terra Travel Inc. All rights reserved.</div>
+        <div class="d-flex gap-4">
+          <a href="../company/faq.html">Privacy Policy</a>
+          <a href="../company/faq.html">Terms of Service</a>
+          <a href="../company/faq.html">Expedition Agreement</a>
+        </div>
       </div>
     </div>
   </footer>
@@ -266,57 +400,116 @@
   <script src="../../assets/js/main.js"></script>
   <script>
     let activePackage = null;
+    let guestCount = 2;
 
     document.addEventListener('DOMContentLoaded', () => {
       const urlParams = new URLSearchParams(window.location.search);
-      const pkgId = urlParams.get('id') || 'pkg-1';
+      const pkgId = urlParams.get('id') || 'pkg-bali';
+
       activePackage = TRAVEL_DATA.packages.find(p => p.id === pkgId) || TRAVEL_DATA.packages[0];
 
-      document.getElementById('pkgBreadcrumb').textContent = activePackage.name;
-      document.getElementById('pkgTitle').textContent = activePackage.name;
-      document.getElementById('pkgDestination').textContent = activePackage.destination;
-      document.getElementById('pkgDurationBadge').textContent = activePackage.duration;
-      document.getElementById('pkgRating').textContent = activePackage.rating;
-      document.getElementById('pkgReviews').textContent = `${activePackage.reviewsCount} verified traveler reviews`;
-      document.getElementById('pkgImage').src = activePackage.image;
-      document.getElementById('pkgPriceDisplay').textContent = `$${activePackage.price}`;
+      if (activePackage) {
+        document.getElementById('pkgBreadcrumbTitle').textContent = activePackage.name;
+        document.getElementById('pkgTitle').textContent = activePackage.name;
+        document.getElementById('pkgDuration').textContent = activePackage.duration;
+        document.getElementById('pkgCategory').textContent = activePackage.category;
+        document.getElementById('pkgDestination').textContent = activePackage.destination;
+        document.getElementById('pkgRating').textContent = activePackage.rating;
+        document.getElementById('pkgReviews').textContent = `${activePackage.reviewsCount} verified traveler reviews`;
+        document.getElementById('pkgDescription').textContent = activePackage.description;
+        document.getElementById('pkgPriceDisplay').textContent = `$${activePackage.price.toLocaleString()}`;
 
-      updateCalculations(2);
+        // Highlights Grid
+        const hlGrid = document.getElementById('pkgHighlightsGrid');
+        if (hlGrid) {
+          hlGrid.innerHTML = activePackage.highlights.map(h => `
+            <div class="col-12 col-md-6">
+              <div class="p-3 bg-light rounded-3 d-flex align-items-center gap-2">
+                <i class="bi bi-star-fill text-warning"></i>
+                <span class="small fw-semibold text-dark">${h}</span>
+              </div>
+            </div>
+          `).join('');
+        }
 
-      document.getElementById('pkgTravelersCount')?.addEventListener('change', (e) => {
-        updateCalculations(Number(e.target.value));
-      });
+        // Image Gallery
+        const images = (activePackage.images && activePackage.images.length > 0) ? activePackage.images : [activePackage.image];
+        const mainImg = document.getElementById('pkgMainImage');
+        mainImg.src = images[0];
+
+        const thumbRow = document.getElementById('pkgThumbnailRow');
+        if (thumbRow) {
+          thumbRow.innerHTML = images.map((img, idx) => `
+            <div class="col-3 col-md-2">
+              <div class="gallery-thumb-item ${idx === 0 ? 'active' : ''}" onclick="swapGalleryImage('${img}', this)">
+                <img src="${img}" alt="Thumbnail ${idx+1}" class="w-100 h-100 object-fit-cover">
+              </div>
+            </div>
+          `).join('');
+        }
+
+        updateCalculations();
+      }
     });
 
-    function updateCalculations(count) {
-      const sub = activePackage.price * count;
-      document.getElementById('pkgSubtotal').textContent = `$${sub}`;
-      document.getElementById('pkgTotalDisplay').textContent = `$${sub + 50}`;
+    function swapGalleryImage(src, thumbEl) {
+      const mainImg = document.getElementById('pkgMainImage');
+      mainImg.style.opacity = '0.3';
+      setTimeout(() => {
+        mainImg.src = src;
+        mainImg.style.opacity = '1';
+      }, 150);
+
+      document.querySelectorAll('.gallery-thumb-item').forEach(el => el.classList.remove('active'));
+      thumbEl.classList.add('active');
     }
 
-    function bookThisPackage() {
+    function adjustGuests(delta) {
+      guestCount = Math.max(1, Math.min(10, guestCount + delta));
+      document.getElementById('guestCountDisplay').textContent = guestCount;
+      updateCalculations();
+    }
+
+    function updateCalculations() {
       if (!activePackage) return;
-      const count = Number(document.getElementById('pkgTravelersCount').value);
-      const date = document.getElementById('pkgStartDate').value;
+      const base = activePackage.price;
+      const subtotal = base * guestCount;
+      const taxes = Math.round(subtotal * 0.06);
+      const total = subtotal + taxes;
+
+      document.getElementById('calcGuests').textContent = guestCount;
+      document.getElementById('calcBasePrice').textContent = base.toLocaleString();
+      document.getElementById('calcSubtotal').textContent = subtotal.toLocaleString();
+      document.getElementById('calcTaxes').textContent = taxes.toLocaleString();
+      document.getElementById('calcTotal').textContent = total.toLocaleString();
+    }
+
+    function bookCurrentPackage() {
+      if (!activePackage) return;
+      const dateVal = document.getElementById('departureDateSelect').value;
+      const subtotal = activePackage.price * guestCount;
 
       const bookingDraft = {
         type: 'package',
         id: activePackage.id,
         title: activePackage.name,
         location: activePackage.destination,
+        dates: dateVal + ` (${activePackage.duration})`,
         image: activePackage.image,
         basePrice: activePackage.price,
-        price: activePackage.price * count,
+        price: subtotal,
         rating: activePackage.rating,
-        duration: activePackage.duration,
-        guests: count,
-        startDate: date
+        guests: guestCount
       };
 
       localStorage.setItem('activeBookingDraft', JSON.stringify(bookingDraft));
-      window.location.href = '../booking/booking-details.html';
+      if (typeof showToast === 'function') {
+        showToast('Expedition Reserved', `${activePackage.name} for ${guestCount} traveler(s) saved!`, 'success');
+      }
+      setTimeout(() => {
+        window.location.href = '../booking/booking-details.html';
+      }, 350);
     }
   </script>
 </body>
 </html>
-

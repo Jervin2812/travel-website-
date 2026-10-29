@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Step 3: Booking Confirmed | Terra Travel</title>
+  <title>Step 3: Booking Confirmed & Electronic Voucher | Terra Travel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -11,11 +11,70 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/css/style.css">
   <link rel="stylesheet" href="../../assets/css/responsive.css">
+  <style>
+    /* Premium Printable Boarding Voucher */
+    .travel-voucher-ticket {
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+      border: 1px solid #e2e8f0;
+      position: relative;
+      overflow: hidden;
+    }
+    .voucher-header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #ffffff;
+      padding: 2.25rem 2.5rem;
+    }
+    .voucher-body {
+      padding: 2.5rem;
+    }
+    .voucher-perforated-line {
+      position: relative;
+      border-top: 2px dashed #cbd5e1;
+      margin: 1.5rem 0;
+    }
+    .voucher-perforated-line::before,
+    .voucher-perforated-line::after {
+      content: '';
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      background: #f8fafc;
+      border-radius: 50%;
+      top: -14px;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+    }
+    .voucher-perforated-line::before {
+      left: -40px;
+    }
+    .voucher-perforated-line::after {
+      right: -40px;
+    }
+    .barcode-graphic {
+      height: 52px;
+      background: repeating-linear-gradient(90deg, #0f172a 0, #0f172a 2px, transparent 2px, transparent 5px, #0f172a 5px, #0f172a 9px, transparent 9px, transparent 11px);
+      width: 100%;
+      max-width: 260px;
+    }
+    @media print {
+      body {
+        background: #ffffff !important;
+      }
+      .site-navbar, .no-print, header, footer, .step-indicator-bar {
+        display: none !important;
+      }
+      .travel-voucher-ticket {
+        box-shadow: none !important;
+        border: 1px solid #000000 !important;
+      }
+    }
+  </style>
 </head>
 <body class="bg-light">
 
-  <!-- Simple Header -->
-  <header class="bg-white border-bottom py-3">
+  <!-- Header -->
+  <header class="bg-white border-bottom py-3 sticky-top">
     <div class="container d-flex justify-content-between align-items-center">
       <a class="brand-logo" href="../../index.html">
         <div class="brand-icon-circle"><i class="bi bi-compass"></i></div>
@@ -25,34 +84,118 @@
     </div>
   </header>
 
-  <!-- Main Content -->
-  <main class="py-5">
-    <div class="container" style="max-width: 900px;">
-      <!-- Step Indicator -->
-      <div class="step-indicator-bar mb-4">
+  <!-- Step Progress Indicator -->
+  <section class="py-4 bg-white border-bottom no-print">
+    <div class="container">
+      <div class="step-indicator-bar mb-0">
         <div class="step-item completed">
           <div class="step-circle"><i class="bi bi-check-lg"></i></div>
           <span>Traveler Details</span>
         </div>
-        <div class="step-line" style="width: 40px; height: 2px; background: #10b981;"></div>
+        <div class="step-line d-none d-md-block" style="width: 50px; height: 2px; background: #10b981;"></div>
         <div class="step-item completed">
           <div class="step-circle"><i class="bi bi-check-lg"></i></div>
           <span>Payment & Review</span>
         </div>
-        <div class="step-line" style="width: 40px; height: 2px; background: #10b981;"></div>
+        <div class="step-line d-none d-md-block" style="width: 50px; height: 2px; background: #10b981;"></div>
         <div class="step-item active">
           <div class="step-circle"><i class="bi bi-check-lg"></i></div>
           <span>Confirmed</span>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Confirmation Display Box (Populated by booking.js) -->
-      <div id="confirmationDisplayBox"></div>
+  <!-- Main Content -->
+  <main class="py-5">
+    <div class="container" style="max-width: 920px;">
+      
+      <!-- Top Celebration Alert Banner -->
+      <div class="card border-0 rounded-4 p-4 text-center mb-4 bg-white shadow-sm no-print">
+        <div class="mx-auto mb-3" style="width: 72px; height: 72px; background: #dcfce7; color: #16a34a; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.2rem;">
+          <i class="bi bi-check2-circle"></i>
+        </div>
+        <h1 class="display-6 font-weight-bold text-dark mb-2">Reservation Confirmed!</h1>
+        <p class="text-secondary fs-6 mb-0">
+          Congratulations! Your journey has been officially booked. A comprehensive itinerary receipt has been sent to your email.
+        </p>
+      </div>
 
-      <!-- Actions -->
-      <div class="d-flex flex-wrap justify-content-center gap-3">
+      <!-- Printable Electronic Voucher Ticket -->
+      <div class="travel-voucher-ticket mb-4">
+        <div class="voucher-header d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+          <div class="d-flex align-items-center gap-3">
+            <div class="brand-icon-circle bg-primary" style="width: 48px; height: 48px; font-size: 1.4rem;">
+              <i class="bi bi-compass"></i>
+            </div>
+            <div>
+              <span class="fs-4 font-weight-bold tracking-wider">TERRA EXPEDITION VOUCHER</span>
+              <div class="text-white-50 small">International VIP Travel Certificate &bull; Non-Transferable</div>
+            </div>
+          </div>
+          <div class="text-md-end">
+            <span class="badge bg-success px-3 py-2 rounded-pill fs-6">CONFIRMED</span>
+            <div class="small text-white-50 mt-1">Status: Active & Verified</div>
+          </div>
+        </div>
+
+        <div class="voucher-body">
+          <div class="row g-4 align-items-center mb-3">
+            <div class="col-12 col-md-8">
+              <span class="text-muted small text-uppercase tracking-wider">Experience Title</span>
+              <h3 class="font-weight-bold text-dark mb-1" id="voucherTitle">Bali Spiritual & Island Escape</h3>
+              <p class="text-secondary small mb-0"><i class="bi bi-geo-alt-fill text-danger me-1"></i> <span id="voucherLocation">Bali, Indonesia</span></p>
+            </div>
+            <div class="col-12 col-md-4 text-md-end">
+              <span class="text-muted small text-uppercase tracking-wider">Booking Reference</span>
+              <div class="fs-4 font-weight-bold text-primary font-monospace" id="voucherRef">TRV-894210</div>
+              <button class="btn btn-link btn-sm text-decoration-none p-0 text-muted" onclick="copyRef()"><i class="bi bi-copy"></i> Copy Code</button>
+            </div>
+          </div>
+
+          <div class="voucher-perforated-line"></div>
+
+          <div class="row g-4">
+            <div class="col-6 col-md-3">
+              <span class="text-muted small text-uppercase d-block mb-1">Lead Traveler</span>
+              <span class="fw-bold text-dark fs-6" id="voucherTraveler">Alex Morgan</span>
+            </div>
+            <div class="col-6 col-md-3">
+              <span class="text-muted small text-uppercase d-block mb-1">Itinerary Dates</span>
+              <span class="fw-bold text-dark fs-6" id="voucherDates">Nov 15 - Nov 21, 2026</span>
+            </div>
+            <div class="col-6 col-md-3">
+              <span class="text-muted small text-uppercase d-block mb-1">Party Size</span>
+              <span class="fw-bold text-dark fs-6" id="voucherGuests">2 Guests</span>
+            </div>
+            <div class="col-6 col-md-3">
+              <span class="text-muted small text-uppercase d-block mb-1">Total Paid (Demo)</span>
+              <span class="fw-bold text-success fs-5" id="voucherTotal">$2,730</span>
+            </div>
+          </div>
+
+          <div class="voucher-perforated-line"></div>
+
+          <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+            <div>
+              <div class="barcode-graphic mb-1"></div>
+              <span class="font-monospace small text-muted">98234-894210-TERRA-2026</span>
+            </div>
+            <div class="text-muted small text-center text-md-end">
+              <div><i class="bi bi-info-circle text-primary me-1"></i> Present this digital voucher or passport at VIP check-in.</div>
+              <div>24/7 Dedicated Concierge Support: +1 (800) 555-TERRA</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div class="d-flex flex-wrap justify-content-center gap-3 no-print">
         <button class="btn btn-navy-custom py-3 px-4" onclick="window.print()">
           <i class="bi bi-printer me-2"></i> Print Travel Voucher
+        </button>
+        <button class="btn btn-outline-secondary py-3 px-4" onclick="addToWallet()">
+          <i class="bi bi-wallet2 me-2"></i> Add to Wallet / Calendar
         </button>
         <a href="my-bookings.html" class="btn btn-primary-custom py-3 px-4">
           <i class="bi bi-briefcase me-2"></i> View in My Bookings
@@ -64,13 +207,59 @@
     </div>
   </main>
 
-  <footer class="py-4 text-center text-muted small">
-    &copy; 2026 Terra Travel Inc. Simulated frontend demo. No real transactions.
+  <footer class="py-4 text-center text-muted small bg-white border-top no-print">
+    <div class="container">
+      &copy; 2026 Terra Travel Inc. Simulated frontend demo. No real transactions.
+    </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../../assets/js/main.js"></script>
-  <script src="../../assets/js/booking.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const activeDraft = JSON.parse(localStorage.getItem('activeBookingDraft') || '{}');
+      const leadInfo = JSON.parse(localStorage.getItem('activeTravelerInfo') || '{}');
+      const confirmedRef = localStorage.getItem('lastConfirmedRef') || ('TRV-' + Math.floor(100000 + Math.random() * 900000));
+
+      if (activeDraft.title) {
+        document.getElementById('voucherTitle').textContent = activeDraft.title;
+      }
+      if (activeDraft.location) {
+        document.getElementById('voucherLocation').textContent = activeDraft.location;
+      }
+      if (activeDraft.dates) {
+        document.getElementById('voucherDates').textContent = activeDraft.dates;
+      }
+      if (activeDraft.guests) {
+        document.getElementById('voucherGuests').textContent = `${activeDraft.guests} Traveler${activeDraft.guests === 1 ? '' : 's'}`;
+      }
+      if (activeDraft.price) {
+        const taxes = Math.round(activeDraft.price * 0.06);
+        document.getElementById('voucherTotal').textContent = `$${(activeDraft.price + taxes).toLocaleString()}`;
+      }
+
+      if (leadInfo.firstName) {
+        document.getElementById('voucherTraveler').textContent = `${leadInfo.firstName} ${leadInfo.lastName}`;
+      }
+      document.getElementById('voucherRef').textContent = confirmedRef;
+    });
+
+    function copyRef() {
+      const code = document.getElementById('voucherRef').textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        if (typeof showToast === 'function') {
+          showToast('Copied to Clipboard', `Booking reference ${code} copied!`, 'success');
+        } else {
+          alert('Copied: ' + code);
+        }
+      });
+    }
+
+    function addToWallet() {
+      if (typeof showToast === 'function') {
+        showToast('Exported to Calendar', 'Calendar .ics event generated for your itinerary dates!', 'info');
+      }
+    }
+  </script>
 </body>
 </html>
-

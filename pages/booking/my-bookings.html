@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Bookings | Terra Traveler Dashboard</title>
+  <title>My Bookings & Travel Reservations | Terra Traveler Dashboard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
           <div class="brand-icon-circle"><i class="bi bi-compass"></i></div>
           <span>TERRA</span>
         </a>
-        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavbarNav">
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavbarNav" aria-label="Toggle navigation">
           <i class="bi bi-list fs-2 text-dark"></i>
         </button>
         <div class="collapse navbar-collapse" id="siteNavbarNav">
@@ -54,19 +54,74 @@
       <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
         <div>
           <h1 class="h2 font-weight-bold mb-1">Your Travel Reservations</h1>
-          <p class="text-muted small mb-0">View, download vouchers, or manage your confirmed itineraries.</p>
+          <p class="text-muted small mb-0">View, download vouchers, or manage your confirmed itineraries and luxury stays.</p>
         </div>
-        <a href="../destinations/destinations.html" class="btn btn-primary-custom btn-sm mt-3 mt-md-0">
-          <i class="bi bi-plus-lg me-1"></i> Plan Another Trip
-        </a>
+        <div class="d-flex gap-2 mt-3 mt-md-0">
+          <a href="../destinations/destinations.html" class="btn btn-primary-custom btn-sm">
+            <i class="bi bi-plus-lg me-1"></i> Plan Another Trip
+          </a>
+        </div>
       </div>
 
-      <!-- Bookings List rendered via booking.js -->
-      <div id="myBookingsList">
+      <!-- Filter Tabs -->
+      <div class="d-flex flex-wrap gap-2 mb-4 pb-2 border-bottom" id="bookingTabButtons">
+        <button class="btn btn-sm btn-dark rounded-pill px-3 active" onclick="filterBookings('all', this)">All Bookings</button>
+        <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" onclick="filterBookings('upcoming', this)">Upcoming Expeditions</button>
+        <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" onclick="filterBookings('completed', this)">Past Journeys</button>
+      </div>
+
+      <!-- Bookings List rendered via JavaScript -->
+      <div id="myBookingsContainer">
         <!-- Rendered dynamically -->
       </div>
     </div>
   </main>
+
+  <!-- Voucher Modal -->
+  <div class="modal fade" id="voucherModal" tabindex="-1" aria-labelledby="voucherModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 border-0 shadow">
+        <div class="modal-header border-bottom py-3">
+          <h5 class="modal-title font-weight-bold" id="voucherModalLabel"><i class="bi bi-ticket-perforated text-primary me-2"></i> Electronic Travel Voucher</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4 text-center">
+          <div class="badge bg-success-subtle text-success px-3 py-1 rounded-pill mb-3">CONFIRMED ITINERARY</div>
+          <h4 class="font-weight-bold mb-1" id="modalVoucherTitle">Luxury Experience</h4>
+          <p class="text-muted small mb-3" id="modalVoucherLocation">Destination</p>
+
+          <div class="p-3 bg-light rounded-3 mb-3 text-start small">
+            <div class="d-flex justify-content-between mb-1">
+              <span class="text-muted">Booking Reference:</span>
+              <span class="fw-bold text-dark font-monospace" id="modalVoucherRef">TRV-000000</span>
+            </div>
+            <div class="d-flex justify-content-between mb-1">
+              <span class="text-muted">Dates:</span>
+              <span class="fw-bold text-dark" id="modalVoucherDates">Nov 15 - Nov 21, 2026</span>
+            </div>
+            <div class="d-flex justify-content-between mb-1">
+              <span class="text-muted">Travelers:</span>
+              <span class="fw-bold text-dark" id="modalVoucherGuests">2 Guests</span>
+            </div>
+            <div class="d-flex justify-content-between">
+              <span class="text-muted">Payment:</span>
+              <span class="fw-bold text-success" id="modalVoucherPaid">$2,730 (Paid)</span>
+            </div>
+          </div>
+
+          <div class="p-3 border rounded-3 bg-white mb-3 d-inline-block">
+            <i class="bi bi-qr-code fs-1 text-dark"></i>
+            <div class="small text-muted font-monospace mt-1">SCAN AT CHECK-IN</div>
+          </div>
+          <p class="small text-muted mb-0">Show this QR code at hotel front desk or airport VIP lounge.</p>
+        </div>
+        <div class="modal-footer border-top py-2">
+          <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary-custom btn-sm" onclick="window.print()"><i class="bi bi-printer me-1"></i> Print</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer class="site-footer">
@@ -116,7 +171,147 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../../assets/js/main.js"></script>
-  <script src="../../assets/js/booking.js"></script>
+  <script>
+    const sampleBookings = [
+      {
+        id: 'bk-1',
+        reference: 'TRV-894210',
+        title: 'Bali Spiritual & Island Escape',
+        location: 'Bali, Indonesia',
+        dates: 'Nov 15 - Nov 21, 2026',
+        guests: 2,
+        total: 2730,
+        status: 'upcoming',
+        image: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=600&q=80',
+        type: 'Tour Package'
+      },
+      {
+        id: 'bk-2',
+        reference: 'TRV-441920',
+        title: 'Hôtel Plaza Athénée & Eiffel Suites',
+        location: 'Paris, France',
+        dates: 'Dec 24 - Dec 29, 2026',
+        guests: 2,
+        total: 3950,
+        status: 'upcoming',
+        image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=600&q=80',
+        type: 'Luxury Hotel'
+      },
+      {
+        id: 'bk-3',
+        reference: 'TRV-210459',
+        title: 'The Chedi Andermatt Alpine Haven',
+        location: 'Swiss Alps, Switzerland',
+        dates: 'Jan 10 - Jan 16, 2026',
+        guests: 2,
+        total: 5100,
+        status: 'completed',
+        image: 'https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&w=600&q=80',
+        type: 'Ski Resort'
+      }
+    ];
+
+    let currentFilter = 'all';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Check if user has bookings saved in localStorage
+      let storedBookings = JSON.parse(localStorage.getItem('myBookings') || '[]');
+      if (!storedBookings || storedBookings.length === 0) {
+        localStorage.setItem('myBookings', JSON.stringify(sampleBookings));
+      }
+      renderBookings();
+    });
+
+    function filterBookings(status, btn) {
+      currentFilter = status;
+      document.querySelectorAll('#bookingTabButtons button').forEach(b => {
+        b.classList.remove('btn-dark');
+        b.classList.add('btn-outline-secondary');
+      });
+      btn.classList.remove('btn-outline-secondary');
+      btn.classList.add('btn-dark');
+      renderBookings();
+    }
+
+    function renderBookings() {
+      const container = document.getElementById('myBookingsContainer');
+      const all = JSON.parse(localStorage.getItem('myBookings') || '[]');
+      
+      const filtered = all.filter(b => {
+        if (currentFilter === 'all') return true;
+        return b.status === currentFilter;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="card border-0 shadow-sm rounded-4 p-5 text-center bg-white">
+            <div class="brand-icon-circle mx-auto mb-3" style="width: 64px; height: 64px; font-size: 1.6rem;"><i class="bi bi-briefcase"></i></div>
+            <h4 class="font-weight-bold">No Bookings Found</h4>
+            <p class="text-muted">You do not have any reservations in this tab.</p>
+            <div>
+              <a href="../destinations/destinations.html" class="btn btn-primary-custom px-4">Browse Destinations</a>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(b => `
+        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+          <div class="row g-4 align-items-center">
+            <div class="col-12 col-md-3">
+              <img src="${b.image}" alt="${b.title}" class="rounded-3 w-100 object-fit-cover shadow-sm" style="height: 160px;">
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="d-flex align-items-center gap-2 mb-1">
+                <span class="badge ${b.status === 'upcoming' ? 'bg-success-subtle text-success' : 'bg-secondary-subtle text-secondary'} rounded-pill">
+                  ${b.status === 'upcoming' ? 'Upcoming &bull; Confirmed' : 'Completed Trip'}
+                </span>
+                <span class="small text-muted font-monospace">${b.reference}</span>
+              </div>
+              <h4 class="font-weight-bold text-dark mb-1">${b.title}</h4>
+              <p class="text-muted small mb-2"><i class="bi bi-geo-alt-fill text-danger me-1"></i> ${b.location}</p>
+
+              <div class="d-flex flex-wrap gap-3 small text-secondary">
+                <span><i class="bi bi-calendar3 me-1 text-primary"></i> ${b.dates}</span>
+                <span><i class="bi bi-person me-1 text-primary"></i> ${b.guests} Guests</span>
+                <span><i class="bi bi-check2-circle text-success me-1"></i> Paid: $${b.total.toLocaleString()}</span>
+              </div>
+            </div>
+            <div class="col-12 col-md-3 text-md-end">
+              <button class="btn btn-primary-custom btn-sm w-100 mb-2 py-2" onclick="openVoucherModal('${b.reference}')">
+                <i class="bi bi-ticket-perforated me-1"></i> View Voucher
+              </button>
+              <button class="btn btn-outline-secondary btn-sm w-100 py-2" onclick="downloadInvoice('${b.reference}')">
+                <i class="bi bi-download me-1"></i> Download Invoice
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openVoucherModal(ref) {
+      const all = JSON.parse(localStorage.getItem('myBookings') || '[]');
+      const b = all.find(x => x.reference === ref) || all[0];
+      if (!b) return;
+
+      document.getElementById('modalVoucherTitle').textContent = b.title;
+      document.getElementById('modalVoucherLocation').textContent = b.location;
+      document.getElementById('modalVoucherRef').textContent = b.reference;
+      document.getElementById('modalVoucherDates').textContent = b.dates;
+      document.getElementById('modalVoucherGuests').textContent = `${b.guests} Guests`;
+      document.getElementById('modalVoucherPaid').textContent = `$${b.total.toLocaleString()} (Fully Paid)`;
+
+      const modal = new bootstrap.Modal(document.getElementById('voucherModal'));
+      modal.show();
+    }
+
+    function downloadInvoice(ref) {
+      if (typeof showToast === 'function') {
+        showToast('Invoice Downloaded', `PDF invoice for reservation ${ref} generated.`, 'success');
+      }
+    }
+  </script>
 </body>
 </html>
-

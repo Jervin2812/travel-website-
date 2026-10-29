@@ -1,10 +1,11 @@
 /**
- * Terra / Wanderlust - Authentication & User Profile Engine
- * Simulates registration, sign in, password visibility, and profile editing using localStorage
+ * TERRA — Authentication & User Profile Engine
+ * Simulates registration, sign in, password strength, password visibility, and profile editing.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   initPasswordToggles();
+  initPasswordStrengthMeter();
   initLoginForm();
   initSignupForm();
   initProfilePage();
@@ -28,6 +29,46 @@ function initPasswordToggles() {
   });
 }
 
+// Password strength indicator
+function initPasswordStrengthMeter() {
+  const passwordInput = document.getElementById('signupPassword');
+  const strengthBar = document.getElementById('passwordStrengthBar');
+  const strengthText = document.getElementById('passwordStrengthText');
+
+  if (!passwordInput || !strengthBar) return;
+
+  passwordInput.addEventListener('input', (e) => {
+    const val = e.target.value;
+    let score = 0;
+    if (val.length >= 8) score++;
+    if (/[A-Z]/.test(val)) score++;
+    if (/[0-9]/.test(val)) score++;
+    if (/[^A-Za-z0-9]/.test(val)) score++;
+
+    if (val.length === 0) {
+      strengthBar.style.width = '0%';
+      strengthBar.className = 'progress-bar';
+      if (strengthText) strengthText.textContent = '';
+    } else if (score <= 1) {
+      strengthBar.style.width = '25%';
+      strengthBar.className = 'progress-bar bg-danger';
+      if (strengthText) strengthText.textContent = 'Weak password';
+    } else if (score === 2) {
+      strengthBar.style.width = '50%';
+      strengthBar.className = 'progress-bar bg-warning';
+      if (strengthText) strengthText.textContent = 'Fair password';
+    } else if (score === 3) {
+      strengthBar.style.width = '75%';
+      strengthBar.className = 'progress-bar bg-info';
+      if (strengthText) strengthText.textContent = 'Good password';
+    } else {
+      strengthBar.style.width = '100%';
+      strengthBar.className = 'progress-bar bg-success';
+      if (strengthText) strengthText.textContent = 'Strong password!';
+    }
+  });
+}
+
 // Simulated Login
 function initLoginForm() {
   const form = document.getElementById('loginForm');
@@ -44,7 +85,6 @@ function initLoginForm() {
       return;
     }
 
-    // Create user profile
     const user = {
       name: email.split('@')[0].replace(/[._]/g, ' ').toUpperCase(),
       email: email,
@@ -100,7 +140,7 @@ function initProfilePage() {
     email: 'jervin.raj@example.com',
     phone: '+1 (555) 234-5678',
     country: 'United States',
-    bio: 'Avid traveler, photographer, and mountain trekker.'
+    bio: 'Avid traveler, photographer, and alpine explorer.'
   };
 
   // Populate inputs
@@ -115,6 +155,23 @@ function initProfilePage() {
   if (phoneInput) phoneInput.value = currentUser.phone || '';
   if (countryInput) countryInput.value = currentUser.country || '';
   if (bioInput) bioInput.value = currentUser.bio || '';
+
+  // Avatar upload simulation preview
+  const avatarUpload = document.getElementById('avatarUpload');
+  const avatarImg = document.getElementById('profileAvatarImg');
+  if (avatarUpload && avatarImg) {
+    avatarUpload.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          avatarImg.src = event.target.result;
+          currentUser.avatar = event.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  }
 
   profileForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -136,4 +193,3 @@ function initProfilePage() {
     }
   });
 }
-

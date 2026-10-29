@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flight Search & Deals | Terra Flights</title>
+  <title>Global Flight Search & Exclusive Airfares | Terra</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -11,8 +11,55 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/css/style.css">
   <link rel="stylesheet" href="../../assets/css/responsive.css">
+  <style>
+    .flight-route-line {
+      position: relative;
+      height: 2px;
+      background: #cbd5e1;
+      width: 100%;
+      margin: 12px 0 6px;
+    }
+    .flight-route-line .plane-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #ffffff;
+      padding: 0 8px;
+      color: #0284c7;
+      font-size: 1.1rem;
+    }
+    .flight-card {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      background: #ffffff;
+      overflow: hidden;
+    }
+    .flight-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
+      border-color: #cbd5e1;
+    }
+    .airline-logo-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .airline-tag {
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+  </style>
 </head>
-<body>
+<body class="bg-light">
 
   <!-- Navbar -->
   <header class="site-navbar">
@@ -22,7 +69,7 @@
           <div class="brand-icon-circle"><i class="bi bi-compass"></i></div>
           <span>TERRA</span>
         </a>
-        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavbarNav">
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavbarNav" aria-label="Toggle navigation">
           <i class="bi bi-list fs-2 text-dark"></i>
         </button>
         <div class="collapse navbar-collapse" id="siteNavbarNav">
@@ -44,202 +91,483 @@
     </div>
   </header>
 
-  <!-- Search Header -->
-  <section class="py-4 bg-light border-bottom">
+  <!-- Flight Hero Search Header -->
+  <section class="py-5 bg-white border-bottom">
     <div class="container">
       <div class="custom-breadcrumb">
-        <a href="../../index.html">Home</a> <i class="bi bi-chevron-right small"></i> <span>Flight Deals</span>
+        <a href="../../index.html">Home</a> <i class="bi bi-chevron-right small"></i> <span>Flight Search</span>
       </div>
-      <h1 class="h3 font-weight-bold mb-3">Compare & Book Worldwide Flights</h1>
-      
-      <!-- Flight Search Form -->
-      <form class="card p-3 border rounded-4 shadow-sm" onsubmit="event.preventDefault(); filterFlights();">
-        <div class="row g-2 align-items-end">
-          <div class="col-12 col-md-3">
-            <label class="small fw-bold text-muted">From (Origin)</label>
-            <input type="text" id="flightFrom" class="form-control" value="New York (JFK)">
+
+      <div class="row align-items-center mb-4">
+        <div class="col-12 col-lg-8">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-1 rounded-pill">
+              <i class="bi bi-shield-check me-1"></i> IATA Verified Partner Fares
+            </span>
+            <span class="badge bg-success-subtle text-success fw-semibold px-3 py-1 rounded-pill">
+              <i class="bi bi-check2-circle me-1"></i> Zero Hidden Charges
+            </span>
           </div>
-          <div class="col-12 col-md-3">
-            <label class="small fw-bold text-muted">To (Destination)</label>
-            <input type="text" id="flightTo" class="form-control" value="Paris (CDG)">
-          </div>
-          <div class="col-6 col-md-2">
-            <label class="small fw-bold text-muted">Departure</label>
-            <input type="date" class="form-control" value="2026-11-15">
-          </div>
-          <div class="col-6 col-md-2">
-            <label class="small fw-bold text-muted">Class</label>
-            <select class="form-select">
-              <option>Economy</option>
-              <option>Premium Economy</option>
-              <option selected>Business</option>
-            </select>
-          </div>
-          <div class="col-12 col-md-2">
-            <button class="btn btn-primary-custom w-100 py-2" type="submit"><i class="bi bi-search"></i> Search</button>
+          <h1 class="display-6 font-weight-bold text-dark mb-1">Find & Book Premium Worldwide Flights</h1>
+          <p class="text-muted mb-0">Exclusive access to premier commercial airlines, private charters, and priority international routes.</p>
+        </div>
+        <div class="col-12 col-lg-4 text-lg-end mt-3 mt-lg-0">
+          <div class="p-3 bg-light rounded-4 border d-inline-block text-start">
+            <div class="small fw-bold text-dark mb-1"><i class="bi bi-clock-history text-primary me-1"></i> Price Lock Guarantee</div>
+            <div class="small text-muted">Hold your chosen airfare for 24 hours with zero upfront fee.</div>
           </div>
         </div>
-      </form>
+      </div>
+
+      <!-- Flight Filter Search Bar -->
+      <div class="card border-0 shadow-sm rounded-4 p-4 p-md-4 bg-light">
+        <form id="flightSearchForm" onsubmit="event.preventDefault(); applyFlightFilter();">
+          <div class="row g-3 align-items-end">
+            <div class="col-12 col-md-3">
+              <label class="form-label small fw-bold text-muted mb-1"><i class="bi bi-geo-alt me-1 text-primary"></i> Departure (From)</label>
+              <div class="input-group">
+                <input type="text" id="flightFromInput" class="form-control bg-white" value="New York (JFK)" placeholder="Origin airport or city" required>
+              </div>
+            </div>
+            <div class="col-12 col-md-3">
+              <label class="form-label small fw-bold text-muted mb-1"><i class="bi bi-geo-alt-fill me-1 text-danger"></i> Destination (To)</label>
+              <div class="input-group">
+                <input type="text" id="flightToInput" class="form-control bg-white" value="Paris (CDG)" placeholder="Destination airport" required>
+              </div>
+            </div>
+            <div class="col-6 col-md-2">
+              <label class="form-label small fw-bold text-muted mb-1"><i class="bi bi-calendar3 me-1 text-primary"></i> Departure</label>
+              <input type="date" id="flightDepDate" class="form-control bg-white" value="2026-11-15">
+            </div>
+            <div class="col-6 col-md-2">
+              <label class="form-label small fw-bold text-muted mb-1"><i class="bi bi-person me-1 text-primary"></i> Cabin Class</label>
+              <select id="cabinClassSelect" class="form-select bg-white">
+                <option value="economy">Economy</option>
+                <option value="premium">Premium Economy</option>
+                <option value="business" selected>Business Class</option>
+                <option value="first">First Class</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-2">
+              <button class="btn btn-primary-custom w-100 py-2 d-flex align-items-center justify-content-center gap-2" type="submit">
+                <i class="bi bi-search"></i> <span>Search Flights</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Quick Filter Chips -->
+      <div class="d-flex flex-wrap align-items-center gap-2 mt-3 pt-2">
+        <span class="small text-muted fw-semibold me-2">Quick Routes:</span>
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" onclick="setRoute('New York (JFK)', 'London (LHR)')">JFK &rarr; LHR ($620)</button>
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" onclick="setRoute('New York (JFK)', 'Paris (CDG)')">JFK &rarr; CDG ($740)</button>
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" onclick="setRoute('Los Angeles (LAX)', 'Tokyo (HND)')">LAX &rarr; HND ($910)</button>
+        <button class="btn btn-sm btn-outline-secondary rounded-pill" onclick="setRoute('San Francisco (SFO)', 'Dubai (DXB)')">SFO &rarr; DXB ($890)</button>
+      </div>
     </div>
   </section>
 
-  <!-- Flight Cards List -->
-  <section class="py-5">
+  <!-- Flight Results Area -->
+  <main class="py-5">
     <div class="container">
       <div class="row g-4">
-        <!-- Filter Left Sidebar -->
+        <!-- Sidebar Filters -->
         <div class="col-12 col-lg-3">
           <div class="filter-card">
-            <h5 class="font-weight-bold mb-3">Flight Filters</h5>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h5 class="font-weight-bold mb-0">Refine Results</h5>
+              <button class="btn btn-link btn-sm text-muted p-0 text-decoration-none" onclick="resetFilters()">Reset All</button>
+            </div>
+
+            <!-- Stops -->
             <div class="filter-group">
-              <label class="filter-title">Stops</label>
+              <label class="filter-title">Flight Stops</label>
               <div class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" id="stopDirect" checked>
-                <label class="form-check-label small" for="stopDirect">Non-Stop Direct Flights</label>
+                <input class="form-check-input" type="checkbox" id="stopDirect" checked onchange="filterAirlineCards()">
+                <label class="form-check-label small" for="stopDirect">Non-Stop Direct Flights (4)</label>
+              </div>
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="stop1" checked onchange="filterAirlineCards()">
+                <label class="form-check-label small" for="stop1">1 Stop (Under 2 hours) (2)</label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="stop1" checked>
-                <label class="form-check-label small" for="stop1">1 Stop (Under 2 hrs)</label>
+                <input class="form-check-input" type="checkbox" id="stop2" onchange="filterAirlineCards()">
+                <label class="form-check-label small" for="stop2">2+ Stops (1)</label>
               </div>
             </div>
 
+            <!-- Airlines -->
             <div class="filter-group">
-              <label class="filter-title">Airlines</label>
+              <label class="filter-title">Participating Airlines</label>
               <div class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" id="airEmirates" checked>
-                <label class="form-check-label small" for="airEmirates">Emirates</label>
+                <input class="form-check-input airline-check" type="checkbox" value="Air France" id="airAF" checked onchange="filterAirlineCards()">
+                <label class="form-check-label small" for="airAF">Air France (SkyTeam)</label>
               </div>
               <div class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" id="airFrance" checked>
-                <label class="form-check-label small" for="airFrance">Air France</label>
+                <input class="form-check-input airline-check" type="checkbox" value="Emirates" id="airEK" checked onchange="filterAirlineCards()">
+                <label class="form-check-label small" for="airEK">Emirates (A380 Experience)</label>
               </div>
               <div class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" id="airSingapore" checked>
-                <label class="form-check-label small" for="airSingapore">Singapore Airlines</label>
+                <input class="form-check-input airline-check" type="checkbox" value="Singapore Airlines" id="airSQ" checked onchange="filterAirlineCards()">
+                <label class="form-check-label small" for="airSQ">Singapore Airlines (Star Alliance)</label>
+              </div>
+              <div class="form-check mb-2">
+                <input class="form-check-input airline-check" type="checkbox" value="Swiss International" id="airLX" checked onchange="filterAirlineCards()">
+                <label class="form-check-label small" for="airLX">Swiss International</label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="airSwiss" checked>
-                <label class="form-check-label small" for="airSwiss">Swiss International</label>
+                <input class="form-check-input airline-check" type="checkbox" value="Qatar Airways" id="airQR" checked onchange="filterAirlineCards()">
+                <label class="form-check-label small" for="airQR">Qatar Airways (QSuite)</label>
               </div>
+            </div>
+
+            <!-- Amenities -->
+            <div class="filter-group">
+              <label class="filter-title">In-Flight Experience</label>
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="amenityWifi" checked>
+                <label class="form-check-label small" for="amenityWifi"><i class="bi bi-wifi text-primary me-1"></i> High-Speed Starlink WiFi</label>
+              </div>
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="amenityLieFlat" checked>
+                <label class="form-check-label small" for="amenityLieFlat"><i class="bi bi-moon-stars text-primary me-1"></i> Full Lie-Flat Beds</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="amenityMeals" checked>
+                <label class="form-check-label small" for="amenityMeals"><i class="bi bi-cup-hot text-primary me-1"></i> Chef-Curated Dining</label>
+              </div>
+            </div>
+
+            <!-- Trust Banner -->
+            <div class="p-3 bg-light rounded-3 text-center border">
+              <i class="bi bi-shield-lock-fill text-success fs-3 mb-2 d-block"></i>
+              <div class="small fw-bold">100% Protected Tickets</div>
+              <div class="text-muted" style="font-size: 0.75rem;">Free date rescheduling available up to 24 hours before flight departure.</div>
             </div>
           </div>
         </div>
 
         <!-- Flights List -->
-        <div class="col-12 col-lg-9" id="flightsContainer">
-          <!-- Flight 1 -->
-          <div class="card border rounded-4 shadow-sm p-4 mb-3 flight-item">
-            <div class="row align-items-center g-3">
-              <div class="col-12 col-md-3">
-                <div class="d-flex align-items-center gap-2">
-                  <div class="brand-icon-circle bg-danger" style="width: 32px; height: 32px;"><i class="bi bi-airplane-fill fs-6"></i></div>
-                  <div>
-                    <h6 class="mb-0 font-weight-bold">Air France</h6>
-                    <span class="text-muted small">AF-023 &bull; Boeing 777</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-6 text-center">
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="text-start">
-                    <span class="fs-4 font-weight-bold d-block">19:30</span>
-                    <span class="text-muted small">JFK New York</span>
-                  </div>
-                  <div class="flex-grow-1 px-3">
-                    <span class="text-muted small d-block mb-1">7h 45m &bull; Non-Stop</span>
-                    <div style="height: 2px; background: #0284c7; position: relative;">
-                      <i class="bi bi-airplane-fill text-primary position-absolute top-50 start-50 translate-middle"></i>
-                    </div>
-                  </div>
-                  <div class="text-end">
-                    <span class="fs-4 font-weight-bold d-block">08:15</span>
-                    <span class="text-muted small">CDG Paris (+1)</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-3 text-md-end">
-                <span class="fs-3 font-weight-bold text-dark d-block">$740</span>
-                <span class="text-muted small d-block mb-2">Roundtrip &bull; Economy</span>
-                <button class="btn btn-primary-custom btn-sm w-100" onclick="bookFlight('Air France (JFK to CDG)', 740)">Select Flight</button>
-              </div>
+        <div class="col-12 col-lg-9">
+          <!-- Top Sort Bar -->
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center pb-3 mb-3 border-bottom">
+            <div>
+              <span class="fw-bold text-dark fs-5">Available Flights</span>
+              <span class="text-muted small ms-2" id="flightResultsCount">(Showing 5 curated options)</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 mt-2 mt-sm-0">
+              <label class="small text-muted text-nowrap">Sort By:</label>
+              <select class="form-select form-select-sm" id="flightSortSelect" onchange="sortFlightCards(this.value)">
+                <option value="best">Recommended &bull; Best Overall</option>
+                <option value="cheapest">Lowest Price First</option>
+                <option value="fastest">Fastest Duration</option>
+                <option value="departure">Departure Time</option>
+              </select>
             </div>
           </div>
 
-          <!-- Flight 2 -->
-          <div class="card border rounded-4 shadow-sm p-4 mb-3 flight-item">
-            <div class="row align-items-center g-3">
-              <div class="col-12 col-md-3">
-                <div class="d-flex align-items-center gap-2">
-                  <div class="brand-icon-circle bg-warning text-dark" style="width: 32px; height: 32px;"><i class="bi bi-airplane-fill fs-6"></i></div>
-                  <div>
-                    <h6 class="mb-0 font-weight-bold">Emirates</h6>
-                    <span class="text-muted small">EK-204 &bull; Airbus A380</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-6 text-center">
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="text-start">
-                    <span class="fs-4 font-weight-bold d-block">22:15</span>
-                    <span class="text-muted small">JFK New York</span>
-                  </div>
-                  <div class="flex-grow-1 px-3">
-                    <span class="text-muted small d-block mb-1">8h 10m &bull; Non-Stop</span>
-                    <div style="height: 2px; background: #0284c7; position: relative;">
-                      <i class="bi bi-airplane-fill text-primary position-absolute top-50 start-50 translate-middle"></i>
+          <div id="flightsContainer">
+            <!-- Flight 1: Air France -->
+            <div class="flight-card p-4 mb-3 flight-item" data-airline="Air France" data-stops="direct" data-price="740" data-duration="465">
+              <div class="row align-items-center g-3">
+                <div class="col-12 col-md-3">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="airline-logo-box bg-danger-subtle text-danger">
+                      <i class="bi bi-airplane-fill"></i>
+                    </div>
+                    <div>
+                      <h6 class="mb-0 font-weight-bold">Air France</h6>
+                      <span class="text-muted small">AF-023 &bull; Boeing 777-300ER</span>
+                      <div class="mt-1">
+                        <span class="badge bg-light text-dark border">SkyTeam</span>
+                      </div>
                     </div>
                   </div>
-                  <div class="text-end">
-                    <span class="fs-4 font-weight-bold d-block">11:25</span>
-                    <span class="text-muted small">CDG Paris (+1)</span>
-                  </div>
                 </div>
-              </div>
-              <div class="col-12 col-md-3 text-md-end">
-                <span class="fs-3 font-weight-bold text-dark d-block">$890</span>
-                <span class="text-muted small d-block mb-2">Roundtrip &bull; In-Flight WiFi</span>
-                <button class="btn btn-primary-custom btn-sm w-100" onclick="bookFlight('Emirates (JFK to CDG)', 890)">Select Flight</button>
-              </div>
-            </div>
-          </div>
 
-          <!-- Flight 3 -->
-          <div class="card border rounded-4 shadow-sm p-4 mb-3 flight-item">
-            <div class="row align-items-center g-3">
-              <div class="col-12 col-md-3">
-                <div class="d-flex align-items-center gap-2">
-                  <div class="brand-icon-circle bg-primary" style="width: 32px; height: 32px;"><i class="bi bi-airplane-fill fs-6"></i></div>
-                  <div>
-                    <h6 class="mb-0 font-weight-bold">Swiss International</h6>
-                    <span class="text-muted small">LX-019 &bull; Airbus A330</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-6 text-center">
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="text-start">
-                    <span class="fs-4 font-weight-bold d-block">18:10</span>
-                    <span class="text-muted small">JFK New York</span>
-                  </div>
-                  <div class="flex-grow-1 px-3">
-                    <span class="text-muted small d-block mb-1">9h 20m &bull; 1 Stop (ZRH)</span>
-                    <div style="height: 2px; background: #0284c7; position: relative;">
-                      <i class="bi bi-airplane-fill text-primary position-absolute top-50 start-50 translate-middle"></i>
+                <div class="col-12 col-md-6 text-center">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="text-start">
+                      <span class="fs-4 font-weight-bold text-dark d-block">19:30</span>
+                      <span class="text-muted small">JFK New York</span>
+                    </div>
+                    <div class="flex-grow-1 px-4">
+                      <span class="text-muted small fw-semibold d-block mb-1">7h 45m &bull; Non-Stop</span>
+                      <div class="flight-route-line">
+                        <i class="bi bi-airplane-fill plane-icon"></i>
+                      </div>
+                      <span class="text-success small"><i class="bi bi-lightning-charge-fill"></i> On Time 98%</span>
+                    </div>
+                    <div class="text-end">
+                      <span class="fs-4 font-weight-bold text-dark d-block">08:15</span>
+                      <span class="text-muted small">CDG Paris (+1 day)</span>
                     </div>
                   </div>
-                  <div class="text-end">
-                    <span class="fs-4 font-weight-bold d-block">09:30</span>
-                    <span class="text-muted small">CDG Paris (+1)</span>
+                  <!-- Flight Amenity Icons -->
+                  <div class="d-flex justify-content-center gap-3 mt-2 text-muted small">
+                    <span title="Free Wi-Fi"><i class="bi bi-wifi"></i> WiFi</span>
+                    <span title="Personal USB / Power"><i class="bi bi-plug"></i> USB</span>
+                    <span title="Multi-course Dining"><i class="bi bi-cup-hot"></i> Meals</span>
+                    <span title="Carry-on + 2 Checked Bags"><i class="bi bi-briefcase"></i> 2x 23kg Bags</span>
                   </div>
                 </div>
+
+                <div class="col-12 col-md-3 text-md-end border-start-md ps-md-4">
+                  <span class="fs-2 font-weight-bold text-dark d-block">$740</span>
+                  <span class="text-muted small d-block mb-3">Roundtrip per traveler</span>
+                  <button class="btn btn-primary-custom w-100 py-2" onclick="bookFlight('Air France (JFK &rarr; CDG)', 740, 'AF-023', 'Boeing 777-300ER', 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80')">
+                    Select Flight <i class="bi bi-arrow-right ms-1"></i>
+                  </button>
+                </div>
               </div>
-              <div class="col-12 col-md-3 text-md-end">
-                <span class="fs-3 font-weight-bold text-dark d-block">$680</span>
-                <span class="text-muted small d-block mb-2">Roundtrip &bull; Gourmet Meals</span>
-                <button class="btn btn-primary-custom btn-sm w-100" onclick="bookFlight('Swiss International (JFK to CDG)', 680)">Select Flight</button>
+            </div>
+
+            <!-- Flight 2: Emirates -->
+            <div class="flight-card p-4 mb-3 flight-item" data-airline="Emirates" data-stops="direct" data-price="890" data-duration="490">
+              <div class="row align-items-center g-3">
+                <div class="col-12 col-md-3">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="airline-logo-box bg-warning-subtle text-dark">
+                      <i class="bi bi-airplane-engines"></i>
+                    </div>
+                    <div>
+                      <h6 class="mb-0 font-weight-bold">Emirates</h6>
+                      <span class="text-muted small">EK-204 &bull; Airbus A380-800</span>
+                      <div class="mt-1">
+                        <span class="badge bg-warning-subtle text-dark border border-warning">Onboard Lounge</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 text-center">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="text-start">
+                      <span class="fs-4 font-weight-bold text-dark d-block">22:15</span>
+                      <span class="text-muted small">JFK New York</span>
+                    </div>
+                    <div class="flex-grow-1 px-4">
+                      <span class="text-muted small fw-semibold d-block mb-1">8h 10m &bull; Non-Stop</span>
+                      <div class="flight-route-line">
+                        <i class="bi bi-airplane-fill plane-icon"></i>
+                      </div>
+                      <span class="text-primary small"><i class="bi bi-star-fill text-warning"></i> Rated 4.9 by Travelers</span>
+                    </div>
+                    <div class="text-end">
+                      <span class="fs-4 font-weight-bold text-dark d-block">11:25</span>
+                      <span class="text-muted small">CDG Paris (+1 day)</span>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-center gap-3 mt-2 text-muted small">
+                    <span><i class="bi bi-wifi"></i> Starlink</span>
+                    <span><i class="bi bi-tv"></i> ICE Entertainment</span>
+                    <span><i class="bi bi-cup-hot"></i> Gourmet Cellar</span>
+                    <span><i class="bi bi-briefcase"></i> 32kg Baggage</span>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-3 text-md-end border-start-md ps-md-4">
+                  <span class="fs-2 font-weight-bold text-dark d-block">$890</span>
+                  <span class="text-muted small d-block mb-3">Roundtrip per traveler</span>
+                  <button class="btn btn-primary-custom w-100 py-2" onclick="bookFlight('Emirates (JFK &rarr; CDG)', 890, 'EK-204', 'Airbus A380-800', 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=80')">
+                    Select Flight <i class="bi bi-arrow-right ms-1"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Flight 3: Singapore Airlines -->
+            <div class="flight-card p-4 mb-3 flight-item" data-airline="Singapore Airlines" data-stops="direct" data-price="940" data-duration="475">
+              <div class="row align-items-center g-3">
+                <div class="col-12 col-md-3">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="airline-logo-box bg-primary-subtle text-primary">
+                      <i class="bi bi-compass-fill"></i>
+                    </div>
+                    <div>
+                      <h6 class="mb-0 font-weight-bold">Singapore Airlines</h6>
+                      <span class="text-muted small">SQ-026 &bull; Airbus A350-900</span>
+                      <div class="mt-1">
+                        <span class="badge bg-light text-primary border">Star Alliance</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 text-center">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="text-start">
+                      <span class="fs-4 font-weight-bold text-dark d-block">20:45</span>
+                      <span class="text-muted small">JFK New York</span>
+                    </div>
+                    <div class="flex-grow-1 px-4">
+                      <span class="text-muted small fw-semibold d-block mb-1">7h 55m &bull; Non-Stop</span>
+                      <div class="flight-route-line">
+                        <i class="bi bi-airplane-fill plane-icon"></i>
+                      </div>
+                      <span class="text-success small"><i class="bi bi-award-fill text-warning"></i> Skytrax World's Best</span>
+                    </div>
+                    <div class="text-end">
+                      <span class="fs-4 font-weight-bold text-dark d-block">10:40</span>
+                      <span class="text-muted small">CDG Paris (+1 day)</span>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-center gap-3 mt-2 text-muted small">
+                    <span><i class="bi bi-wifi"></i> High Speed</span>
+                    <span><i class="bi bi-moon-stars"></i> Ergonomic Cradle</span>
+                    <span><i class="bi bi-cup-hot"></i> Book the Cook</span>
+                    <span><i class="bi bi-briefcase"></i> 2x 25kg</span>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-3 text-md-end border-start-md ps-md-4">
+                  <span class="fs-2 font-weight-bold text-dark d-block">$940</span>
+                  <span class="text-muted small d-block mb-3">Roundtrip per traveler</span>
+                  <button class="btn btn-primary-custom w-100 py-2" onclick="bookFlight('Singapore Airlines (JFK &rarr; CDG)', 940, 'SQ-026', 'Airbus A350-900', 'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=800&q=80')">
+                    Select Flight <i class="bi bi-arrow-right ms-1"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Flight 4: Swiss International -->
+            <div class="flight-card p-4 mb-3 flight-item" data-airline="Swiss International" data-stops="1stop" data-price="680" data-duration="560">
+              <div class="row align-items-center g-3">
+                <div class="col-12 col-md-3">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="airline-logo-box bg-danger-subtle text-danger">
+                      <i class="bi bi-plus-square-fill"></i>
+                    </div>
+                    <div>
+                      <h6 class="mb-0 font-weight-bold">Swiss International</h6>
+                      <span class="text-muted small">LX-019 &bull; Airbus A330-300</span>
+                      <div class="mt-1">
+                        <span class="badge bg-light text-danger border">Swiss Hospitality</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 text-center">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="text-start">
+                      <span class="fs-4 font-weight-bold text-dark d-block">18:10</span>
+                      <span class="text-muted small">JFK New York</span>
+                    </div>
+                    <div class="flex-grow-1 px-4">
+                      <span class="text-muted small fw-semibold d-block mb-1">9h 20m &bull; 1 Stop (ZRH 1h 10m)</span>
+                      <div class="flight-route-line">
+                        <i class="bi bi-airplane-fill plane-icon"></i>
+                      </div>
+                      <span class="text-muted small">Seamless Zurich transit lounge</span>
+                    </div>
+                    <div class="text-end">
+                      <span class="fs-4 font-weight-bold text-dark d-block">09:30</span>
+                      <span class="text-muted small">CDG Paris (+1 day)</span>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-center gap-3 mt-2 text-muted small">
+                    <span><i class="bi bi-wifi"></i> WiFi</span>
+                    <span><i class="bi bi-cup-hot"></i> Swiss Chocolates</span>
+                    <span><i class="bi bi-briefcase"></i> 2x 23kg</span>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-3 text-md-end border-start-md ps-md-4">
+                  <span class="fs-2 font-weight-bold text-dark d-block">$680</span>
+                  <span class="text-muted small d-block mb-3">Roundtrip per traveler</span>
+                  <button class="btn btn-primary-custom w-100 py-2" onclick="bookFlight('Swiss International (JFK &rarr; CDG via ZRH)', 680, 'LX-019', 'Airbus A330-300', 'https://images.unsplash.com/photo-1520437358207-323b43b50729?auto=format&fit=crop&w=800&q=80')">
+                    Select Flight <i class="bi bi-arrow-right ms-1"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Flight 5: Qatar Airways -->
+            <div class="flight-card p-4 mb-3 flight-item" data-airline="Qatar Airways" data-stops="1stop" data-price="980" data-duration="570">
+              <div class="row align-items-center g-3">
+                <div class="col-12 col-md-3">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="airline-logo-box bg-secondary-subtle text-secondary">
+                      <i class="bi bi-airplane"></i>
+                    </div>
+                    <div>
+                      <h6 class="mb-0 font-weight-bold">Qatar Airways</h6>
+                      <span class="text-muted small">QR-702 &bull; Boeing 787-9 Dreamliner</span>
+                      <div class="mt-1">
+                        <span class="badge bg-secondary-subtle text-dark border">Qsuite Cabin Option</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 text-center">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="text-start">
+                      <span class="fs-4 font-weight-bold text-dark d-block">21:00</span>
+                      <span class="text-muted small">JFK New York</span>
+                    </div>
+                    <div class="flex-grow-1 px-4">
+                      <span class="text-muted small fw-semibold d-block mb-1">9h 30m &bull; 1 Stop (DOH)</span>
+                      <div class="flight-route-line">
+                        <i class="bi bi-airplane-fill plane-icon"></i>
+                      </div>
+                      <span class="text-success small"><i class="bi bi-stars"></i> Ultra Modern Fleet</span>
+                    </div>
+                    <div class="text-end">
+                      <span class="fs-4 font-weight-bold text-dark d-block">12:30</span>
+                      <span class="text-muted small">CDG Paris (+1 day)</span>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-center gap-3 mt-2 text-muted small">
+                    <span><i class="bi bi-wifi"></i> Oryx One</span>
+                    <span><i class="bi bi-cup-hot"></i> Caviar Service</span>
+                    <span><i class="bi bi-briefcase"></i> 35kg Total</span>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-3 text-md-end border-start-md ps-md-4">
+                  <span class="fs-2 font-weight-bold text-dark d-block">$980</span>
+                  <span class="text-muted small d-block mb-3">Roundtrip per traveler</span>
+                  <button class="btn btn-primary-custom w-100 py-2" onclick="bookFlight('Qatar Airways (JFK &rarr; CDG)', 980, 'QR-702', 'Boeing 787-9 Dreamliner', 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=80')">
+                    Select Flight <i class="bi bi-arrow-right ms-1"></i>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Flight Perks Section -->
+  <section class="py-5 bg-white border-top">
+    <div class="container">
+      <div class="row g-4 text-center">
+        <div class="col-12 col-md-4">
+          <div class="p-3">
+            <div class="brand-icon-circle mx-auto mb-3" style="width: 52px; height: 52px; font-size: 1.4rem;">
+              <i class="bi bi-arrow-repeat"></i>
+            </div>
+            <h5 class="font-weight-bold mb-2">24h Free Cancellation</h5>
+            <p class="text-muted small mb-0">Plans changed? Cancel or adjust your flight reservation with no airline change fees within 24 hours of booking.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="brand-icon-circle mx-auto mb-3" style="width: 52px; height: 52px; font-size: 1.4rem;">
+            <i class="bi bi-currency-dollar"></i>
+          </div>
+          <h5 class="font-weight-bold mb-2">Best Airfare Promise</h5>
+          <p class="text-muted small mb-0">We negotiate exclusive consolidated consolidator rates directly with premier global airline alliances.</p>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="brand-icon-circle mx-auto mb-3" style="width: 52px; height: 52px; font-size: 1.4rem;">
+            <i class="bi bi-headset"></i>
+          </div>
+          <h5 class="font-weight-bold mb-2">Dedicated Flight Concierge</h5>
+          <p class="text-muted small mb-0">Never wait on hold. Our VIP aviation desk handles seat selections, special meal requests, and transit lounge passes.</p>
         </div>
       </div>
     </div>
@@ -255,6 +583,12 @@
             <span>TERRA</span>
           </div>
           <p class="text-white-50 pe-lg-4 mb-4">Terra is an international luxury travel platform curating premier boutique accommodations, scenic flight routes, and immersive cultural expeditions.</p>
+          <div class="d-flex gap-3 text-white-50 fs-5">
+            <a href="#" class="text-white-50 text-decoration-none"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="text-white-50 text-decoration-none"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="text-white-50 text-decoration-none"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-white-50 text-decoration-none"><i class="bi bi-linkedin"></i></a>
+          </div>
         </div>
         <div class="col-6 col-md-4 col-lg-2">
           <h5 class="footer-heading">Navigation</h5>
@@ -286,7 +620,12 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <div>&copy; 2026 Terra Travel Inc. All rights reserved.</div>
+        <div>&copy; 2026 Terra Travel Inc. All rights reserved. International Air Transport Association Member.</div>
+        <div class="d-flex gap-4">
+          <a href="../company/faq.html">Privacy Policy</a>
+          <a href="../company/faq.html">Terms of Service</a>
+          <a href="../company/faq.html">Airline Conditions of Carriage</a>
+        </div>
       </div>
     </div>
   </footer>
@@ -294,26 +633,115 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../../assets/js/main.js"></script>
   <script>
-    function bookFlight(title, price) {
+    function bookFlight(title, price, flightNumber, aircraft, imgUrl) {
+      const fromCity = document.getElementById('flightFromInput').value || 'New York (JFK)';
+      const toCity = document.getElementById('flightToInput').value || 'Paris (CDG)';
+      const travelDate = document.getElementById('flightDepDate').value || '2026-11-15';
+      const cabinClass = document.getElementById('cabinClassSelect').value;
+
       const bookingDraft = {
         type: 'flight',
-        id: 'flight-' + Date.now(),
+        id: 'flt-' + Date.now(),
         title: title,
-        location: 'International Air Transit',
-        image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80',
+        location: `${fromCity} to ${toCity}`,
+        dates: `${travelDate} (Roundtrip)`,
+        image: imgUrl || 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80',
         basePrice: price,
         price: price,
         rating: 4.9,
-        guests: 1
+        guests: 1,
+        details: `${flightNumber} &bull; ${aircraft} &bull; ${cabinClass.toUpperCase()}`
       };
+
       localStorage.setItem('activeBookingDraft', JSON.stringify(bookingDraft));
-      window.location.href = '../booking/booking-details.html';
+      if (typeof showToast === 'function') {
+        showToast('Flight Selected', `${title} reserved in booking draft!`, 'success');
+      }
+      setTimeout(() => {
+        window.location.href = '../booking/booking-details.html';
+      }, 350);
     }
 
-    function filterFlights() {
-      alert('Flight search updated for ' + document.getElementById('flightFrom').value + ' to ' + document.getElementById('flightTo').value);
+    function setRoute(from, to) {
+      document.getElementById('flightFromInput').value = from;
+      document.getElementById('flightToInput').value = to;
+      applyFlightFilter();
+    }
+
+    function applyFlightFilter() {
+      const from = document.getElementById('flightFromInput').value;
+      const to = document.getElementById('flightToInput').value;
+      if (typeof showToast === 'function') {
+        showToast('Searching Flights', `Updating routes between ${from} and ${to}...`, 'info');
+      }
+      filterAirlineCards();
+    }
+
+    function filterAirlineCards() {
+      const selectedAirlines = Array.from(document.querySelectorAll('.airline-check:checked')).map(cb => cb.value);
+      const allowDirect = document.getElementById('stopDirect').checked;
+      const allow1Stop = document.getElementById('stop1').checked;
+      const allow2Stops = document.getElementById('stop2').checked;
+
+      const cards = document.querySelectorAll('.flight-item');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const airline = card.getAttribute('data-airline');
+        const stops = card.getAttribute('data-stops');
+
+        const airlineMatches = selectedAirlines.includes(airline);
+        let stopsMatch = false;
+        if (stops === 'direct' && allowDirect) stopsMatch = true;
+        if (stops === '1stop' && allow1Stop) stopsMatch = true;
+        if (stops === '2stops' && allow2Stops) stopsMatch = true;
+
+        if (airlineMatches && stopsMatch) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      const countEl = document.getElementById('flightResultsCount');
+      if (countEl) {
+        countEl.textContent = `(Showing ${visibleCount} curated options)`;
+      }
+    }
+
+    function sortFlightCards(mode) {
+      const container = document.getElementById('flightsContainer');
+      const cards = Array.from(container.querySelectorAll('.flight-item'));
+
+      cards.sort((a, b) => {
+        const priceA = parseInt(a.getAttribute('data-price')) || 0;
+        const priceB = parseInt(b.getAttribute('data-price')) || 0;
+        const durA = parseInt(a.getAttribute('data-duration')) || 0;
+        const durB = parseInt(b.getAttribute('data-duration')) || 0;
+
+        if (mode === 'cheapest') return priceA - priceB;
+        if (mode === 'fastest') return durA - durB;
+        if (mode === 'departure') return durB - durA;
+        return 0;
+      });
+
+      cards.forEach(c => container.appendChild(c));
+      if (typeof showToast === 'function') {
+        showToast('Sorted', `Flight list reordered by ${mode}.`, 'info');
+      }
+    }
+
+    function resetFilters() {
+      document.querySelectorAll('.airline-check').forEach(cb => cb.checked = true);
+      document.getElementById('stopDirect').checked = true;
+      document.getElementById('stop1').checked = true;
+      document.getElementById('stop2').checked = false;
+      filterAirlineCards();
+      if (typeof showToast === 'function') {
+        showToast('Filters Cleared', 'Displaying all available flights.', 'info');
+      }
     }
   </script>
 </body>
 </html>
-
