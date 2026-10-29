@@ -403,6 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations();
   initWishlistButtons();
   setupSmoothScroll();
+  if (window.I18N && window.I18N.apply) window.I18N.apply();
 });
 
 // Theme System Engine
