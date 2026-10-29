@@ -1606,6 +1606,7 @@ function setLanguage(lang, isInitial = false) {
 // Global I18N Object & helper for main.js and search.js integration
 if (typeof window !== 'undefined') {
   window.setLanguage = setLanguage;
+  window.applyTranslations = (lang) => setLanguage(lang, true);
   window.I18N = {
     get: getCurrentLanguage,
     set: setLanguage,

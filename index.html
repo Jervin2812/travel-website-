@@ -3,6 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Cache Invalidation & Port Share Sync -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <script>
+    (function() {
+      try {
+        var t = localStorage.getItem('terraTheme') || 'light';
+        if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+        var l = localStorage.getItem('terraLang') || 'en';
+        if (l === 'ar') document.documentElement.setAttribute('dir', 'rtl');
+      } catch(e) {}
+    })();
+  </script>
   <title>TERRA — Luxury Worldwide Travel, Stays & Expeditions</title>
   <meta name="description" content="Discover handpicked 5-star accommodations, international flights, and bespoke cultural expeditions worldwide with TERRA.">
   
@@ -16,8 +30,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   
   <!-- Custom Stylesheets -->
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/responsive.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=2.3.0">
+  <link rel="stylesheet" href="assets/css/responsive.css?v=2.3.0">
 </head>
 <body>
 
@@ -1065,7 +1079,7 @@
 
   <!-- Bootstrap 5 JS Bundle & Custom Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/i18n.js"></script>
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/i18n.js?v=2.3.0"></script>
+  <script src="assets/js/main.js?v=2.3.0"></script>
 </body>
 </html>

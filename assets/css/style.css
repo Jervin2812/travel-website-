@@ -2057,3 +2057,79 @@ img {
 [data-theme="dark"] .testimonial-quote-icon {
   color: rgba(56, 189, 248, 0.35) !important;
 }
+
+/* ==========================================================================
+   Dark Theme Pricing, Amounts, and Financial Data (Vivid & High Contrast)
+   ========================================================================== */
+[data-theme="dark"] .card-price,
+[data-theme="dark"] .card-price-row .card-price {
+  color: #38bdf8 !important; /* Radiant sky blue for dark mode */
+}
+
+[data-theme="dark"] .card-price span {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .dest-price-tag .price,
+[data-theme="dark"] .price,
+[data-theme="dark"] .amount,
+[data-theme="dark"] .total-price {
+  color: #38bdf8 !important;
+}
+
+[data-theme="dark"] .dest-price-tag .label {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .dest-badge {
+  background: rgba(15, 23, 42, 0.85) !important;
+  color: #f8fafc !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+[data-theme="dark"] .price-item-row {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .price-item-row.total-row {
+  color: #38bdf8 !important;
+  border-top-color: #334155 !important;
+}
+
+[data-theme="dark"] .price-item-row span {
+  color: #f1f5f9 !important;
+}
+
+[data-theme="dark"] .price-item-row.total-row span {
+  color: #38bdf8 !important;
+}
+
+[data-theme="dark"] #destPriceDisplay,
+[data-theme="dark"] #destSubtotal,
+[data-theme="dark"] #destTotal,
+[data-theme="dark"] #hotelCardPrice,
+[data-theme="dark"] #roomPrice1,
+[data-theme="dark"] #pkgPriceDisplay,
+[data-theme="dark"] #summaryBasePrice,
+[data-theme="dark"] #summaryTaxes,
+[data-theme="dark"] #summaryTotal,
+[data-theme="dark"] #checkoutSubtotal,
+[data-theme="dark"] #checkoutTaxes,
+[data-theme="dark"] #checkoutFinalTotal,
+[data-theme="dark"] #voucherTotal,
+[data-theme="dark"] #modalVoucherPaid,
+[data-theme="dark"] [id*="Price"],
+[data-theme="dark"] [id*="price"],
+[data-theme="dark"] [id*="Total"],
+[data-theme="dark"] [id*="total"] {
+  color: #38bdf8 !important;
+}
+
+[data-theme="dark"] #discountAmount {
+  color: #34d399 !important;
+}
+
+[data-theme="dark"] .flight-card .fs-2 {
+  color: #38bdf8 !important;
+}
+

@@ -410,6 +410,13 @@ document.addEventListener('DOMContentLoaded', () => {
 function initThemeSystem() {
   const saved = localStorage.getItem('terraTheme') || 'light';
   document.documentElement.setAttribute('data-theme', saved);
+  const toggleBtn = document.getElementById('themeToggleBtn');
+  if (toggleBtn) {
+    const icon = toggleBtn.querySelector('i');
+    if (icon) {
+      icon.className = `bi ${saved === 'dark' ? 'bi-sun-fill' : 'bi-moon-stars'}`;
+    }
+  }
 }
 
 function toggleTheme() {
@@ -430,6 +437,22 @@ function toggleTheme() {
     showToast('Theme Changed', `Switched to ${next === 'dark' ? 'Dark' : 'Light'} Mode`, 'info');
   }
 }
+
+// Real-time synchronization across shared port tabs and windows
+window.addEventListener('storage', (e) => {
+  if (e.key === 'terraTheme') {
+    const newTheme = e.newValue || 'light';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    const toggleBtn = document.getElementById('themeToggleBtn');
+    if (toggleBtn) {
+      const icon = toggleBtn.querySelector('i');
+      if (icon) icon.className = `bi ${newTheme === 'dark' ? 'bi-sun-fill' : 'bi-moon-stars'}`;
+    }
+  }
+  if (e.key === 'terraLang' && typeof window.applyTranslations === 'function') {
+    window.applyTranslations(e.newValue || 'en');
+  }
+});
 
 // Calculate base relative path for links & assets
 function getBasePath() {
