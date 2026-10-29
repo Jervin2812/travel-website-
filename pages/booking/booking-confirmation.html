@@ -215,33 +215,29 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../../assets/js/main.js"></script>
+  <script src="../../assets/js/i18n.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      const latest = JSON.parse(localStorage.getItem('latestConfirmedBooking') || '{}');
       const activeDraft = JSON.parse(localStorage.getItem('activeBookingDraft') || '{}');
       const leadInfo = JSON.parse(localStorage.getItem('activeTravelerInfo') || '{}');
-      const confirmedRef = localStorage.getItem('lastConfirmedRef') || ('TRV-' + Math.floor(100000 + Math.random() * 900000));
+      const confirmedRef = latest.reference || localStorage.getItem('lastConfirmedRef') || ('TRV-' + Math.floor(100000 + Math.random() * 900000));
 
-      if (activeDraft.title) {
-        document.getElementById('voucherTitle').textContent = activeDraft.title;
-      }
-      if (activeDraft.location) {
-        document.getElementById('voucherLocation').textContent = activeDraft.location;
-      }
-      if (activeDraft.dates) {
-        document.getElementById('voucherDates').textContent = activeDraft.dates;
-      }
-      if (activeDraft.guests) {
-        document.getElementById('voucherGuests').textContent = `${activeDraft.guests} Traveler${activeDraft.guests === 1 ? '' : 's'}`;
-      }
-      if (activeDraft.price) {
-        const taxes = Math.round(activeDraft.price * 0.06);
-        document.getElementById('voucherTotal').textContent = `$${(activeDraft.price + taxes).toLocaleString()}`;
-      }
+      const title = latest.itemTitle || activeDraft.title || 'Bali Spiritual & Island Escape';
+      const location = latest.itemLocation || activeDraft.location || 'Bali, Indonesia';
+      const dates = latest.travelDates || activeDraft.dates || 'Nov 15 - Nov 21, 2026';
+      const traveler = latest.travelerName || (leadInfo.firstName ? `${leadInfo.firstName} ${leadInfo.lastName}` : 'Alex Morgan');
+      const total = latest.totalPaid ? `$${latest.totalPaid.toLocaleString()}` : (activeDraft.price ? `$${(activeDraft.price + Math.round(activeDraft.price * 0.1) + 45).toLocaleString()}` : '$2,730');
 
-      if (leadInfo.firstName) {
-        document.getElementById('voucherTraveler').textContent = `${leadInfo.firstName} ${leadInfo.lastName}`;
+      if (document.getElementById('voucherTitle')) document.getElementById('voucherTitle').textContent = title;
+      if (document.getElementById('voucherLocation')) document.getElementById('voucherLocation').textContent = location;
+      if (document.getElementById('voucherDates')) document.getElementById('voucherDates').textContent = dates;
+      if (document.getElementById('voucherTraveler')) document.getElementById('voucherTraveler').textContent = traveler;
+      if (document.getElementById('voucherTotal')) document.getElementById('voucherTotal').textContent = total;
+      if (document.getElementById('voucherRef')) document.getElementById('voucherRef').textContent = confirmedRef;
+      if (document.getElementById('voucherGuests')) {
+        document.getElementById('voucherGuests').textContent = `${activeDraft.guests || 2} Guests`;
       }
-      document.getElementById('voucherRef').textContent = confirmedRef;
     });
 
     function copyRef() {

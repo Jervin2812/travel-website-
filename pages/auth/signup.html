@@ -207,9 +207,16 @@
     <!-- Right Interactive Form Column -->
     <div class="auth-interactive-column">
       <div class="mb-3">
-        <a href="../../index.html" class="text-muted small text-decoration-none d-inline-flex align-items-center gap-1 mb-3">
-          <i class="bi bi-arrow-left"></i> Return to Homepage
-        </a>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <a href="../../index.html" class="text-muted small text-decoration-none d-inline-flex align-items-center gap-1">
+            <i class="bi bi-arrow-left"></i> Return to Homepage
+          </a>
+          <div class="d-flex align-items-center gap-2">
+            <button class="theme-toggle-btn" id="authThemeToggleBtn" title="Toggle Light / Dark Mode" type="button">
+              <i class="bi bi-moon-stars"></i>
+            </button>
+          </div>
+        </div>
         <h1 class="display-6 font-weight-bold text-dark mb-1">Join Terra</h1>
         <p class="text-muted small mb-0">Create your complimentary explorer account in under 30 seconds.</p>
       </div>
@@ -297,9 +304,24 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../assets/js/i18n.js"></script>
   <script src="../../assets/js/main.js"></script>
   <script src="../../assets/js/auth-demo.js"></script>
   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('terraTheme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      const authThemeBtn = document.getElementById('authThemeToggleBtn');
+      if (authThemeBtn) {
+        authThemeBtn.querySelector('i').className = `bi ${savedTheme === 'dark' ? 'bi-sun-fill' : 'bi-moon-stars'}`;
+        authThemeBtn.addEventListener('click', () => {
+          toggleTheme();
+          const nowTheme = document.documentElement.getAttribute('data-theme');
+          authThemeBtn.querySelector('i').className = `bi ${nowTheme === 'dark' ? 'bi-sun-fill' : 'bi-moon-stars'}`;
+        });
+      }
+    });
+
     function updatePasswordMeter(val) {
       const fill = document.getElementById('pwdStrengthFill');
       const label = document.getElementById('pwdStrengthLabel');

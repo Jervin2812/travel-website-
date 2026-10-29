@@ -9,6 +9,16 @@
  * - Global State & Data Store
  */
 
+// Immediate theme initialization to prevent flash of unstyled content
+(function() {
+  try {
+    const saved = localStorage.getItem('terraTheme') || 'light';
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch (e) {}
+})();
+
 // Global Travel Data Store with Multi-Image Collections
 const TRAVEL_DATA = {
   destinations: [
@@ -373,8 +383,17 @@ function findPackageData(id) {
   return TRAVEL_DATA.packages.find(p => p.id === id || p.aliasId === id) || TRAVEL_DATA.packages[0];
 }
 
+// Auto-load i18n Engine if not already loaded in page
+if (typeof setLanguage !== 'function') {
+  const scriptTag = document.createElement('script');
+  const basePrefix = getBasePath();
+  scriptTag.src = `${basePrefix}assets/js/i18n.js`;
+  document.head.appendChild(scriptTag);
+}
+
 // Initialize All Systems on DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
+  initThemeSystem();
   setupNavbar();
   renderUserHeaderState();
   setupSearchTabs();
@@ -385,6 +404,31 @@ document.addEventListener('DOMContentLoaded', () => {
   initWishlistButtons();
   setupSmoothScroll();
 });
+
+// Theme System Engine
+function initThemeSystem() {
+  const saved = localStorage.getItem('terraTheme') || 'light';
+  document.documentElement.setAttribute('data-theme', saved);
+}
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || 'light';
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('terraTheme', next);
+
+  const toggleBtn = document.getElementById('themeToggleBtn');
+  if (toggleBtn) {
+    const icon = toggleBtn.querySelector('i');
+    if (icon) {
+      icon.className = `bi ${next === 'dark' ? 'bi-sun-fill' : 'bi-moon-stars'}`;
+    }
+  }
+
+  if (typeof showToast === 'function') {
+    showToast('Theme Changed', `Switched to ${next === 'dark' ? 'Dark' : 'Light'} Mode`, 'info');
+  }
+}
 
 // Calculate base relative path for links & assets
 function getBasePath() {
@@ -411,16 +455,40 @@ function setupNavbar() {
   });
 }
 
-// Render Header Authentication / User Avatar
+// Render Header Authentication / User Avatar + Theme Toggle & Language Dropdown
 function renderUserHeaderState() {
   const authNavContainer = document.getElementById('navbarAuthButtons');
   if (!authNavContainer) return;
 
   const base = getBasePath();
   const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+  const currentLang = localStorage.getItem('terraLang') || 'en';
+  const currentTheme = localStorage.getItem('terraTheme') || 'light';
+  const langLabels = { en: 'EN', ta: 'தமிழ்', es: 'ES', fr: 'FR' };
 
+  const themeBtnHtml = `
+    <button class="theme-toggle-btn" id="themeToggleBtn" title="Toggle Light / Dark Mode" aria-label="Toggle theme">
+      <i class="bi ${currentTheme === 'dark' ? 'bi-sun-fill' : 'bi-moon-stars'}"></i>
+    </button>
+  `;
+
+  const langDropdownHtml = `
+    <div class="dropdown d-inline-block">
+      <button class="lang-selector-btn dropdown-toggle border-0" type="button" id="langDropdownBtn" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-globe2 text-primary"></i> <span id="currentLangLabel">${langLabels[currentLang] || 'EN'}</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end shadow border-0 py-2 rounded-3" aria-labelledby="langDropdownBtn">
+        <li><button class="dropdown-item py-2" onclick="setLanguage('en')"><span class="badge bg-light text-dark me-2">EN</span> English</button></li>
+        <li><button class="dropdown-item py-2" onclick="setLanguage('ta')"><span class="badge bg-light text-dark me-2">TA</span> தமிழ் (Tamil)</button></li>
+        <li><button class="dropdown-item py-2" onclick="setLanguage('es')"><span class="badge bg-light text-dark me-2">ES</span> Español (Spanish)</button></li>
+        <li><button class="dropdown-item py-2" onclick="setLanguage('fr')"><span class="badge bg-light text-dark me-2">FR</span> Français (French)</button></li>
+      </ul>
+    </div>
+  `;
+
+  let userActionHtml = '';
   if (currentUser) {
-    authNavContainer.innerHTML = `
+    userActionHtml = `
       <div class="dropdown">
         <button class="btn user-avatar-pill dropdown-toggle border-0" type="button" id="userMenuBtn" data-bs-toggle="dropdown" aria-expanded="false">
           <img src="${currentUser.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80'}" alt="${currentUser.name}">
@@ -436,10 +504,23 @@ function renderUserHeaderState() {
       </div>
     `;
   } else {
-    authNavContainer.innerHTML = `
-      <a href="${base}pages/auth/login.html" class="btn btn-outline-custom">Log In</a>
-      <a href="${base}pages/auth/signup.html" class="btn btn-primary-custom">Sign Up</a>
+    userActionHtml = `
+      <a href="${base}pages/auth/login.html" class="btn btn-outline-custom" data-i18n="nav_login">Log In</a>
+      <a href="${base}pages/auth/signup.html" class="btn btn-primary-custom" data-i18n="nav_signup">Sign Up</a>
     `;
+  }
+
+  authNavContainer.className = 'd-flex align-items-center gap-2 mt-3 mt-lg-0';
+  authNavContainer.innerHTML = `
+    ${langDropdownHtml}
+    ${themeBtnHtml}
+    ${userActionHtml}
+  `;
+
+  // Attach theme toggle listener
+  const toggleBtn = document.getElementById('themeToggleBtn');
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', toggleTheme);
   }
 }
 

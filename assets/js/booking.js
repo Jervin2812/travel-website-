@@ -36,43 +36,67 @@ function getActiveBookingDraft() {
 // -------------------------------------------------------------
 function initBookingStep() {
   const form = document.getElementById('travelerInfoForm');
-  const summaryContainer = document.getElementById('bookingItemSummary');
-  if (!form || !summaryContainer) return;
+  if (!form) return;
 
   const draft = getActiveBookingDraft();
-  const tax = Math.round(draft.price * 0.1);
-  const total = draft.price + 45 + tax;
+  const basePrice = draft.price || 840;
+  const tax = Math.round(basePrice * 0.1);
+  const total = basePrice + 45 + tax;
 
-  // Populate Summary
-  summaryContainer.innerHTML = `
-    <div class="d-flex gap-3 align-items-center mb-3 pb-3 border-bottom">
-      <img src="${draft.image}" alt="${draft.title}" class="rounded-3 shadow-xs" style="width: 85px; height: 85px; object-fit: cover;">
-      <div>
-        <span class="badge bg-primary-subtle text-primary mb-1">${(draft.type || 'EXPERIENCE').toUpperCase()}</span>
-        <h6 class="mb-1 font-weight-bold text-dark">${draft.title}</h6>
-        <p class="small text-muted mb-0"><i class="bi bi-geo-alt text-danger"></i> ${draft.location || 'Featured Luxury Stay'}</p>
+  // 1. Populate full container if present
+  const summaryContainer = document.getElementById('bookingItemSummary');
+  if (summaryContainer) {
+    summaryContainer.innerHTML = `
+      <div class="d-flex gap-3 align-items-center mb-3 pb-3 border-bottom">
+        <img src="${draft.image}" alt="${draft.title}" class="rounded-3 shadow-xs" style="width: 85px; height: 85px; object-fit: cover;">
+        <div>
+          <span class="badge bg-primary-subtle text-primary mb-1">${(draft.type || 'EXPERIENCE').toUpperCase()}</span>
+          <h6 class="mb-1 font-weight-bold text-dark">${draft.title}</h6>
+          <p class="small text-muted mb-0"><i class="bi bi-geo-alt text-danger"></i> ${draft.location || 'Featured Luxury Stay'}</p>
+        </div>
       </div>
-    </div>
-    <div class="price-item-row">
-      <span>Base Rate (${draft.nights || 3} nights x ${draft.guests || 2} guests)</span>
-      <span>$${draft.price}</span>
-    </div>
-    <div class="price-item-row">
-      <span>Service & Cleanliness Hospitality</span>
-      <span>$45</span>
-    </div>
-    <div class="price-item-row">
-      <span>Taxes & Tourism Permits (10%)</span>
-      <span>$${tax}</span>
-    </div>
-    <div class="price-item-row total-row">
-      <span>Total Amount</span>
-      <span class="text-primary">$${total}</span>
-    </div>
-    <div class="mt-3 p-2 bg-light rounded text-center small text-muted">
-      <i class="bi bi-shield-check text-success me-1"></i> Best Rate Guaranteed &bull; Free Cancellation
-    </div>
-  `;
+      <div class="price-item-row">
+        <span>Base Rate (${draft.nights || 3} nights x ${draft.guests || 2} guests)</span>
+        <span>$${basePrice.toLocaleString()}</span>
+      </div>
+      <div class="price-item-row">
+        <span>Service & Hospitality</span>
+        <span>$45</span>
+      </div>
+      <div class="price-item-row">
+        <span>Taxes & Tourism Permits (10%)</span>
+        <span>$${tax.toLocaleString()}</span>
+      </div>
+      <div class="price-item-row total-row">
+        <span>Total Amount</span>
+        <span class="text-primary">$${total.toLocaleString()}</span>
+      </div>
+      <div class="mt-3 p-2 bg-light rounded text-center small text-muted">
+        <i class="bi bi-shield-check text-success me-1"></i> Best Rate Guaranteed &bull; Free Cancellation
+      </div>
+    `;
+  }
+
+  // 2. Populate individual sidebar element IDs if present (booking-details.html)
+  const summaryImg = document.getElementById('summaryImg');
+  const summaryTitle = document.getElementById('summaryTitle');
+  const summaryLocation = document.getElementById('summaryLocation');
+  const summaryRating = document.getElementById('summaryRating');
+  const summaryDates = document.getElementById('summaryDates');
+  const summaryGuests = document.getElementById('summaryGuests');
+  const summaryBasePrice = document.getElementById('summaryBasePrice');
+  const summaryTaxes = document.getElementById('summaryTaxes');
+  const summaryTotal = document.getElementById('summaryTotal');
+
+  if (summaryImg && draft.image) summaryImg.src = draft.image;
+  if (summaryTitle && draft.title) summaryTitle.textContent = draft.title;
+  if (summaryLocation && draft.location) summaryLocation.textContent = draft.location;
+  if (summaryRating && draft.rating) summaryRating.textContent = draft.rating;
+  if (summaryDates && draft.dates) summaryDates.textContent = draft.dates;
+  if (summaryGuests) summaryGuests.textContent = `${draft.guests || 2} Guests`;
+  if (summaryBasePrice) summaryBasePrice.textContent = `$${basePrice.toLocaleString()}`;
+  if (summaryTaxes) summaryTaxes.textContent = `$${(tax + 45).toLocaleString()}`;
+  if (summaryTotal) summaryTotal.textContent = `$${total.toLocaleString()}`;
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -83,13 +107,20 @@ function initBookingStep() {
       return;
     }
 
+    const firstName = (document.getElementById('firstName')?.value || 'Alex').trim();
+    const lastName = (document.getElementById('lastName')?.value || 'Morgan').trim();
+    const email = (document.getElementById('email')?.value || 'alex.morgan@example.com').trim();
+    const phone = (document.getElementById('phone')?.value || '+1 (555) 349-2810').trim();
+    const specialRequests = document.getElementById('specialRequests')?.value.trim() || '';
+    const dates = document.getElementById('travelDates')?.value || draft.dates || 'Nov 12 - Nov 18, 2026';
+
     const travelerData = {
-      firstName: document.getElementById('firstName').value.trim(),
-      lastName: document.getElementById('lastName').value.trim(),
-      email: document.getElementById('email').value.trim(),
-      phone: document.getElementById('phone').value.trim(),
-      specialRequests: document.getElementById('specialRequests') ? document.getElementById('specialRequests').value.trim() : '',
-      dates: document.getElementById('travelDates') ? document.getElementById('travelDates').value : 'Nov 12 - Nov 15, 2026',
+      firstName,
+      lastName,
+      email,
+      phone,
+      specialRequests,
+      dates,
       totalCost: total
     };
 
@@ -98,6 +129,8 @@ function initBookingStep() {
       traveler: travelerData
     };
 
+    localStorage.setItem('activeTravelerInfo', JSON.stringify(travelerData));
+    localStorage.setItem('activeBookingDraft', JSON.stringify({ ...draft, dates, price: basePrice }));
     localStorage.setItem('activeBookingPayload', JSON.stringify(bookingPayload));
     window.location.href = 'checkout.html';
   });
@@ -108,77 +141,57 @@ function initBookingStep() {
 // -------------------------------------------------------------
 function initCheckoutStep() {
   const checkoutForm = document.getElementById('checkoutPaymentForm');
-  const checkoutSummary = document.getElementById('checkoutSummaryBox');
-  if (!checkoutForm || !checkoutSummary) return;
+  if (!checkoutForm) return;
 
   const payload = JSON.parse(localStorage.getItem('activeBookingPayload') || 'null') || {
     ...getActiveBookingDraft(),
     traveler: { firstName: "Alex", lastName: "Morgan", email: "alex.morgan@example.com", totalCost: 969, dates: "Nov 15 - Nov 21, 2026" }
   };
 
-  checkoutSummary.innerHTML = `
-    <div class="d-flex gap-3 align-items-center mb-3 pb-3 border-bottom">
-      <img src="${payload.image}" alt="${payload.title}" class="rounded-3 shadow-xs" style="width: 80px; height: 80px; object-fit: cover;">
-      <div>
-        <h6 class="mb-1 font-weight-bold">${payload.title}</h6>
-        <p class="small text-muted mb-0">Guest: ${payload.traveler.firstName} ${payload.traveler.lastName}</p>
-        <span class="badge bg-light text-dark border mt-1">${payload.traveler.dates}</span>
+  const checkoutSummary = document.getElementById('checkoutSummaryBox');
+  if (checkoutSummary) {
+    checkoutSummary.innerHTML = `
+      <div class="d-flex gap-3 align-items-center mb-3 pb-3 border-bottom">
+        <img src="${payload.image}" alt="${payload.title}" class="rounded-3 shadow-xs" style="width: 80px; height: 80px; object-fit: cover;">
+        <div>
+          <h6 class="mb-1 font-weight-bold">${payload.title}</h6>
+          <p class="small text-muted mb-0">Guest: ${payload.traveler.firstName} ${payload.traveler.lastName}</p>
+          <span class="badge bg-light text-dark border mt-1">${payload.traveler.dates}</span>
+        </div>
       </div>
-    </div>
-    <div class="price-item-row">
-      <span>Subtotal</span>
-      <span>$${payload.traveler.totalCost}</span>
-    </div>
-    <div class="price-item-row text-success" id="promoDiscountRow" style="display: none;">
-      <span>Promo Code Discount (20% OFF)</span>
-      <span id="promoDiscountVal">-$0</span>
-    </div>
-    <div class="price-item-row total-row">
-      <span>Amount to Pay</span>
-      <span class="text-primary" id="checkoutFinalTotal">$${payload.traveler.totalCost}</span>
-    </div>
-  `;
-
-  // Promo Code handling
-  const promoBtn = document.getElementById('applyPromoBtn');
-  const promoInput = document.getElementById('promoCodeInput');
-  let discount = 0;
-
-  if (promoBtn && promoInput) {
-    promoBtn.addEventListener('click', () => {
-      const code = promoInput.value.trim().toUpperCase();
-      const alertMsg = document.getElementById('promoAlert');
-      if (code === 'TRAVEL20' || code === 'TERRA20') {
-        discount = Math.round(payload.traveler.totalCost * 0.2);
-        document.getElementById('promoDiscountRow').style.display = 'flex';
-        document.getElementById('promoDiscountVal').textContent = `-$${discount}`;
-        document.getElementById('checkoutFinalTotal').textContent = `$${payload.traveler.totalCost - discount}`;
-        if (alertMsg) alertMsg.innerHTML = '<span class="text-success small fw-bold"><i class="bi bi-check-circle-fill me-1"></i> Coupon "TRAVEL20" applied! 20% discount saved.</span>';
-      } else {
-        if (alertMsg) alertMsg.innerHTML = '<span class="text-danger small"><i class="bi bi-exclamation-circle-fill me-1"></i> Invalid coupon code. Try entering "TRAVEL20".</span>';
-      }
-    });
+      <div class="price-item-row">
+        <span>Subtotal</span>
+        <span>$${payload.traveler.totalCost.toLocaleString()}</span>
+      </div>
+      <div class="price-item-row text-success" id="promoDiscountRow" style="display: none;">
+        <span>Promo Code Discount (20% OFF)</span>
+        <span id="promoDiscountVal">-$0</span>
+      </div>
+      <div class="price-item-row total-row">
+        <span>Amount to Pay</span>
+        <span class="text-primary" id="checkoutFinalTotal">$${payload.traveler.totalCost.toLocaleString()}</span>
+      </div>
+    `;
   }
 
-  // Payment method selection cards
-  const methodCards = document.querySelectorAll('.payment-method-card');
-  methodCards.forEach(card => {
-    card.addEventListener('click', () => {
-      methodCards.forEach(c => c.classList.remove('selected'));
-      card.classList.add('selected');
-      const radio = card.querySelector('input[type="radio"]');
-      if (radio) radio.checked = true;
-    });
-  });
+  // Update order summary values in checkout.html if IDs exist
+  const checkoutSubtotal = document.getElementById('checkoutSubtotal');
+  const checkoutFinalTotal = document.getElementById('checkoutFinalTotal');
+  if (checkoutSubtotal && payload.traveler?.totalCost) {
+    checkoutSubtotal.textContent = `$${payload.traveler.totalCost.toLocaleString()}`;
+  }
+  if (checkoutFinalTotal && payload.traveler?.totalCost) {
+    checkoutFinalTotal.textContent = `$${payload.traveler.totalCost.toLocaleString()}`;
+  }
 
   // Live Card Preview formatting
   const cardHolderInput = document.getElementById('cardHolder');
   const cardNumberInput = document.getElementById('cardNumber');
   const cardExpInput = document.getElementById('cardExp');
 
-  const previewHolder = document.getElementById('previewCardHolder');
-  const previewNumber = document.getElementById('previewCardNumber');
-  const previewExp = document.getElementById('previewCardExp');
+  const previewHolder = document.getElementById('previewCardHolder') || document.getElementById('cardPreviewName');
+  const previewNumber = document.getElementById('previewCardNumber') || document.getElementById('cardPreviewNumber');
+  const previewExp = document.getElementById('previewCardExp') || document.getElementById('cardPreviewExp');
 
   if (cardHolderInput && previewHolder) {
     cardHolderInput.addEventListener('input', (e) => {
@@ -188,7 +201,10 @@ function initCheckoutStep() {
 
   if (cardNumberInput && previewNumber) {
     cardNumberInput.addEventListener('input', (e) => {
-      previewNumber.textContent = e.target.value || '•••• •••• •••• 4242';
+      let val = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+      let formatted = val.match(/.{1,4}/g)?.join(' ') || val;
+      if (formatted.length <= 19) e.target.value = formatted;
+      previewNumber.textContent = formatted || '•••• •••• •••• 4242';
     });
   }
 
@@ -200,6 +216,15 @@ function initCheckoutStep() {
 
   checkoutForm.addEventListener('submit', (e) => {
     e.preventDefault();
+
+    // Check discount if applied
+    const discountEl = document.getElementById('discountAmount');
+    let discountVal = 0;
+    if (discountEl && !document.getElementById('discountRow')?.classList.contains('d-none')) {
+      discountVal = parseInt(discountEl.textContent.replace(/[^0-9]/g, '')) || 0;
+    }
+
+    const totalCost = payload.traveler.totalCost - discountVal;
 
     // Generate unique random booking reference
     const bookingRef = 'TRV-' + Math.floor(100000 + Math.random() * 900000);
@@ -213,7 +238,7 @@ function initCheckoutStep() {
       travelerName: `${payload.traveler.firstName} ${payload.traveler.lastName}`,
       travelerEmail: payload.traveler.email,
       travelDates: payload.traveler.dates || 'Nov 12 - Nov 18, 2026',
-      totalPaid: payload.traveler.totalCost - discount
+      totalPaid: totalCost
     };
 
     // Save to user_bookings in localStorage
@@ -222,6 +247,7 @@ function initCheckoutStep() {
     localStorage.setItem('user_bookings', JSON.stringify(existingBookings));
 
     // Save for confirmation receipt
+    localStorage.setItem('lastConfirmedRef', bookingRef);
     localStorage.setItem('latestConfirmedBooking', JSON.stringify(finalBooking));
 
     window.location.href = 'booking-confirmation.html';
