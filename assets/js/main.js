@@ -465,7 +465,20 @@ function renderUserHeaderState() {
   const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
   const currentLang = localStorage.getItem('terraLang') || 'en';
   const currentTheme = localStorage.getItem('terraTheme') || 'light';
-  const langLabels = { en: 'EN', ta: 'தமிழ்', es: 'ES', fr: 'FR' };
+  const langLabels = {
+    en: 'EN',
+    ta: 'தமிழ்',
+    hi: 'हिन्दी',
+    es: 'ES',
+    fr: 'FR',
+    de: 'DE',
+    it: 'IT',
+    pt: 'PT',
+    ar: 'العربية',
+    ja: '日本語',
+    zh: '中文',
+    ru: 'RU'
+  };
 
   const themeBtnHtml = `
     <button class="theme-toggle-btn" id="themeToggleBtn" title="Toggle Light / Dark Mode" aria-label="Toggle theme">
@@ -478,11 +491,19 @@ function renderUserHeaderState() {
       <button class="lang-selector-btn dropdown-toggle" type="button" id="langDropdownBtn" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="bi bi-globe2 text-primary"></i> <span id="currentLangLabel">${langLabels[currentLang] || 'EN'}</span>
       </button>
-      <ul class="dropdown-menu dropdown-menu-end shadow border-0 py-2 rounded-3" aria-labelledby="langDropdownBtn">
-        <li><button class="dropdown-item py-2" onclick="setLanguage('en')"><span class="badge bg-light text-dark me-2">EN</span> English</button></li>
-        <li><button class="dropdown-item py-2" onclick="setLanguage('ta')"><span class="badge bg-light text-dark me-2">TA</span> தமிழ் (Tamil)</button></li>
-        <li><button class="dropdown-item py-2" onclick="setLanguage('es')"><span class="badge bg-light text-dark me-2">ES</span> Español (Spanish)</button></li>
-        <li><button class="dropdown-item py-2" onclick="setLanguage('fr')"><span class="badge bg-light text-dark me-2">FR</span> Français (French)</button></li>
+      <ul class="dropdown-menu dropdown-menu-end shadow border-0 py-2 rounded-3" aria-labelledby="langDropdownBtn" style="min-width: 220px; max-height: 380px; overflow-y: auto;">
+        <li><button class="dropdown-item py-2" onclick="setLanguage('en')"><span class="badge bg-light text-dark me-2">🇬🇧 EN</span> English</button></li>
+        <li><button class="dropdown-item py-2" onclick="setLanguage('ta')"><span class="badge bg-light text-dark me-2">🇮🇳 TA</span> தமிழ் (Tamil)</button></li>
+        <li><button class="dropdown-item py-2" onclick="setLanguage('hi')"><span class="badge bg-light text-dark me-2">🇮🇳 HI</span> हिन्दी (Hindi)</button></li>
+        <li><button class="dropdown-item py-2" onclick="setLanguage('es')"><span class="badge bg-light text-dark me-2">🇪🇸 ES</span> Español</button></li>
+        <li><button class="dropdown-item py-2" onclick="setLanguage('fr')"><span class="badge bg-light text-dark me-2">🇫🇷 FR</span> Français</button></li>
+        <li><button class="dropdown-item py-2" onclick="setLanguage('de')"><span class="badge bg-light text-dark me-2">🇩🇪 DE</span> Deutsch</button></li>
+        <li><button class="dropdown-item py-2" onclick="setLanguage('it')"><span class="badge bg-light text-dark me-2">🇮🇹 IT</span> Italiano</button></li>
+        <li><button class="dropdown-item py-2" onclick="setLanguage('pt')"><span class="badge bg-light text-dark me-2">🇵🇹 PT</span> Português</button></li>
+        <li><button class="dropdown-item py-2" onclick="setLanguage('ar')"><span class="badge bg-light text-dark me-2">🇦🇪 AR</span> العربية</button></li>
+        <li><button class="dropdown-item py-2" onclick="setLanguage('ja')"><span class="badge bg-light text-dark me-2">🇯🇵 JA</span> 日本語</button></li>
+        <li><button class="dropdown-item py-2" onclick="setLanguage('zh')"><span class="badge bg-light text-dark me-2">🇨🇳 ZH</span> 中文</button></li>
+        <li><button class="dropdown-item py-2" onclick="setLanguage('ru')"><span class="badge bg-light text-dark me-2">🇷🇺 RU</span> Русский</button></li>
       </ul>
     </div>
   `;
@@ -731,10 +752,11 @@ function initTestimonialCarousel() {
     if (currentIdx > maxIdx) currentIdx = 0;
     if (currentIdx < 0) currentIdx = maxIdx;
 
-    const slideWidth = slides[0].getBoundingClientRect().width;
-    const gap = 24;
-    const offset = currentIdx * (slideWidth + gap);
-    track.style.transform = `translateX(-${offset}px)`;
+    const targetSlide = slides[currentIdx];
+    if (targetSlide && slides[0]) {
+      const offset = targetSlide.offsetLeft - slides[0].offsetLeft;
+      track.style.transform = `translateX(-${offset}px)`;
+    }
   }
 
   function nextTestimonial() {

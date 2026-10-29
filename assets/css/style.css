@@ -83,6 +83,56 @@ body {
   overflow-x: hidden;
 }
 
+/* Full-Width Luxury Layout Architecture */
+.container, 
+.container-lg, 
+.container-md, 
+.container-sm, 
+.container-xl, 
+.container-xxl {
+  max-width: 1580px !important;
+  width: 95% !important;
+  padding-left: clamp(1rem, 2.5vw, 2.5rem) !important;
+  padding-right: clamp(1rem, 2.5vw, 2.5rem) !important;
+}
+
+/* Equal Height & Robust Multilingual Card Layout */
+.travel-card, 
+.hotel-card, 
+.package-card, 
+.destination-card, 
+.testimonial-card,
+.why-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-footer-action,
+.dest-price-tag,
+.card-price {
+  margin-top: auto;
+}
+
+/* Responsive Button and Dropdown Safety */
+.btn {
+  white-space: normal;
+  word-break: normal;
+  text-align: center;
+}
+
+.dropdown-menu {
+  max-height: 420px;
+  overflow-y: auto;
+}
+
 h1, h2, h3, h4, h5, h6 {
   color: var(--color-navy-900);
   font-weight: 700;
@@ -915,7 +965,8 @@ img {
 
 .testimonial-slide {
   flex: 0 0 calc(33.333% - 16px);
-  min-width: 300px;
+  max-width: calc(33.333% - 16px);
+  min-width: 280px;
 }
 
 .testimonial-card {
@@ -1971,4 +2022,38 @@ img {
 
 [data-theme="dark"] .voucher-header {
   background: linear-gradient(135deg, #0b1f3a 0%, #1e3a8a 100%) !important;
+}
+
+[data-theme="dark"] .testimonial-card {
+  background: var(--theme-bg-card) !important;
+  border-color: var(--theme-border) !important;
+  color: var(--theme-text-main) !important;
+}
+
+[data-theme="dark"] .testimonial-quote {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .author-name {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .author-trip {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .testimonial-nav-btn {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .testimonial-nav-btn:hover {
+  background: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .testimonial-quote-icon {
+  color: rgba(56, 189, 248, 0.35) !important;
 }
