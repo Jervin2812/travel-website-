@@ -474,7 +474,7 @@ function renderUserHeaderState() {
 
   const langDropdownHtml = `
     <div class="dropdown d-inline-block">
-      <button class="lang-selector-btn dropdown-toggle border-0" type="button" id="langDropdownBtn" data-bs-toggle="dropdown" aria-expanded="false">
+      <button class="lang-selector-btn dropdown-toggle" type="button" id="langDropdownBtn" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="bi bi-globe2 text-primary"></i> <span id="currentLangLabel">${langLabels[currentLang] || 'EN'}</span>
       </button>
       <ul class="dropdown-menu dropdown-menu-end shadow border-0 py-2 rounded-3" aria-labelledby="langDropdownBtn">

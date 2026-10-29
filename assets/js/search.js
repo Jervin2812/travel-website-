@@ -220,6 +220,7 @@ function applyFiltersAndRender() {
   // Re-initialize dynamic card sliders & wishlist clicks
   initCardSliders();
   initWishlistButtons();
+  if (window.I18N && window.I18N.apply) window.I18N.apply();
 }
 
 function renderFilterChips(container) {

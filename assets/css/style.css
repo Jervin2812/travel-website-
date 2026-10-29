@@ -1656,14 +1656,72 @@ img {
   color: var(--theme-text-main) !important;
 }
 
-[data-theme="dark"] .site-navbar {
-  background-color: var(--theme-navbar-bg) !important;
-  border-bottom: 1px solid var(--theme-navbar-border) !important;
+/* Header & Navigation Dark Mode Specifics */
+[data-theme="dark"] header,
+[data-theme="dark"] .site-navbar,
+[data-theme="dark"] .site-navbar.scrolled {
+  background-color: #0b1120 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .brand-logo,
+[data-theme="dark"] .brand-logo span,
+[data-theme="dark"] .site-navbar .brand-logo,
+[data-theme="dark"] .site-navbar .brand-logo span,
+[data-theme="dark"] header .brand-logo,
+[data-theme="dark"] header .brand-logo span {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .site-navbar .nav-link,
+[data-theme="dark"] .nav-link {
+  color: #f1f5f9 !important;
+  font-weight: 500 !important;
+}
+
+[data-theme="dark"] .site-navbar .nav-link:hover,
+[data-theme="dark"] .nav-link:hover,
+[data-theme="dark"] .site-navbar .nav-link.active,
+[data-theme="dark"] .nav-link.active {
+  color: #38bdf8 !important;
+  background-color: rgba(56, 189, 248, 0.15) !important;
+}
+
+[data-theme="dark"] .navbar-toggler,
+[data-theme="dark"] .navbar-toggler i,
+[data-theme="dark"] .navbar-toggler .bi,
+[data-theme="dark"] .navbar-toggler .text-dark {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .lang-selector-btn {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  border: 1.5px solid #334155 !important;
+}
+
+[data-theme="dark"] .lang-selector-btn:hover {
+  background-color: #334155 !important;
+  color: #38bdf8 !important;
+  border-color: #38bdf8 !important;
+}
+
+[data-theme="dark"] .theme-toggle-btn {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  border: 1.5px solid #334155 !important;
+}
+
+[data-theme="dark"] .theme-toggle-btn:hover {
+  background-color: #334155 !important;
+  color: #fbbf24 !important;
+  border-color: #fbbf24 !important;
 }
 
 [data-theme="dark"] .navbar-collapse {
-  background-color: var(--theme-bg-surface) !important;
-  border-color: var(--theme-border) !important;
+  background-color: #0f172a !important;
+  border-color: #1e293b !important;
 }
 
 [data-theme="dark"] .brand-logo,
