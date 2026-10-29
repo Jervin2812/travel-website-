@@ -221,11 +221,23 @@ function setupNavbar() {
   });
 }
 
+// Get relative base path for cross-directory navigation
+function getBasePath() {
+  const path = window.location.pathname.replace(/\\/g, '/');
+  if (path.includes('/pages/destinations/') || path.includes('/pages/booking/') || path.includes('/pages/auth/') || path.includes('/pages/company/')) {
+    return '../../';
+  } else if (path.includes('/pages/')) {
+    return '../';
+  }
+  return '';
+}
+
 // Check logged in user state in localStorage and render header
 function renderUserHeaderState() {
   const authNavContainer = document.getElementById('navbarAuthButtons');
   if (!authNavContainer) return;
 
+  const base = getBasePath();
   const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
 
   if (currentUser) {
@@ -237,8 +249,8 @@ function renderUserHeaderState() {
         </button>
         <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 py-2 rounded-3" aria-labelledby="userMenuBtn">
           <li><span class="dropdown-header text-muted small">${currentUser.email}</span></li>
-          <li><a class="dropdown-item py-2" href="my-bookings.html"><i class="bi bi-briefcase me-2"></i>My Bookings</a></li>
-          <li><a class="dropdown-item py-2" href="profile.html"><i class="bi bi-person me-2"></i>My Profile</a></li>
+          <li><a class="dropdown-item py-2" href="${base}pages/booking/my-bookings.html"><i class="bi bi-briefcase me-2"></i>My Bookings</a></li>
+          <li><a class="dropdown-item py-2" href="${base}pages/auth/profile.html"><i class="bi bi-person me-2"></i>My Profile</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><button class="dropdown-item py-2 text-danger" onclick="logoutUser()"><i class="bi bi-box-arrow-right me-2"></i>Sign Out</button></li>
         </ul>
@@ -246,8 +258,8 @@ function renderUserHeaderState() {
     `;
   } else {
     authNavContainer.innerHTML = `
-      <a href="login.html" class="btn btn-outline-custom">Log In</a>
-      <a href="signup.html" class="btn btn-primary-custom">Sign Up</a>
+      <a href="${base}pages/auth/login.html" class="btn btn-outline-custom">Log In</a>
+      <a href="${base}pages/auth/signup.html" class="btn btn-primary-custom">Sign Up</a>
     `;
   }
 }
@@ -282,6 +294,7 @@ function setupSearchTabs() {
 
 // Global booking selection helper - stores item to localStorage and redirects
 function selectAndBook(type, itemId) {
+  const base = getBasePath();
   let item = null;
   if (type === 'destination') {
     item = TRAVEL_DATA.destinations.find(d => d.id === itemId);
@@ -298,7 +311,7 @@ function selectAndBook(type, itemId) {
         guests: 2
       };
       localStorage.setItem('activeBookingDraft', JSON.stringify(bookingDraft));
-      window.location.href = 'booking-details.html';
+      window.location.href = `${base}pages/booking/booking-details.html`;
     }
   } else if (type === 'hotel') {
     item = TRAVEL_DATA.hotels.find(h => h.id === itemId);
@@ -316,7 +329,7 @@ function selectAndBook(type, itemId) {
         guests: 2
       };
       localStorage.setItem('activeBookingDraft', JSON.stringify(bookingDraft));
-      window.location.href = 'booking-details.html';
+      window.location.href = `${base}pages/booking/booking-details.html`;
     }
   } else if (type === 'package') {
     item = TRAVEL_DATA.packages.find(p => p.id === itemId);
@@ -334,7 +347,7 @@ function selectAndBook(type, itemId) {
         guests: 2
       };
       localStorage.setItem('activeBookingDraft', JSON.stringify(bookingDraft));
-      window.location.href = 'booking-details.html';
+      window.location.href = `${base}pages/booking/booking-details.html`;
     }
   }
 }
@@ -354,3 +367,4 @@ function setupSmoothScroll() {
     });
   });
 }
+

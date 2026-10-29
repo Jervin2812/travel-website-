@@ -323,3 +323,4 @@ function initMyBookingsPage() {
     </div>
   `).join('');
 }
+

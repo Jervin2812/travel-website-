@@ -230,3 +230,4 @@ function clearPriceFilter() {
   if (pVal) pVal.textContent = '$2500';
   applyFiltersAndRender();
 }
+

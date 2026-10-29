@@ -33,38 +33,46 @@ Terra is a modern, responsive travel booking website designed to match the visua
 
 ---
 
-## 📂 Project Architecture
+## 📂 Categorized Project Architecture
 
 ```
 travel-booking-frontend/
-├── index.html
-├── destinations.html
-├── search-results.html
-├── destination-details.html
-├── hotel-details.html
-├── flights.html
-├── packages.html
-├── package-details.html
-├── booking-details.html
-├── checkout.html
-├── booking-confirmation.html
-├── login.html
-├── signup.html
-├── my-bookings.html
-├── profile.html
-├── about.html
-├── contact.html
-├── faq.html
+├── index.html                                 # Flagship Homepage
+├── pages/
+│   ├── destinations/                          # Explore & Travel Options
+│   │   ├── destinations.html                  # Explore Destinations
+│   │   ├── destination-details.html           # Destination Overview & Gallery
+│   │   ├── search-results.html                # Real-time Filter & Search Engine
+│   │   ├── hotel-details.html                 # Boutique Hotel Suites & Amenities
+│   │   ├── flights.html                       # Global Flight Deals & Transit
+│   │   ├── packages.html                      # Curated Tour Packages
+│   │   └── package-details.html               # Multi-day Itineraries & Details
+│   ├── booking/                               # 3-Step Simulated Booking Flow
+│   │   ├── booking-details.html               # Step 1: Traveler Details Form
+│   │   ├── checkout.html                      # Step 2: Payment UI Demo & Promo Code
+│   │   ├── booking-confirmation.html          # Step 3: Confirmed Voucher & Reference
+│   │   └── my-bookings.html                   # User Itineraries Dashboard
+│   ├── auth/                                  # Authentication & User State
+│   │   ├── login.html                         # Sign In with Validation & Password Toggle
+│   │   ├── signup.html                        # Registration & Member State
+│   │   └── profile.html                       # Profile Editor & Preferences
+│   └── company/                               # Information & Support Desks
+│       ├── about.html                         # Story, Mission & Metrics
+│       ├── contact.html                       # Contact Form & Global Office Hubs
+│       └── faq.html                           # Searchable Help Center Accordion
 ├── assets/
 │   ├── css/
-│   │   ├── style.css
-│   │   └── responsive.css
+│   │   ├── style.css                          # Design System, Palette & Tokens
+│   │   └── responsive.css                     # Responsive Media Queries (Mobile to Desktop)
 │   ├── js/
-│   │   ├── main.js
-│   │   ├── search.js
-│   │   ├── booking.js
-│   │   └── auth-demo.js
+│   │   ├── main.js                            # Global State, Navbar, Data Store
+│   │   ├── search.js                          # Dynamic Filters, Slider, Chips & Sort
+│   │   ├── booking.js                         # Booking Engine, Prices & LocalStorage
+│   │   └── auth-demo.js                       # Simulated Auth & Profile Management
 │   └── images/
+│       └── .gitkeep
+├── DESIGN-SYSTEM.md
+├── PROJECT-PLAN.md
 └── README.md
 ```
 

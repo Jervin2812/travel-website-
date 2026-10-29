@@ -54,7 +54,8 @@ function initLoginForm() {
     };
 
     localStorage.setItem('currentUser', JSON.stringify(user));
-    window.location.href = 'index.html';
+    const target = window.location.pathname.includes('/pages/') ? '../../index.html' : 'index.html';
+    window.location.href = target;
   });
 }
 
@@ -84,7 +85,8 @@ function initSignupForm() {
     };
 
     localStorage.setItem('currentUser', JSON.stringify(user));
-    window.location.href = 'index.html';
+    const target = window.location.pathname.includes('/pages/') ? '../../index.html' : 'index.html';
+    window.location.href = target;
   });
 }
 
@@ -134,3 +136,4 @@ function initProfilePage() {
     }
   });
 }
+
