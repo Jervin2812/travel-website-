@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="../../assets/images/logo.png">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Cache Invalidation & Port Share Sync -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <script>
+    (function() {
+      try {
+        var t = localStorage.getItem('terraTheme') || 'light';
+        if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+        var l = localStorage.getItem('terraLang') || 'en';
+        if (l === 'ar') document.documentElement.setAttribute('dir', 'rtl');
+      } catch(e) {}
+    })();
+  </script>
+  <title>Journal & Luxury Expeditions Blog | TERRA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/style.css?v=2.3.4">
+  <link rel="stylesheet" href="../../assets/css/responsive.css?v=2.3.4">
+</head>
+<body class="bg-light">
+
+  <!-- Site Header -->
+  <header class="site-navbar">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg p-0">
+        <a class="brand-logo" href="../../index.html">
+          <img src="../../assets/images/logo.png" alt="TERRA" class="brand-logo-img">
+          <span>TERRA</span>
+        </a>
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavbarNav" aria-label="Toggle navigation">
+          <i class="bi bi-list fs-2 text-dark"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="siteNavbarNav">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="../../index.html" data-i18n="nav_home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="../destinations/destinations.html" data-i18n="nav_destinations">Destinations</a></li>
+            <li class="nav-item"><a class="nav-link" href="../destinations/flights.html" data-i18n="nav_flights">Flights</a></li>
+            <li class="nav-item"><a class="nav-link" href="../destinations/search-results.html?type=hotel" data-i18n="nav_hotels">Hotels</a></li>
+            <li class="nav-item"><a class="nav-link" href="../destinations/packages.html" data-i18n="nav_packages">Tour Packages</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html" data-i18n="nav_about">About</a></li>
+            <li class="nav-item"><a class="nav-link active" href="blog.html">Journal</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html" data-i18n="nav_contact">Contact</a></li>
+          </ul>
+          <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0" id="navbarAuthButtons">
+            <a href="../auth/login.html" class="btn btn-outline-custom" data-i18n="nav_login">Log In</a>
+            <a href="../auth/signup.html" class="btn btn-primary-custom" data-i18n="nav_signup">Sign Up</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Journal Section -->
+  <section class="py-5 bg-white border-bottom position-relative overflow-hidden">
+    <div class="container py-lg-3">
+      <div class="custom-breadcrumb mb-3">
+        <a href="../../index.html">Home</a> <i class="bi bi-chevron-right small text-muted mx-1"></i> <span class="text-muted">Travel Journal & Chronicles</span>
+      </div>
+      <div class="row align-items-center g-4">
+        <div class="col-12 col-lg-7">
+          <span class="about-hero-badge d-inline-flex align-items-center gap-2 mb-3">
+            <i class="bi bi-book-half"></i> <span>The Terra Dispatches</span>
+          </span>
+          <h1 class="display-4 fw-bold mb-3 text-dark tracking-tight">Curated Stories, Field Notes & Private Guides</h1>
+          <p class="text-secondary fs-5 leading-relaxed mb-0">
+            Inspiring essays, insider interviews with regional custodians, and definitive architectural guides across the globe.
+          </p>
+        </div>
+        <div class="col-12 col-lg-5">
+          <!-- Search & Filter Bar -->
+          <div class="card border-0 shadow-sm p-3 rounded-4 bg-light">
+            <div class="input-group">
+              <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
+              <input type="text" id="blogSearchInput" class="form-control border-start-0 ps-0" placeholder="Search guides (e.g. Kyoto, Alps, Safari)..." onkeyup="filterBlogPosts()">
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-3" id="blogCategoryTags">
+              <button class="btn btn-sm btn-dark rounded-pill px-3" data-cat="all" onclick="filterBlogCategory('all', this)">All Essays</button>
+              <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" data-cat="culture" onclick="filterBlogCategory('culture', this)">Culture</button>
+              <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" data-cat="adventure" onclick="filterBlogCategory('adventure', this)">Expeditions</button>
+              <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" data-cat="wellness" onclick="filterBlogCategory('wellness', this)">Sanctuaries</button>
+              <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" data-cat="culinary" onclick="filterBlogCategory('culinary', this)">Culinary</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Lead Article -->
+  <section class="py-5 border-bottom bg-light">
+    <div class="container">
+      <div class="card border-0 rounded-4 shadow-sm overflow-hidden bg-white blog-lead-card">
+        <div class="row g-0 align-items-center">
+          <div class="col-12 col-lg-7">
+            <div class="position-relative" style="min-height: 400px; height: 100%;">
+              <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=1200&q=80" alt="Kyoto Zen Gardens" class="w-100 h-100 object-fit-cover position-absolute top-0 start-0">
+              <span class="badge bg-dark bg-opacity-75 text-white position-absolute top-0 start-0 m-3 px-3 py-2 rounded-pill backdrop-blur">
+                <i class="bi bi-star-fill text-warning me-1"></i> Editor's Curated Pick
+              </span>
+            </div>
+          </div>
+          <div class="col-12 col-lg-5 p-4 p-md-5">
+            <div class="d-flex align-items-center gap-3 text-muted small mb-2">
+              <span class="badge bg-primary-subtle text-primary border">Culture & Architecture</span>
+              <span><i class="bi bi-clock me-1"></i> 7 min read</span>
+              <span>Oct 28, 2026</span>
+            </div>
+            <h2 class="display-6 fw-bold mb-3 text-dark">The Secret Pavilions of Kyoto: Beyond the Golden Temple</h2>
+            <p class="text-secondary leading-relaxed mb-4">
+              Explore hidden bamboo groves, century-old tea houses in Uji, and private Zen courtyards that reveal Kyoto’s true spiritual heartbeat away from the crowds.
+            </p>
+            <div class="d-flex align-items-center justify-content-between pt-3 border-top">
+              <div class="d-flex align-items-center gap-2">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Sophia Chen" class="rounded-circle object-fit-cover" style="width: 40px; height: 40px;">
+                <div>
+                  <div class="fw-bold small text-dark">Sophia Chen</div>
+                  <div class="text-muted" style="font-size: 0.76rem;">Founder & Curator</div>
+                </div>
+              </div>
+              <a href="#article1" class="btn btn-outline-custom btn-sm px-3" onclick="readArticle('The Secret Pavilions of Kyoto')">Read Story <i class="bi bi-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Articles Grid Section -->
+  <main class="py-5 bg-white">
+    <div class="container py-lg-3">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h3 class="fw-bold text-dark mb-1">Latest Dispatches</h3>
+          <p class="text-muted small mb-0" id="articlesCountText">Showing all 6 curated articles</p>
+        </div>
+      </div>
+
+      <div class="row g-4" id="articlesGrid">
+        <!-- Post 1 -->
+        <div class="col-12 col-md-6 col-lg-4 blog-post-card" data-category="wellness" data-keywords="bali wellness spa yoga retreat ubad water temple">
+          <div class="card h-100 border-0 rounded-4 shadow-sm overflow-hidden bg-white hover-lift">
+            <div class="position-relative" style="height: 230px;">
+              <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80" alt="Bali Retreat" class="w-100 h-100 object-fit-cover">
+              <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 shadow-sm px-3 py-1 rounded-pill fw-semibold">Sanctuaries</span>
+            </div>
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <div class="d-flex align-items-center gap-2 text-muted small mb-2">
+                <span><i class="bi bi-calendar3 me-1"></i> Oct 24, 2026</span>
+                <span>&bull;</span>
+                <span>5 min read</span>
+              </div>
+              <h5 class="fw-bold text-dark mb-2">Sound Baths & Sacred Waters: The Healing Sanctuaries of Ubud</h5>
+              <p class="text-muted small leading-relaxed flex-grow-1">
+                A personal journey through Bali's lush interior, from private water purification ceremonies to secluded eco-villas tucked into canopy rainforests.
+              </p>
+              <div class="d-flex align-items-center justify-content-between pt-3 border-top mt-3">
+                <span class="small fw-semibold text-primary">By Amira Al-Mansoor</span>
+                <button class="btn btn-link text-primary text-decoration-none p-0 fw-bold small" onclick="readArticle('Sound Baths & Sacred Waters')">Read Dispatch &rarr;</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Post 2 -->
+        <div class="col-12 col-md-6 col-lg-4 blog-post-card" data-category="adventure" data-keywords="swiss alps zermatt matterhorn glacier train hiking ski">
+          <div class="card h-100 border-0 rounded-4 shadow-sm overflow-hidden bg-white hover-lift">
+            <div class="position-relative" style="height: 230px;">
+              <img src="https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&w=800&q=80" alt="Swiss Glacier" class="w-100 h-100 object-fit-cover">
+              <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 shadow-sm px-3 py-1 rounded-pill fw-semibold">Expeditions</span>
+            </div>
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <div class="d-flex align-items-center gap-2 text-muted small mb-2">
+                <span><i class="bi bi-calendar3 me-1"></i> Oct 19, 2026</span>
+                <span>&bull;</span>
+                <span>8 min read</span>
+              </div>
+              <h5 class="fw-bold text-dark mb-2">Glacier Express & Alpine Chalets: Winter in the High Bernese</h5>
+              <p class="text-muted small leading-relaxed flex-grow-1">
+                How private scenic railways and ski-in wood chalets are redefining zero-emission luxury expeditions across the Swiss and Austrian Alps.
+              </p>
+              <div class="d-flex align-items-center justify-content-between pt-3 border-top mt-3">
+                <span class="small fw-semibold text-primary">By Marcus Lindqvist</span>
+                <button class="btn btn-link text-primary text-decoration-none p-0 fw-bold small" onclick="readArticle('Glacier Express & Alpine Chalets')">Read Dispatch &rarr;</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Post 3 -->
+        <div class="col-12 col-md-6 col-lg-4 blog-post-card" data-category="culinary" data-keywords="paris michelin bistros dining wine culinary france">
+          <div class="card h-100 border-0 rounded-4 shadow-sm overflow-hidden bg-white hover-lift">
+            <div class="position-relative" style="height: 230px;">
+              <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80" alt="Parisian Bistro" class="w-100 h-100 object-fit-cover">
+              <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 shadow-sm px-3 py-1 rounded-pill fw-semibold">Culinary</span>
+            </div>
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <div class="d-flex align-items-center gap-2 text-muted small mb-2">
+                <span><i class="bi bi-calendar3 me-1"></i> Oct 14, 2026</span>
+                <span>&bull;</span>
+                <span>6 min read</span>
+              </div>
+              <h5 class="fw-bold text-dark mb-2">The Modern Bistro Renaissance: Paris After Midnight</h5>
+              <p class="text-muted small leading-relaxed flex-grow-1">
+                Unveiling 5 historic natural wine bars, underground bakeries in the 11th arrondissement, and private dining cellars reserved for Terra members.
+              </p>
+              <div class="d-flex align-items-center justify-content-between pt-3 border-top mt-3">
+                <span class="small fw-semibold text-primary">By Julien Moreau</span>
+                <button class="btn btn-link text-primary text-decoration-none p-0 fw-bold small" onclick="readArticle('The Modern Bistro Renaissance')">Read Dispatch &rarr;</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Post 4 -->
+        <div class="col-12 col-md-6 col-lg-4 blog-post-card" data-category="culture" data-keywords="dubai architecture desert dunes luxury uae mirage">
+          <div class="card h-100 border-0 rounded-4 shadow-sm overflow-hidden bg-white hover-lift">
+            <div class="position-relative" style="height: 230px;">
+              <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80" alt="Dubai Sunset" class="w-100 h-100 object-fit-cover">
+              <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 shadow-sm px-3 py-1 rounded-pill fw-semibold">Culture</span>
+            </div>
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <div class="d-flex align-items-center gap-2 text-muted small mb-2">
+                <span><i class="bi bi-calendar3 me-1"></i> Oct 08, 2026</span>
+                <span>&bull;</span>
+                <span>6 min read</span>
+              </div>
+              <h5 class="fw-bold text-dark mb-2">Desert Astronomy & Desert Oases: The Night Sky of Dubai</h5>
+              <p class="text-muted small leading-relaxed flex-grow-1">
+                Beyond the glittering skyline lies an ethereal desert universe. Discover luxury tented camps with high-powered celestial telescopes.
+              </p>
+              <div class="d-flex align-items-center justify-content-between pt-3 border-top mt-3">
+                <span class="small fw-semibold text-primary">By Tariq Al-Hashimi</span>
+                <button class="btn btn-link text-primary text-decoration-none p-0 fw-bold small" onclick="readArticle('Desert Astronomy')">Read Dispatch &rarr;</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Post 5 -->
+        <div class="col-12 col-md-6 col-lg-4 blog-post-card" data-category="wellness" data-keywords="maldives overwater coral conservation private island reef">
+          <div class="card h-100 border-0 rounded-4 shadow-sm overflow-hidden bg-white hover-lift">
+            <div class="position-relative" style="height: 230px;">
+              <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=80" alt="Maldives Lagoon" class="w-100 h-100 object-fit-cover">
+              <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 shadow-sm px-3 py-1 rounded-pill fw-semibold">Sanctuaries</span>
+            </div>
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <div class="d-flex align-items-center gap-2 text-muted small mb-2">
+                <span><i class="bi bi-calendar3 me-1"></i> Sep 29, 2026</span>
+                <span>&bull;</span>
+                <span>4 min read</span>
+              </div>
+              <h5 class="fw-bold text-dark mb-2">Coral Regeneration: Safeguarding the Maldives Atolls</h5>
+              <p class="text-muted small leading-relaxed flex-grow-1">
+                How marine biologists and luxury overwater sanctuaries are partnering to revive damaged fringing reefs with pioneering 3D mineral accretion.
+              </p>
+              <div class="d-flex align-items-center justify-content-between pt-3 border-top mt-3">
+                <span class="small fw-semibold text-primary">By Dr. Elena Rostova</span>
+                <button class="btn btn-link text-primary text-decoration-none p-0 fw-bold small" onclick="readArticle('Coral Regeneration')">Read Dispatch &rarr;</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Post 6 -->
+        <div class="col-12 col-md-6 col-lg-4 blog-post-card" data-category="adventure" data-keywords="patagonia chile fjords hiking glacier puma nature">
+          <div class="card h-100 border-0 rounded-4 shadow-sm overflow-hidden bg-white hover-lift">
+            <div class="position-relative" style="height: 230px;">
+              <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80" alt="Patagonia Expedition" class="w-100 h-100 object-fit-cover">
+              <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 shadow-sm px-3 py-1 rounded-pill fw-semibold">Expeditions</span>
+            </div>
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <div class="d-flex align-items-center gap-2 text-muted small mb-2">
+                <span><i class="bi bi-calendar3 me-1"></i> Sep 22, 2026</span>
+                <span>&bull;</span>
+                <span>9 min read</span>
+              </div>
+              <h5 class="fw-bold text-dark mb-2">The Southern Edge of the World: Torres del Paine by Catamaran</h5>
+              <p class="text-muted small leading-relaxed flex-grow-1">
+                Navigating turquoise glacial fjords and granite spires with local gaucho guides. An insider blueprint for unforgettable Patagonian sunsets.
+              </p>
+              <div class="d-flex align-items-center justify-content-between pt-3 border-top mt-3">
+                <span class="small fw-semibold text-primary">By Gabriel O'Connor</span>
+                <button class="btn btn-link text-primary text-decoration-none p-0 fw-bold small" onclick="readArticle('Torres del Paine')">Read Dispatch &rarr;</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Newsletter VIP Dispatch Card -->
+  <section class="py-5 bg-light border-top">
+    <div class="container py-2 text-center" style="max-width: 680px;">
+      <span class="badge bg-primary-subtle text-primary border px-3 py-1 rounded-pill mb-2">Private Circulation</span>
+      <h2 class="display-6 fw-bold mb-3 text-dark">Receive The Terra Dispatch in Your Inbox</h2>
+      <p class="text-muted mb-4">A bi-weekly digest of unpublished sanctuaries, private jet charter insights, and seasonal festival access.</p>
+      <form class="d-flex gap-2" onsubmit="event.preventDefault(); subscribeBlogNewsletter();">
+        <input type="email" id="newsletterEmail" class="form-control form-control-lg rounded-pill px-4 border" placeholder="Enter your email address..." required>
+        <button type="submit" class="btn btn-primary-custom px-4 rounded-pill fw-bold text-nowrap">Subscribe</button>
+      </form>
+      <div id="newsletterSuccess" class="alert alert-success d-none mt-3 small py-2 rounded-pill">
+        <i class="bi bi-check-circle me-1"></i> Welcome to The Terra Dispatch circle! Check your email for our newest guide.
+      </div>
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row g-4 footer-top">
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-brand mb-3 d-flex align-items-center gap-2">
+            <img src="../../assets/images/logo.png" alt="TERRA" class="brand-logo-img">
+            <span class="fs-4 fw-bold text-white tracking-tight">TERRA</span>
+          </div>
+          <p class="footer-desc mb-4">
+            Handcrafted international journeys, bespoke private flights, and 5-star verified stays worldwide. Redefining modern travel with comfort and precision.
+          </p>
+          <div class="footer-social-links">
+            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-6">
+          <h5 class="footer-heading">Destinations</h5>
+          <ul class="footer-nav-list">
+            <li><a href="../destinations/destination-details.html?id=dest-bali">Bali, Indonesia</a></li>
+            <li><a href="../destinations/destination-details.html?id=dest-paris">Paris, France</a></li>
+            <li><a href="../destinations/destination-details.html?id=dest-tokyo">Tokyo, Japan</a></li>
+            <li><a href="../destinations/destination-details.html?id=dest-swiss">Swiss Alps</a></li>
+            <li><a href="../destinations/destinations.html">View All (50+)</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-6">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-nav-list">
+            <li><a href="../../index.html" data-i18n="nav_home">Home</a></li>
+            <li><a href="../destinations/destinations.html" data-i18n="nav_destinations">Explore Stays</a></li>
+            <li><a href="../destinations/flights.html" data-i18n="nav_flights">Flight Search</a></li>
+            <li><a href="../destinations/packages.html" data-i18n="nav_packages">Curated Packages</a></li>
+            <li><a href="about.html" data-i18n="nav_about">About Us</a></li>
+            <li><a href="blog.html">Travel Journal</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <h5 class="footer-heading">Global Concierge</h5>
+          <ul class="footer-contact-list mb-3">
+            <li><i class="bi bi-geo-alt-fill text-primary"></i> 100 Mayfair Avenue, London W1J 8HQ, United Kingdom</li>
+            <li><i class="bi bi-telephone-fill text-primary"></i> +44 20 7946 0912 / +1 (800) 555-8377</li>
+            <li><i class="bi bi-envelope-fill text-primary"></i> concierge@terra-travel.com</li>
+          </ul>
+          <div class="p-3 bg-white bg-opacity-10 rounded-3 border border-white border-opacity-10">
+            <div class="small fw-bold text-white mb-1"><i class="bi bi-shield-check text-success me-1"></i> IATA Accredited Luxury Agency</div>
+            <div class="text-white-50 small">All bookings 100% bonded and carbon neutral.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Terra Travel Inc. All rights reserved. Built with HTML5, CSS3, Bootstrap 5, & Vanilla JS.</div>
+        <div class="d-flex gap-3">
+          <a href="faq.html" class="text-white-50">Privacy Policy</a>
+          <a href="faq.html" class="text-white-50">Terms of Service</a>
+          <a href="faq.html" class="text-white-50">Cookie Preferences</a>
+          <a href="../admin/index.html" class="text-warning-subtle fw-semibold text-decoration-none"><i class="bi bi-shield-lock me-1"></i>Admin Portal</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS Bundle & Custom Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../assets/js/main.js?v=2.3.4"></script>
+  <script src="../../assets/js/i18n.js?v=2.3.4"></script>
+  <script>
+    let activeBlogCategory = 'all';
+
+    function filterBlogCategory(cat, btn) {
+      activeBlogCategory = cat;
+      document.querySelectorAll('#blogCategoryTags button').forEach(b => {
+        b.classList.remove('btn-dark');
+        b.classList.add('btn-outline-secondary');
+      });
+      btn.classList.remove('btn-outline-secondary');
+      btn.classList.add('btn-dark');
+      filterBlogPosts();
+    }
+
+    function filterBlogPosts() {
+      const q = (document.getElementById('blogSearchInput').value || '').toLowerCase().trim();
+      const cards = document.querySelectorAll('.blog-post-card');
+      let visible = 0;
+
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        const keywords = (card.getAttribute('data-keywords') || '') + ' ' + card.textContent.toLowerCase();
+
+        const matchCat = (activeBlogCategory === 'all') || (cat === activeBlogCategory);
+        const matchQuery = !q || keywords.includes(q);
+
+        if (matchCat && matchQuery) {
+          card.style.display = 'block';
+          visible++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      const countEl = document.getElementById('articlesCountText');
+      if (countEl) countEl.textContent = `Showing ${visible} curated article${visible === 1 ? '' : 's'}`;
+    }
+
+    function readArticle(title) {
+      if (typeof showToast === 'function') {
+        showToast('Opening Journal', `Loading full story: "${title}"...`, 'info');
+      }
+    }
+
+    function subscribeBlogNewsletter() {
+      const el = document.getElementById('newsletterSuccess');
+      if (el) el.classList.remove('d-none');
+      const input = document.getElementById('newsletterEmail');
+      if (input) input.value = '';
+    }
+  </script>
+</body>
+</html>
