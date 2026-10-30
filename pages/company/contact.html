@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="../../assets/images/logo.png">
   <!-- Cache Invalidation & Port Share Sync -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
@@ -17,25 +18,14 @@
       } catch(e) {}
     })();
   </script>
-  <title>Contact Us & Global Concierge Desk | Terra</title>
+  <title>Contact Us & Global Concierge Desk | TERRA</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/css/style.css?v=2.3.1">
-  <link rel="stylesheet" href="../../assets/css/responsive.css?v=2.3.1">
-  <style>
-    .hub-clock-badge {
-      background: #0f172a;
-      color: #38bdf8;
-      font-family: 'Courier New', Courier, monospace;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 8px;
-      font-size: 0.85rem;
-    }
-  </style>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=2.3.2">
+  <link rel="stylesheet" href="../../assets/css/responsive.css?v=2.3.2">
 </head>
 <body class="bg-light">
 
@@ -44,7 +34,7 @@
     <div class="container">
       <nav class="navbar navbar-expand-lg p-0">
         <a class="brand-logo" href="../../index.html">
-          <div class="brand-icon-circle"><i class="bi bi-compass"></i></div>
+          <img src="../../assets/images/logo.png" alt="TERRA" class="brand-logo-img">
           <span>TERRA</span>
         </a>
         <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavbarNav" aria-label="Toggle navigation">
@@ -52,17 +42,17 @@
         </button>
         <div class="collapse navbar-collapse" id="siteNavbarNav">
           <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link" href="../../index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="../destinations/destinations.html">Destinations</a></li>
-            <li class="nav-item"><a class="nav-link" href="../destinations/flights.html">Flights</a></li>
-            <li class="nav-item"><a class="nav-link" href="../destinations/search-results.html?type=hotel">Hotels</a></li>
-            <li class="nav-item"><a class="nav-link" href="../destinations/packages.html">Tour Packages</a></li>
-            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-            <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="../../index.html" data-i18n="nav_home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="../destinations/destinations.html" data-i18n="nav_destinations">Destinations</a></li>
+            <li class="nav-item"><a class="nav-link" href="../destinations/flights.html" data-i18n="nav_flights">Flights</a></li>
+            <li class="nav-item"><a class="nav-link" href="../destinations/search-results.html?type=hotel" data-i18n="nav_hotels">Hotels</a></li>
+            <li class="nav-item"><a class="nav-link" href="../destinations/packages.html" data-i18n="nav_packages">Tour Packages</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html" data-i18n="nav_about">About</a></li>
+            <li class="nav-item"><a class="nav-link active" href="contact.html" data-i18n="nav_contact">Contact</a></li>
           </ul>
           <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0" id="navbarAuthButtons">
-            <a href="../auth/login.html" class="btn btn-outline-custom">Log In</a>
-            <a href="../auth/signup.html" class="btn btn-primary-custom">Sign Up</a>
+            <a href="../auth/login.html" class="btn btn-outline-custom" data-i18n="nav_login">Log In</a>
+            <a href="../auth/signup.html" class="btn btn-primary-custom" data-i18n="nav_signup">Sign Up</a>
           </div>
         </div>
       </nav>
@@ -71,39 +61,94 @@
 
   <!-- Page Header -->
   <section class="py-5 bg-white border-bottom">
-    <div class="container">
+    <div class="container py-lg-3">
       <div class="custom-breadcrumb mb-3">
-        <a href="../../index.html">Home</a> <i class="bi bi-chevron-right small"></i> <span>Contact & Concierge</span>
+        <a href="../../index.html">Home</a> <i class="bi bi-chevron-right small text-muted mx-1"></i> <span class="text-muted">Contact & Concierge</span>
       </div>
       <div class="row align-items-center">
         <div class="col-12 col-lg-8">
-          <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-1 rounded-pill mb-2">
-            <i class="bi bi-headset me-1"></i> 24/7 Global Travelers Desk
+          <span class="about-hero-badge d-inline-flex align-items-center gap-2 mb-3">
+            <span class="badge bg-success rounded-circle p-1"></span> <i class="bi bi-headset"></i> <span>24/7 Global Travelers Desk</span>
           </span>
-          <h1 class="display-5 font-weight-bold mb-2 text-dark">We're Here For Every Mile of Your Journey</h1>
-          <p class="text-muted fs-5 mb-0">Have an inquiry regarding an upcoming reservation, private aircraft charter, or custom itinerary? Reach our curators anytime.</p>
+          <h1 class="display-4 font-weight-bold mb-3 text-dark tracking-tight">We're Here For Every Mile of Your Journey</h1>
+          <p class="text-muted fs-5 mb-0 leading-relaxed">Have an inquiry regarding an upcoming reservation, private aircraft charter, or custom itinerary? Reach our curators anytime.</p>
         </div>
-        <div class="col-12 col-lg-4 text-lg-end mt-3 mt-lg-0">
-          <a href="https://wa.me/" target="_blank" class="btn btn-success py-3 px-4 rounded-pill">
-            <i class="bi bi-whatsapp me-2"></i> WhatsApp VIP Concierge
+        <div class="col-12 col-lg-4 text-lg-end mt-4 mt-lg-0">
+          <a href="https://wa.me/" target="_blank" class="btn btn-success py-3 px-4 rounded-pill shadow-sm">
+            <i class="bi bi-whatsapp me-2 fs-5"></i> <span>WhatsApp VIP Concierge</span>
           </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact Form & Info Grid -->
-  <main class="py-5">
+  <!-- Quick Info Pills Bar -->
+  <section class="py-4 border-bottom bg-white">
     <div class="container">
+      <div class="row g-3">
+        <div class="col-6 col-lg-3">
+          <div class="contact-quick-pill h-100">
+            <div class="pillar-icon-box mb-0 flex-shrink-0" style="width: 44px; height: 44px; font-size: 1.2rem;">
+              <i class="bi bi-telephone-fill"></i>
+            </div>
+            <div>
+              <div class="text-muted" style="font-size: 0.76rem;">Direct VIP Line</div>
+              <div class="fw-bold text-dark small">+44 20 7946 0912</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="contact-quick-pill h-100">
+            <div class="pillar-icon-box mb-0 flex-shrink-0" style="width: 44px; height: 44px; font-size: 1.2rem;">
+              <i class="bi bi-envelope-fill"></i>
+            </div>
+            <div>
+              <div class="text-muted" style="font-size: 0.76rem;">VIP Concierge Email</div>
+              <div class="fw-bold text-dark small">concierge@terra-travel.com</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="contact-quick-pill h-100">
+            <div class="pillar-icon-box mb-0 flex-shrink-0" style="width: 44px; height: 44px; font-size: 1.2rem;">
+              <i class="bi bi-lightning-charge-fill text-warning"></i>
+            </div>
+            <div>
+              <div class="text-muted" style="font-size: 0.76rem;">Average Response</div>
+              <div class="fw-bold text-dark small">Within 18 Minutes</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="contact-quick-pill h-100">
+            <div class="pillar-icon-box mb-0 flex-shrink-0" style="width: 44px; height: 44px; font-size: 1.2rem;">
+              <i class="bi bi-shield-fill-check text-success"></i>
+            </div>
+            <div>
+              <div class="text-muted" style="font-size: 0.76rem;">Emergency Response Hotline</div>
+              <div class="fw-bold text-dark small">24/7 Dedicated Ops</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Contact Form & Global Hubs Grid -->
+  <main class="py-5">
+    <div class="container py-lg-3">
       <div class="row g-5">
         <!-- Form Column -->
         <div class="col-12 col-lg-7">
           <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white">
-            <h3 class="font-weight-bold mb-1">Send a Message to Our Desk</h3>
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <h3 class="font-weight-bold mb-0 text-dark">Send a Message to Our Desk</h3>
+              <span class="badge bg-light text-primary border"><i class="bi bi-shield-lock me-1"></i> SSL Encrypted</span>
+            </div>
             <p class="text-muted small mb-4">Our dedicated operations curators reply within an average of 18 minutes.</p>
             
             <div id="contactSuccessAlert" class="alert alert-success d-none mb-4 d-flex align-items-center gap-3">
-              <i class="bi bi-check-circle-fill fs-4"></i>
+              <i class="bi bi-check-circle-fill fs-3 text-success"></i>
               <div>
                 <div class="fw-bold">Message Dispatched Successfully!</div>
                 <div class="small">Our concierge on duty has received your request and will respond via email shortly.</div>
@@ -148,99 +193,71 @@
                 <textarea class="form-control" id="contactMessage" rows="5" placeholder="Share your travel vision, dates, guest counts, and preferences..." required>Hello Terra team, I am interested in customizing our itinerary with an extra private scuba diving session. Could you please advise availability?</textarea>
               </div>
 
-              <button type="submit" class="btn btn-primary-custom py-3 px-5">
-                Send Inquiry <i class="bi bi-send-fill ms-1"></i>
+              <button type="submit" class="btn btn-primary-custom w-100 py-3 shadow-sm d-flex align-items-center justify-content-center gap-2">
+                <span>Send Message</span> <i class="bi bi-send-fill"></i>
               </button>
             </form>
           </div>
         </div>
 
-        <!-- Global Hubs & Real-time Clocks Column -->
+        <!-- Global Hubs with Live World Clocks Column -->
         <div class="col-12 col-lg-5">
-          <div class="mb-4">
-            <h4 class="font-weight-bold mb-3">Global Operations Hubs</h4>
-            <p class="text-muted small">Our four flagship concierge suites monitor and orchestrate journeys across all international timezones.</p>
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <h4 class="font-weight-bold mb-0 text-dark">Global Concierge Hubs</h4>
+            <span class="badge bg-primary-subtle text-primary">Live Timezones</span>
           </div>
 
-          <div class="d-flex flex-column gap-3">
-            <!-- Hub 1: New York -->
-            <div class="card border-0 shadow-sm rounded-4 p-3 bg-white">
-              <div class="d-flex justify-content-between align-items-center mb-2">
-                <div class="d-flex align-items-center gap-2">
-                  <div class="brand-icon-circle bg-light text-primary" style="width: 38px; height: 38px; font-size: 1.1rem;">
-                    <i class="bi bi-buildings"></i>
-                  </div>
-                  <div>
-                    <h6 class="font-weight-bold mb-0">New York Headquarters</h6>
-                    <span class="text-muted small">Fifth Avenue, Manhattan</span>
-                  </div>
+          <div class="d-flex flex-column gap-3 mb-4">
+            <!-- London Hub -->
+            <div class="hub-card">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <div>
+                  <h6 class="font-weight-bold mb-0 text-dark"><i class="bi bi-building me-2 text-primary"></i>London Headquarters</h6>
+                  <span class="text-muted small">Western Europe & Atlantic Desk</span>
                 </div>
-                <span class="hub-clock-badge" id="clockNYC">--:--:--</span>
+                <span class="hub-clock-badge" id="clockLondon">--:--:-- GMT</span>
               </div>
-              <div class="small text-muted ps-5">
-                <div><i class="bi bi-telephone me-1"></i> +1 (212) 555-8377</div>
-                <div><i class="bi bi-envelope me-1"></i> nyc.desk@terra-travel.com</div>
-              </div>
+              <div class="text-muted small mb-2"><i class="bi bi-geo-alt me-1 text-primary"></i> 100 Mayfair Avenue, London W1J 8HQ, United Kingdom</div>
+              <div class="small fw-semibold text-dark"><i class="bi bi-telephone me-1 text-primary"></i> +44 20 7946 0912</div>
             </div>
 
-            <!-- Hub 2: Paris -->
-            <div class="card border-0 shadow-sm rounded-4 p-3 bg-white">
-              <div class="d-flex justify-content-between align-items-center mb-2">
-                <div class="d-flex align-items-center gap-2">
-                  <div class="brand-icon-circle bg-light text-primary" style="width: 38px; height: 38px; font-size: 1.1rem;">
-                    <i class="bi bi-geo-alt"></i>
-                  </div>
-                  <div>
-                    <h6 class="font-weight-bold mb-0">Paris European Bureau</h6>
-                    <span class="text-muted small">Rue du Faubourg Saint-Honoré</span>
-                  </div>
+            <!-- Tokyo Hub -->
+            <div class="hub-card">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <div>
+                  <h6 class="font-weight-bold mb-0 text-dark"><i class="bi bi-building me-2 text-primary"></i>Tokyo Operations Hub</h6>
+                  <span class="text-muted small">Asia-Pacific Expeditions</span>
                 </div>
-                <span class="hub-clock-badge" id="clockParis">--:--:--</span>
+                <span class="hub-clock-badge" id="clockTokyo">--:--:-- JST</span>
               </div>
-              <div class="small text-muted ps-5">
-                <div><i class="bi bi-telephone me-1"></i> +33 (1) 42 68 55 00</div>
-                <div><i class="bi bi-envelope me-1"></i> paris.desk@terra-travel.com</div>
-              </div>
+              <div class="text-muted small mb-2"><i class="bi bi-geo-alt me-1 text-primary"></i> 1-7-1 Roppongi, Minato-ku, Tokyo 106-6108, Japan</div>
+              <div class="small fw-semibold text-dark"><i class="bi bi-telephone me-1 text-primary"></i> +81 3 5555 0143</div>
             </div>
 
-            <!-- Hub 3: Dubai -->
-            <div class="card border-0 shadow-sm rounded-4 p-3 bg-white">
-              <div class="d-flex justify-content-between align-items-center mb-2">
-                <div class="d-flex align-items-center gap-2">
-                  <div class="brand-icon-circle bg-light text-primary" style="width: 38px; height: 38px; font-size: 1.1rem;">
-                    <i class="bi bi-compass"></i>
-                  </div>
-                  <div>
-                    <h6 class="font-weight-bold mb-0">Dubai Middle East Hub</h6>
-                    <span class="text-muted small">DIFC Gate Precinct</span>
-                  </div>
+            <!-- Dubai Hub -->
+            <div class="hub-card">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <div>
+                  <h6 class="font-weight-bold mb-0 text-dark"><i class="bi bi-building me-2 text-primary"></i>Dubai Regional Desk</h6>
+                  <span class="text-muted small">Middle East & Africa Curations</span>
                 </div>
-                <span class="hub-clock-badge" id="clockDubai">--:--:--</span>
+                <span class="hub-clock-badge" id="clockDubai">--:--:-- GST</span>
               </div>
-              <div class="small text-muted ps-5">
-                <div><i class="bi bi-telephone me-1"></i> +971 (4) 362 7000</div>
-                <div><i class="bi bi-envelope me-1"></i> dubai.desk@terra-travel.com</div>
-              </div>
+              <div class="text-muted small mb-2"><i class="bi bi-geo-alt me-1 text-primary"></i> Gate Precinct 4, DIFC, Dubai, UAE</div>
+              <div class="small fw-semibold text-dark"><i class="bi bi-telephone me-1 text-primary"></i> +971 4 312 8800</div>
             </div>
 
-            <!-- Hub 4: Tokyo -->
-            <div class="card border-0 shadow-sm rounded-4 p-3 bg-white">
-              <div class="d-flex justify-content-between align-items-center mb-2">
-                <div class="d-flex align-items-center gap-2">
-                  <div class="brand-icon-circle bg-light text-primary" style="width: 38px; height: 38px; font-size: 1.1rem;">
-                    <i class="bi bi-globe-asia-australia"></i>
-                  </div>
-                  <div>
-                    <h6 class="font-weight-bold mb-0">Tokyo Asia-Pacific Bureau</h6>
-                    <span class="text-muted small">Ginza Six Tower, Chuo</span>
-                  </div>
+            <!-- New York Hub -->
+            <div class="hub-card">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <div>
+                  <h6 class="font-weight-bold mb-0 text-dark"><i class="bi bi-building me-2 text-primary"></i>New York Office</h6>
+                  <span class="text-muted small">Americas & Transatlantic Desk</span>
                 </div>
-                <span class="hub-clock-badge" id="clockTokyo">--:--:--</span>
+                <span class="hub-clock-badge" id="clockNewYork">--:--:-- EST</span>
               </div>
-              <div class="small text-muted ps-5">
-                <div><i class="bi bi-telephone me-1"></i> +81 (3) 6891 2200</div>
-                <div><i class="bi bi-envelope me-1"></i> tokyo.desk@terra-travel.com</div>
-              </div>
+              <div class="text-muted small mb-2"><i class="bi bi-geo-alt me-1 text-primary"></i> 590 Madison Avenue, New York, NY 10022, USA</div>
+              <div class="small fw-semibold text-dark"><i class="bi bi-telephone me-1 text-primary"></i> +1 (212) 555-0199</div>
             </div>
           </div>
         </div>
@@ -248,86 +265,106 @@
     </div>
   </main>
 
-  <!-- Footer -->
+  <!-- Site Footer -->
   <footer class="site-footer">
     <div class="container">
-      <div class="row g-4">
-        <div class="col-12 col-lg-4">
-          <div class="footer-brand-title">
-            <div class="brand-icon-circle"><i class="bi bi-compass"></i></div>
-            <span>TERRA</span>
+      <div class="row g-4 footer-top">
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-brand mb-3 d-flex align-items-center gap-2">
+            <img src="../../assets/images/logo.png" alt="TERRA" class="brand-logo-img" style="height: 38px;">
+            <span class="fs-4 font-weight-bold text-white tracking-tight">TERRA</span>
           </div>
-          <p class="text-white-50 pe-lg-4 mb-4">Terra is an international luxury travel platform curating premier boutique accommodations, scenic flight routes, and immersive cultural expeditions.</p>
+          <p class="footer-desc mb-4">
+            Handcrafted international journeys, bespoke private flights, and 5-star verified stays worldwide. Redefining modern travel with comfort and precision.
+          </p>
+          <div class="footer-social-links">
+            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
         </div>
-        <div class="col-6 col-md-4 col-lg-2">
-          <h5 class="footer-heading">Navigation</h5>
-          <ul class="footer-links">
-            <li><a href="../../index.html">Home</a></li>
-            <li><a href="../destinations/destinations.html">Destinations</a></li>
-            <li><a href="../destinations/flights.html">Flights</a></li>
-            <li><a href="../destinations/search-results.html?type=hotel">Hotels</a></li>
-            <li><a href="../destinations/packages.html">Tour Packages</a></li>
-          </ul>
-        </div>
-        <div class="col-6 col-md-4 col-lg-3">
-          <h5 class="footer-heading">Top Destinations</h5>
-          <ul class="footer-links">
+
+        <div class="col-lg-2 col-md-6 col-6">
+          <h5 class="footer-heading" data-i18n="footer_destinations">Destinations</h5>
+          <ul class="footer-nav-list">
             <li><a href="../destinations/destination-details.html?id=dest-bali">Bali, Indonesia</a></li>
             <li><a href="../destinations/destination-details.html?id=dest-paris">Paris, France</a></li>
-            <li><a href="../destinations/destination-details.html?id=dest-dubai">Dubai, UAE</a></li>
-            <li><a href="../destinations/destination-details.html?id=dest-swiss">Swiss Alps, Switzerland</a></li>
+            <li><a href="../destinations/destination-details.html?id=dest-tokyo">Tokyo, Japan</a></li>
+            <li><a href="../destinations/destination-details.html?id=dest-swiss">Swiss Alps</a></li>
+            <li><a href="../destinations/destinations.html">View All (50+)</a></li>
           </ul>
         </div>
-        <div class="col-12 col-md-4 col-lg-3">
-          <h5 class="footer-heading">Company</h5>
-          <ul class="footer-links">
-            <li><a href="about.html">About Terra</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="faq.html">Help & FAQ</a></li>
-            <li><a href="../booking/my-bookings.html">My Bookings</a></li>
+
+        <div class="col-lg-2 col-md-6 col-6">
+          <h5 class="footer-heading" data-i18n="footer_quick_links">Quick Links</h5>
+          <ul class="footer-nav-list">
+            <li><a href="../../index.html" data-i18n="nav_home">Home</a></li>
+            <li><a href="../destinations/destinations.html" data-i18n="nav_destinations">Explore Stays</a></li>
+            <li><a href="../destinations/flights.html" data-i18n="nav_flights">Flight Search</a></li>
+            <li><a href="../destinations/packages.html" data-i18n="nav_packages">Curated Packages</a></li>
+            <li><a href="about.html" data-i18n="nav_about">About Us</a></li>
           </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <h5 class="footer-heading" data-i18n="footer_contact">Global Concierge</h5>
+          <ul class="footer-contact-list mb-3">
+            <li><i class="bi bi-geo-alt-fill text-primary"></i> 100 Mayfair Avenue, London W1J 8HQ, United Kingdom</li>
+            <li><i class="bi bi-telephone-fill text-primary"></i> +44 20 7946 0912 / +1 (800) 555-8377</li>
+            <li><i class="bi bi-envelope-fill text-primary"></i> concierge@terra-travel.com</li>
+          </ul>
+          <div class="p-3 bg-white bg-opacity-10 rounded-3 border border-white border-opacity-10">
+            <div class="small fw-bold text-white mb-1"><i class="bi bi-shield-check text-success me-1"></i> IATA Accredited Luxury Agency</div>
+            <div class="text-white-50 small">All bookings 100% bonded and carbon neutral.</div>
+          </div>
         </div>
       </div>
+
       <div class="footer-bottom">
-        <div>&copy; 2026 Terra Travel Inc. All rights reserved.</div>
+        <div>&copy; 2026 Terra Travel Inc. All rights reserved. Built with HTML5, CSS3, Bootstrap 5, & Vanilla JS.</div>
+        <div class="d-flex gap-3">
+          <a href="faq.html" class="text-white-50">Privacy Policy</a>
+          <a href="faq.html" class="text-white-50">Terms of Service</a>
+          <a href="faq.html" class="text-white-50">Cookie Preferences</a>
+        </div>
       </div>
     </div>
   </footer>
 
+  <!-- Bootstrap 5 JS Bundle & Custom Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../../assets/js/main.js?v=2.3.1"></script>
-  <script src="../../assets/js/i18n.js?v=2.3.1"></script>
+  <script src="../../assets/js/i18n.js?v=2.3.2"></script>
+  <script src="../../assets/js/main.js?v=2.3.2"></script>
+
   <script>
-    // Live ticking clocks for global hubs
-    function updateHubClocks() {
+    // Live Clocks Engine for Global Hubs
+    function updateWorldClocks() {
       const now = new Date();
       const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+      
+      const londonEl = document.getElementById('clockLondon');
+      const tokyoEl = document.getElementById('clockTokyo');
+      const dubaiEl = document.getElementById('clockDubai');
+      const nyEl = document.getElementById('clockNewYork');
 
-      const timeNYC = new Intl.DateTimeFormat('en-US', { ...options, timeZone: 'America/New_York' }).format(now);
-      const timeParis = new Intl.DateTimeFormat('en-US', { ...options, timeZone: 'Europe/Paris' }).format(now);
-      const timeDubai = new Intl.DateTimeFormat('en-US', { ...options, timeZone: 'Asia/Dubai' }).format(now);
-      const timeTokyo = new Intl.DateTimeFormat('en-US', { ...options, timeZone: 'Asia/Tokyo' }).format(now);
-
-      const elNYC = document.getElementById('clockNYC');
-      const elParis = document.getElementById('clockParis');
-      const elDubai = document.getElementById('clockDubai');
-      const elTokyo = document.getElementById('clockTokyo');
-
-      if (elNYC) elNYC.textContent = `${timeNYC} NYC`;
-      if (elParis) elParis.textContent = `${timeParis} PAR`;
-      if (elDubai) elDubai.textContent = `${timeDubai} DXB`;
-      if (elTokyo) elTokyo.textContent = `${timeTokyo} TYO`;
+      if (londonEl) londonEl.textContent = now.toLocaleTimeString('en-GB', { ...options, timeZone: 'Europe/London' }) + ' GMT';
+      if (tokyoEl) tokyoEl.textContent = now.toLocaleTimeString('en-GB', { ...options, timeZone: 'Asia/Tokyo' }) + ' JST';
+      if (dubaiEl) dubaiEl.textContent = now.toLocaleTimeString('en-GB', { ...options, timeZone: 'Asia/Dubai' }) + ' GST';
+      if (nyEl) nyEl.textContent = now.toLocaleTimeString('en-GB', { ...options, timeZone: 'America/New_York' }) + ' EST';
     }
 
-    setInterval(updateHubClocks, 1000);
-    updateHubClocks();
+    setInterval(updateWorldClocks, 1000);
+    updateWorldClocks();
 
     function submitContactForm() {
-      const alertBox = document.getElementById('contactSuccessAlert');
-      alertBox.classList.remove('d-none');
+      const alert = document.getElementById('contactSuccessAlert');
+      if (alert) alert.classList.remove('d-none');
       if (typeof showToast === 'function') {
-        showToast('Inquiry Dispatched', 'Concierge desk notified. We will reply shortly!', 'success');
+        showToast('Message Sent', 'Our travel curator will get in touch shortly.', 'success');
       }
+      const form = document.getElementById('contactForm');
+      if (form) form.reset();
     }
   </script>
 </body>
