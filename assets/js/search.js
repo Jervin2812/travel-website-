@@ -175,7 +175,7 @@ function applyFiltersAndRender() {
     container.innerHTML = `
       <div class="col-12 text-center py-5 bg-light rounded-4 p-5 reveal active">
         <i class="bi bi-compass text-primary" style="font-size: 3.5rem;"></i>
-        <h4 class="mt-3 font-weight-bold">No travel experiences match your criteria</h4>
+        <h4 class="mt-3 fw-bold">No travel experiences match your criteria</h4>
         <p class="text-muted">Try adjusting your budget slider, searching for a different destination, or clearing active filters.</p>
         <button class="btn btn-primary-custom mt-2" onclick="resetFilters()">Reset All Filters</button>
       </div>
