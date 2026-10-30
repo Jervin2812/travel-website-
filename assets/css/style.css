@@ -966,7 +966,8 @@ img {
 .testimonial-slide {
   flex: 0 0 calc(33.333% - 16px);
   max-width: calc(33.333% - 16px);
-  min-width: 280px;
+  width: calc(33.333% - 16px);
+  box-sizing: border-box;
 }
 
 .testimonial-card {

@@ -775,11 +775,15 @@ function initTestimonialCarousel() {
     if (currentIdx > maxIdx) currentIdx = 0;
     if (currentIdx < 0) currentIdx = maxIdx;
 
-    const targetSlide = slides[currentIdx];
-    if (targetSlide && slides[0]) {
-      const offset = targetSlide.offsetLeft - slides[0].offsetLeft;
-      track.style.transform = `translateX(-${offset}px)`;
-    }
+    const firstSlide = slides[0];
+    if (!firstSlide) return;
+
+    const slideWidth = firstSlide.offsetWidth;
+    const computedGap = parseFloat(window.getComputedStyle(track).gap) || 24;
+    const offset = currentIdx * (slideWidth + computedGap);
+    const isRtl = document.documentElement.getAttribute('dir') === 'rtl';
+
+    track.style.transform = isRtl ? `translateX(${offset}px)` : `translateX(-${offset}px)`;
   }
 
   function nextTestimonial() {
